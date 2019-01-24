@@ -12,12 +12,12 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".RegisterActivity"
+                android:name=".views.RegisterActivity"
                 android:screenOrientation="landscape"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".LoginActivity"
+                android:name=".views.LoginActivity"
                 android:screenOrientation="landscape"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
