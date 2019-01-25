@@ -14,5 +14,8 @@ class LoginActivity : AppCompatActivity() {
         button_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+        button_login.setOnClickListener {
+            startActivity(Intent(this, ChooseGameActivity::class.java))
+        }
     }
 }
