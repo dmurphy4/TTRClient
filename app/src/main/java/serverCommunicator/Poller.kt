@@ -1,4 +1,0 @@
-package serverCommunicator
-
-class Poller {
-}
