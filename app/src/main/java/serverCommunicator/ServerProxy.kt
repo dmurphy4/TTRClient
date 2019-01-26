@@ -1,0 +1,4 @@
+package serverCommunicator
+
+class ServerProxy {
+}
