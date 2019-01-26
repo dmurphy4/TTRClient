@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
           package="com.d.tickettoride">
+=======
+          xmlns:tools="http://schemas.android.com/tools" package="com.d.tickettoride" >
+>>>>>>> 8c9fae73444ff89b9d8f97139dee92385a30f913
 
     <application
             android:allowBackup="true"
@@ -8,8 +12,16 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
+<<<<<<< HEAD
             android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+=======
+            android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
+        <activity
+                android:name=".LoginActivity"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:screenOrientation="landscape">
+>>>>>>> 8c9fae73444ff89b9d8f97139dee92385a30f913
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
