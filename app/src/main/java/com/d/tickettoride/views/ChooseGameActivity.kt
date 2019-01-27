@@ -3,11 +3,20 @@ package com.d.tickettoride.views
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
+import com.d.tickettoride.presenters.ChooseGamePresenter
+import com.d.tickettoride.util.GameInfoAdapter
 import kotlinx.android.synthetic.main.activity_choose_game.*
 
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
+
+    private lateinit var adapter: GameInfoAdapter
+    private var gameList = ArrayList<GameInfo>()
+
+    private val chooseGamePresenter = ChooseGamePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +24,15 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
 
         number_picker.minValue = 2
         number_picker.maxValue = 5
+
+        available_games_list.layoutManager = LinearLayoutManager(this)
+        adapter = GameInfoAdapter(gameList)
+        available_games_list.adapter = adapter
+
+        button_create_game.setOnClickListener {
+            chooseGamePresenter.createNewGame(GameInfo(game_name.text.toString(),
+                                                       number_picker.value))
+        }
     }
 
     override fun startLobbyActivity() {
@@ -22,6 +40,7 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
     }
 
     override fun displayGameInList(gameInfo: GameInfo) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        gameList.add(gameInfo)
+        adapter.notifyItemInserted(gameList.size)
     }
 }

@@ -30,6 +30,7 @@
                     android:layout_height="wrap_content">
 
                 <EditText
+                        android:id="@+id/game_name"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
