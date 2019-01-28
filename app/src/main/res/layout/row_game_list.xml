@@ -8,7 +8,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBackup1"
+            android:background="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -16,7 +16,8 @@
                 android:id="@+id/row_game_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                android:textColor="@color/white"/>
 
     </LinearLayout>
 
@@ -31,7 +32,8 @@
                 android:id="@+id/row_num_players"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                android:textColor="@color/white"/>
 
     </LinearLayout>
 

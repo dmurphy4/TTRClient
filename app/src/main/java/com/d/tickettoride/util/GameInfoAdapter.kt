@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.row_game_list.view.*
 class GameInfoAdapter(private val gameList: ArrayList<GameInfo>) : RecyclerView.Adapter<GameInfoAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val inflatedView = parent.inflate(R.layout.row_game_list, false)
-        return MyViewHolder(inflatedView)
+        val view = parent.inflate(R.layout.row_game_list, false)
+        return MyViewHolder(view)
     }
 
     override fun getItemCount(): Int = gameList.size
