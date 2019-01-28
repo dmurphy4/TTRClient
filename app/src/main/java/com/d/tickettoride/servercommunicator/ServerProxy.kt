@@ -1,29 +1,29 @@
 package com.d.tickettoride.servercommunicator
 
-import com.d.tickettoride.command.serverCommand.sBeginPlayCommand
-import com.d.tickettoride.command.serverCommand.sCreateGameCommand
-import com.d.tickettoride.command.serverCommand.sLoginCommand
-import com.d.tickettoride.command.serverCommand.sRegisterCommand
+import com.d.tickettoride.command.server.SBeginPlayCommand
+import com.d.tickettoride.command.server.SCreateGameCommand
+import com.d.tickettoride.command.server.SLoginCommand
+import com.d.tickettoride.command.server.SRegisterCommand
 
 class ServerProxy {
 
-    fun login(data:sLoginCommand) {
+    fun login(data:SLoginCommand) {
 
     }
 
-    fun register(data:sRegisterCommand) {
+    fun register(data:SRegisterCommand) {
 
     }
 
-    fun createGame(data:sCreateGameCommand) {
+    fun createGame(data:SCreateGameCommand) {
 
     }
 
-    fun joinGame(data:sRegisterCommand) {
+    fun joinGame(data:SRegisterCommand) {
 
     }
 
-    fun beginPlay(data:sBeginPlayCommand) {
+    fun beginPlay(data:SBeginPlayCommand) {
 
     }
 

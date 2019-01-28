@@ -8,6 +8,6 @@ class LoginService {
     }
 
     fun setUserName(userName:String) {
-        
+
     }
 }
