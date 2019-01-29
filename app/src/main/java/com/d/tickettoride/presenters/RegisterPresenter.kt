@@ -8,10 +8,10 @@ class RegisterPresenter(registerView: IRegisterView) : IRegisterPresenter {
 
     override fun sendRegisterRequest(username: String, password: String, confirmPassword: String) {
         when {
-            password != confirmPassword -> registerActivity.displayErrorMesage("Passwords do not match.")
-            username.length < 5 -> registerActivity.displayErrorMesage("Username must be at least 5 characters.")
+            password != confirmPassword -> registerActivity.displayErrorMessage("Passwords do not match.")
+            username.length < 5 -> registerActivity.displayErrorMessage("Username must be at least 5 characters.")
             else -> {
-                registerActivity.displayErrorMesage("You entered $username, $password")
+                registerActivity.displayErrorMessage("You entered $username, $password")
                 registerActivity.startChooseGameActivity()
             }
         }

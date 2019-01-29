@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
+import com.d.tickettoride.presenters.ChooseGamePresenter
 import kotlinx.android.synthetic.main.row_game_list.view.*
 
-class GameInfoAdapter(private val gameList: ArrayList<GameInfo>, private var selectedRowIndex: Int = -1) :
+class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,
+                      private val chooseGamePresenter: ChooseGamePresenter,
+                      private var selectedRowIndex: Int = -1) :
       RecyclerView.Adapter<GameInfoAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -24,6 +27,7 @@ class GameInfoAdapter(private val gameList: ArrayList<GameInfo>, private var sel
         holder.bind(gameInfo)
         holder.view.setOnClickListener {
             selectedRowIndex = position
+            chooseGamePresenter.setSelectedGameInfo(gameList[position])
             notifyDataSetChanged()
         }
 
@@ -38,10 +42,7 @@ class GameInfoAdapter(private val gameList: ArrayList<GameInfo>, private var sel
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        private var gameInfo : GameInfo? = null
-
         fun bind(gameInfo: GameInfo) {
-            this.gameInfo = gameInfo
             view.row_game_name.text = gameInfo.name
             view.row_num_players.text = gameInfo.numPlayers.toString()
         }

@@ -27,7 +27,7 @@ class RegisterActivity : AppCompatActivity(), IRegisterView {
         startActivity(Intent(this, ChooseGameActivity::class.java))
     }
 
-    override fun displayErrorMesage(message: String) {
+    override fun displayErrorMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

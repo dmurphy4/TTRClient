@@ -25,7 +25,7 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         number_picker.minValue = 2
         number_picker.maxValue = 5
 
-        adapter = GameInfoAdapter(gameList)
+        adapter = GameInfoAdapter(gameList, chooseGamePresenter)
 
         // Set RecyclerView's layout manager - the linear layout manager
         // displays the list like normal
