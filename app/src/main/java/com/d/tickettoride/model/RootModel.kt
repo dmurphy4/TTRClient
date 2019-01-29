@@ -7,6 +7,8 @@ class RootModel {
     }
     var user:Player? = null
 
+    var loggedIn:Boolean = false
+
     var thisGame:Game? = null
 
     var currentGames:List<Game>? = null
@@ -16,5 +18,6 @@ class RootModel {
 fun main() {
     val a = RootModel.instance
     a.user = Player("dallin", PlayerColor.BLACK)
-    print(a.user.toString())
+    val b = RootModel.instance
+    print(b.user.toString())
 }

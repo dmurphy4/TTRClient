@@ -28,6 +28,8 @@ class ServerProxy {
     }
 
     fun executeExistingCommands() {
+        getCommands()
+        executeCommands()
 
     }
 
