@@ -1,5 +1,6 @@
 package com.d.tickettoride.util
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,8 @@ import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
 import kotlinx.android.synthetic.main.row_game_list.view.*
 
-class GameInfoAdapter(private val gameList: ArrayList<GameInfo>) : RecyclerView.Adapter<GameInfoAdapter.MyViewHolder>() {
+class GameInfoAdapter(private val gameList: ArrayList<GameInfo>, private var selectedRowIndex: Int = -1) :
+      RecyclerView.Adapter<GameInfoAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = parent.inflate(R.layout.row_game_list, false)
@@ -20,25 +22,28 @@ class GameInfoAdapter(private val gameList: ArrayList<GameInfo>) : RecyclerView.
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val gameInfo = gameList[position]
         holder.bind(gameInfo)
+        holder.view.setOnClickListener {
+            selectedRowIndex = position
+            notifyDataSetChanged()
+        }
+
+        if (selectedRowIndex == position) {
+            holder.view.row_game_name_layout.setBackgroundColor(Color.parseColor("#BEEB9F"))
+            holder.view.row_game_name.setTextColor(Color.parseColor("#000000"))
+        } else {
+            holder.view.row_game_name_layout.setBackgroundColor(Color.parseColor("#79BD8F"))
+            holder.view.row_game_name.setTextColor(Color.parseColor("#FFFFFF"))
+        }
     }
 
-    class MyViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
-        private var view : View = v
-        private var gameInfo : GameInfo? = null
+    class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        init {
-            v.setOnClickListener(this)
-        }
+        private var gameInfo : GameInfo? = null
 
         fun bind(gameInfo: GameInfo) {
             this.gameInfo = gameInfo
             view.row_game_name.text = gameInfo.name
             view.row_num_players.text = gameInfo.numPlayers.toString()
-        }
-
-        override fun onClick(v: View) {
-            Toast.makeText(itemView.context, "Clicked ${gameInfo?.name}, ${gameInfo?.numPlayers}",
-                           Toast.LENGTH_LONG).show()
         }
     }
 

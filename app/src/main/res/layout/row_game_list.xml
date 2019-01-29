@@ -3,9 +3,10 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="horizontal" >
+              android:orientation="horizontal">
 
     <LinearLayout
+            android:id="@+id/row_game_name_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -22,6 +23,7 @@
     </LinearLayout>
 
     <LinearLayout
+            android:id="@+id/row_num_players_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
