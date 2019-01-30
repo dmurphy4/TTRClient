@@ -14,8 +14,3 @@ class Player {
         return this.userName + " is my name and my color is " + this.color.getColor()
     }
 }
-
-fun main() {
-    val p:Player = Player("Dallin", PlayerColor.BLACK)
-    print(p.userName)
-}

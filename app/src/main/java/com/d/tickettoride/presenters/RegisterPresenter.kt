@@ -1,5 +1,6 @@
 package com.d.tickettoride.presenters
 
+import com.d.tickettoride.service.RegisterService
 import com.d.tickettoride.views.IRegisterView
 
 class RegisterPresenter(registerView: IRegisterView) : IRegisterPresenter {
@@ -12,6 +13,9 @@ class RegisterPresenter(registerView: IRegisterView) : IRegisterPresenter {
             username.length < 5 -> registerActivity.displayErrorMessage("Username must be at least 5 characters.")
             else -> {
                 registerActivity.displayErrorMessage("You entered $username, $password")
+
+                RegisterService().register(username, password)
+
                 registerActivity.startChooseGameActivity()
             }
         }

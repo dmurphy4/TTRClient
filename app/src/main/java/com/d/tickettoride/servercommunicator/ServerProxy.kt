@@ -4,10 +4,20 @@ import com.d.tickettoride.command.server.SBeginPlayCommand
 import com.d.tickettoride.command.server.SCreateGameCommand
 import com.d.tickettoride.command.server.SLoginCommand
 import com.d.tickettoride.command.server.SRegisterCommand
+import okhttp3.FormBody
+import okhttp3.HttpUrl
+import okhttp3.Request
+import okhttp3.RequestBody
+import java.net.URL
 
 class ServerProxy {
 
     fun login(data:SLoginCommand) {
+        //val formBody:RequestBody = FormBody.Builder().add("username", data.userName).add("password", data.password).build()
+
+        //val request:Request = Request.Builder().url().post(formBody).build()
+
+
 
     }
 
