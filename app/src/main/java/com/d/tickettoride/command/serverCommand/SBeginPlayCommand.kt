@@ -1,5 +1,4 @@
 package com.d.tickettoride.command.serverCommand
 
-class sLoginCommand {
-
+class SBeginPlayCommand {
 }

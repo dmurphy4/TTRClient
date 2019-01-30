@@ -2,9 +2,7 @@ package com.d.tickettoride.presenters
 
 import com.d.tickettoride.views.ILoginView
 
-class LoginPresenter(loginView: ILoginView) : ILoginPresenter {
-
-    private val loginActivity = loginView
+class LoginPresenter(private val loginActivity: ILoginView) : ILoginPresenter {
 
     override fun sendLoginRequest(username: String, password: String) {
         loginActivity.displayErrorMessage("You entered $username, $password")
