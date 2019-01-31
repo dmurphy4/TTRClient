@@ -10,7 +10,6 @@ class LoginPresenter(private val loginActivity: ILoginView) : ILoginPresenter {
     override fun sendLoginRequest(username: String, password: String) {
         val rootModel = RootModel.instance
         rootModel.onLogIn = { _, _ ->
-            //change to createGameView???
             rootModel.user = User(username)
             loginActivity.startChooseGameActivity()
         }

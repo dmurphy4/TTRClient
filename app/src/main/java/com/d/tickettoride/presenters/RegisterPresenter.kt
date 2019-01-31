@@ -17,7 +17,6 @@ class RegisterPresenter(registerView: IRegisterView) : IRegisterPresenter {
 
                 val rootModel = RootModel.instance
                 rootModel.onLogIn = { _, _ ->
-                    //change to createGameView???
                     rootModel.user = User(username)
                     registerActivity.startChooseGameActivity()
                 }
