@@ -1,6 +1,7 @@
 package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.User
 import com.d.tickettoride.service.LoginService
 import com.d.tickettoride.views.ILoginView
 
@@ -10,13 +11,17 @@ class LoginPresenter(private val loginActivity: ILoginView) : ILoginPresenter {
         val rootModel = RootModel.instance
         rootModel.onLogIn = { _, _ ->
             //change to createGameView???
+            rootModel.user = User(username)
+            loginActivity.startChooseGameActivity()
+        }
+        rootModel.onErrorMessageGiven = {
+            _, new -> loginActivity.displayErrorMessage(new)
         }
 
         loginActivity.displayErrorMessage("You entered $username, $password")
 
         LoginService().loginServer(username, password)
-
-        loginActivity.startChooseGameActivity()
+        rootModel.loggedIn = true
     }
 
     override fun registerButtonClicked() {

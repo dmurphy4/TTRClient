@@ -9,8 +9,4 @@ class RegisterService {
         val serverCommand = SRegisterCommand(userName, password)
         ServerProxy().register(serverCommand)
     }
-
-    fun setUser(userName:String) {
-
-    }
 }

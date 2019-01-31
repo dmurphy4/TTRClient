@@ -22,10 +22,15 @@ class RootModel {
 
     var thisGame:Game? = null
 
-    var gameList:List<Game>? by observable(ArrayList()) {
+    var gameList:List<Game>? by observable(ArrayList()) { // maybe not right
         _, _, _ -> onGameListChanged
     }
 
-    var onGameListChanged: ((ArrayList<Game>, ArrayList<Game>) -> Unit)? = null // lets figure out where to put this
+    var onGameListChanged: ((ArrayList<Game>, ArrayList<Game>) -> Unit)? = null // Zach, let's declare
 
+    var errorMessage:String? by observable<String?>(null) {
+        _,_,new -> onErrorMessageGiven
+    }
+
+    var onErrorMessageGiven: ((String, String) -> Unit)? = null
 }

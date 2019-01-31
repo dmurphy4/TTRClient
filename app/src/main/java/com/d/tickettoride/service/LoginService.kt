@@ -11,11 +11,15 @@ class LoginService {
         val loginComm = SLoginCommand(userName, password)
 
         ServerProxy().login(loginComm)
-
     }
 
-    fun loginUser(userName:String?, success:Boolean, errorMessage:String?) {
+    fun loginUser(success:Boolean, errorMessage:String?) {
         var rootModel = RootModel.instance
-        rootModel.loggedIn = true
+        if (success) {
+            rootModel.loggedIn = true
+        }
+        else {
+            rootModel.errorMessage = errorMessage
+        }
     }
 }
