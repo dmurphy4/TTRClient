@@ -1,9 +1,6 @@
 package com.d.tickettoride.servercommunicator
 
-import com.d.tickettoride.command.server.SBeginPlayCommand
-import com.d.tickettoride.command.server.SCreateGameCommand
-import com.d.tickettoride.command.server.SLoginCommand
-import com.d.tickettoride.command.server.SRegisterCommand
+import com.d.tickettoride.command.server.*
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 import okhttp3.Request
@@ -29,7 +26,7 @@ class ServerProxy {
 
     }
 
-    fun joinGame(data:SRegisterCommand) {
+    fun joinGame(data:SJoinGameCommand) {
 
     }
 
