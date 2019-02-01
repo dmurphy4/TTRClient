@@ -46,10 +46,6 @@ class ServerProxy {
 //        val request = Request.Builder().url(url).post(formBody).build()
     }
 
-    fun beginPlay(data:SBeginPlayCommand) {
-
-    }
-
     fun executeExistingCommands() {
         getCommands()
         executeCommands()

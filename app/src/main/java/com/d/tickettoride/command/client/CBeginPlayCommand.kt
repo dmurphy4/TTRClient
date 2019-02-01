@@ -1,9 +1,11 @@
 package com.d.tickettoride.command.client
 
-class CBeginPlayCommand(val errorMessage:String, val success:Boolean, val gameName:String) : ICommand {
+import com.d.tickettoride.model.Game
+import com.d.tickettoride.service.BeginPlayService
+
+class CBeginPlayCommand(private val game: Game) : ICommand {
 
     override fun execute() {
-
+        BeginPlayService().setCurrentGame(game)
     }
-
 }
