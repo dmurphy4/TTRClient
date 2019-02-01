@@ -8,9 +8,10 @@ import org.jetbrains.anko.doAsync
 class LoginService {
 
     fun loginServer(userName:String, password:String) {
-        val loginComm = SLoginCommand(userName, password)
-
-        ServerProxy().login(loginComm)
+        doAsync {
+            val loginComm = SLoginCommand(userName, password)
+            ServerProxy().login(loginComm)
+        }
     }
 
     fun loginUser(success:Boolean, errorMessage:String?) {

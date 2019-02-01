@@ -20,9 +20,13 @@ class RootModel {
 
     var onLogIn: ((Boolean, Boolean) -> Unit)? = null
 
-    var thisGame:Game? = null
+    var thisGame:Game? by observable<Game?>(null) {
+        _, _, _ -> onGameStarted
+    }
 
-    var gameList:List<Game>? by observable(ArrayList()) { // maybe not right
+    var onGameStarted: ((Game, Game) -> Unit)? = null
+
+    var gameList:MutableList<Game>? by observable(ArrayList()) { // maybe not right
         _, _, _ -> onGameListChanged
     }
 
