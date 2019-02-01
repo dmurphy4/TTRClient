@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.row_game_list.view.*
 
 class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,
                       private val chooseGamePresenter: ChooseGamePresenter,
-                      private var selectedRowIndex: Int = -1) :
+                      var selectedRowIndex: Int = -1) :
       RecyclerView.Adapter<GameInfoAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

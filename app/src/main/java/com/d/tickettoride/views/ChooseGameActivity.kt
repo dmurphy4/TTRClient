@@ -36,6 +36,9 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         button_create_game.setOnClickListener {
             chooseGamePresenter.createNewGame(GameInfo(game_name.text.toString(), number_picker.value))
         }
+        button_join_game.setOnClickListener {
+            chooseGamePresenter.joinExistingGame(gameList[adapter.selectedRowIndex])
+        }
     }
 
     override fun startLobbyActivity() {
