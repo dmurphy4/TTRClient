@@ -1,5 +1,6 @@
 package com.d.tickettoride.service
 
+import android.provider.DocumentsContract
 import com.d.tickettoride.command.server.SCreateGameCommand
 import com.d.tickettoride.model.Game
 import com.d.tickettoride.model.GameInfo
@@ -14,6 +15,9 @@ class CreateGameService {
     }
 
     fun addGameToList(gameInfo: GameInfo) {
-        RootModel.instance.gameList?.add(gameInfo)
+        val rootModel = RootModel.instance
+        rootModel.gameList.add(gameInfo)
+        val x = rootModel.gameListLength
+        rootModel.gameListLength = x + 1
     }
 }

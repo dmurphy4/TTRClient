@@ -23,10 +23,16 @@ class RootModel {
     var onGameStarted: ((Game, Game) -> Unit)? = null
 
     var gameList:GameListWrapper<GameInfo> by observable(GameListWrapper()) { // maybe not right
-        _, _, _ -> onGameListChanged
+        _, o, n -> onGameListChanged?.invoke(o, n)
     }
 
-    var onGameListChanged: ((GameListWrapper<GameInfo>, GameListWrapper<GameInfo>) -> Unit)? = null // Zach, let's declare
+    var onGameListChanged: ((GameListWrapper<GameInfo>, GameListWrapper<GameInfo>) -> Unit)? = null
+
+    var gameListLength:Int by observable(0) {
+        _, old, new -> onGameAdded?.invoke(old, new)
+    }
+
+    var onGameAdded: ((Int, Int) -> Unit)? = null
 
     var errorMessage:String? by observable<String?>(null) {
         _,_,new -> onErrorMessageGiven
