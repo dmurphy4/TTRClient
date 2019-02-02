@@ -9,7 +9,6 @@ class RegisterService {
     fun register(userName:String, password:String) {
         doAsync {
             val serverCommand = SRegisterCommand(userName, password)
-            ServerProxy().register(serverCommand)
         }
     }
 }

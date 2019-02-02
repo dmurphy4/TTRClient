@@ -2,16 +2,17 @@ package com.d.tickettoride.service
 
 import com.d.tickettoride.command.server.SLoginCommand
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.User
+import com.d.tickettoride.servercommunicator.CommandType
 import com.d.tickettoride.servercommunicator.ServerProxy
+import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 
 class LoginService {
 
-    fun loginServer(userName:String, password:String) {
-        doAsync {
-            val loginComm = SLoginCommand(userName, password)
-            ServerProxy().login(loginComm)
-        }
+    fun loginServer(username:String, password:String) {
+        val data = Gson().toJson(SLoginCommand(username, password))
+        ServerProxy().command(CommandType.S_LOGIN, data)
     }
 
     fun loginUser(success:Boolean, errorMessage:String?) {
@@ -22,5 +23,9 @@ class LoginService {
         else {
             rootModel.errorMessage = errorMessage
         }
+    }
+
+    fun setUserData(username: String) {
+        RootModel.instance.user = User(username)
     }
 }

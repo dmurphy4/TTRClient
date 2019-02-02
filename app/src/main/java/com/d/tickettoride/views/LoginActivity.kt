@@ -35,4 +35,8 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     override fun displayErrorMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
+    override fun enableLogIn(enable: Boolean) {
+        button_login.isEnabled = enable
+    }
 }

@@ -10,6 +10,5 @@ class JoinGameService {
 
     fun joinGame(gameName:String) {
         val serverCommand = SJoinGameCommand(gameName, RootModel.instance.user!!.userName)
-        ServerProxy().joinGame(serverCommand)
     }
 }

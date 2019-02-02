@@ -9,10 +9,7 @@ import org.jetbrains.anko.doAsync
 class BeginPlayService {
 
     fun beginPlay(gameName:String) {
-        doAsync {
-            val serverCommand = SBeginPlayCommand(gameName)
-            ServerProxy().beginPlay(serverCommand)
-        }
+
     }
 
     fun setCurrentGame(game:Game) {

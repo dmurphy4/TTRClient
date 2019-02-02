@@ -9,10 +9,7 @@ import org.jetbrains.anko.doAsync
 class CreateGameService {
 
     fun createGame(gameName:String, numPlayers:Int, creator:String?) {
-        doAsync {
-            var serverComm = SCreateGameCommand(gameName, numPlayers, creator)
-            ServerProxy().createGame(serverComm)
-        }
+
     }
 
     fun addGameToList(game:Game) {
