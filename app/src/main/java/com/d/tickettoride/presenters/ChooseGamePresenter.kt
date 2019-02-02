@@ -12,9 +12,17 @@ class ChooseGamePresenter(chooseGameView: IChooseGameView) : IChooseGamePresente
     private val createGameService = CreateGameService()
     private val joinGameService = JoinGameService()
 
+    init {
+        var rootModel = RootModel.instance
+        rootModel.onGameListChanged = { _, _ ->
+            print("hi")
+        }
+    }
+
     override fun createNewGame(gameInfo: GameInfo) {
         var rootModel = RootModel.instance
         CreateGameService().createGame(gameInfo.name, gameInfo.numPlayers, rootModel.user?.userName)
+        rootModel.gameList.add(gameInfo)
         chooseGameActivity.displayGameInList(gameInfo)
     }
 

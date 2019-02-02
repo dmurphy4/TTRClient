@@ -30,4 +30,18 @@ class ServerProxy {
             }
         }
     }
+
+    fun executeExistingCommands() {
+        getCommands()
+        executeCommands()
+
+    }
+
+    private fun getCommands() {
+
+    }
+
+    private fun executeCommands() {
+
+    }
 }
