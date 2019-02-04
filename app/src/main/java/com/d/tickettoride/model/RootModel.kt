@@ -22,20 +22,18 @@ class RootModel {
     }
     var onGameStarted: ((Game, Game) -> Unit)? = null
 
-    var gameList:GameListWrapper<GameInfo> by observable(GameListWrapper()) { // maybe not right
-        _, o, n -> onGameListChanged?.invoke(o, n)
-    }
+    var gameList:ArrayList<GameInfo> = ArrayList()
 
-    var onGameListChanged: ((GameListWrapper<GameInfo>, GameListWrapper<GameInfo>) -> Unit)? = null
+    var gameToRemoveFromList:GameInfo? = null
 
     var gameListLength:Int by observable(0) {
-        _, old, new -> onGameAdded?.invoke(old, new)
+        _, old, new -> onGameListChanged?.invoke(old, new)
     }
 
-    var onGameAdded: ((Int, Int) -> Unit)? = null
+    var onGameListChanged: ((Int, Int) -> Unit)? = null
 
     var errorMessage:String? by observable<String?>(null) {
-        _,_,new -> onErrorMessageGiven
+        _,old,new -> onErrorMessageGiven?.invoke(old, new)
     }
-    var onErrorMessageGiven: ((String, String) -> Unit)? = null
+    var onErrorMessageGiven: ((String?, String?) -> Unit)? = null
 }

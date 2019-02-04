@@ -49,4 +49,9 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         gameList.add(gameInfo)
         adapter.notifyItemInserted(gameList.size)
     }
+
+    override fun removeGameFromList(gameInfo: GameInfo?) {
+        gameList.removeAt(gameList.indexOf(gameInfo))
+        adapter.notifyItemRemoved(gameList.indexOf(gameInfo))
+    }
 }

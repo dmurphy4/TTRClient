@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
 
-    override fun displayErrorMessage(message: String) {
+    override fun displayErrorMessage(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 

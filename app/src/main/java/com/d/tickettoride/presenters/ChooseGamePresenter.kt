@@ -1,6 +1,5 @@
 package com.d.tickettoride.presenters
 
-import android.util.Log
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.service.CreateGameService
@@ -15,8 +14,14 @@ class ChooseGamePresenter(chooseGameView: IChooseGameView) : IChooseGamePresente
 
     init {
         val rootModel = RootModel.instance
-        rootModel.onGameAdded = { _, _ ->
-            chooseGameActivity.displayGameInList(rootModel.gameList[rootModel.gameListLength - 1])
+        rootModel.onGameListChanged = { old, new ->
+            if (old < new) { // a game was added
+                chooseGameActivity.displayGameInList(rootModel.gameList[rootModel.gameListLength - 1])
+            }
+            else { // a game was removed
+                chooseGameActivity.removeGameFromList(rootModel.gameToRemoveFromList)
+            }
+
         }
     }
 
