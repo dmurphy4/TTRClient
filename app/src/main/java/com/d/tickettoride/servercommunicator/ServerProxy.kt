@@ -1,5 +1,6 @@
 package com.d.tickettoride.servercommunicator
 
+import com.d.tickettoride.command.client.CPollerCommandList
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.service.LoginService
 import com.google.gson.Gson
@@ -33,16 +34,11 @@ class ServerProxy {
     }
 
     fun executeExistingCommands() {
-        getCommands()
-        executeCommands()
-
+        getCommands()?.execute()
     }
 
-    private fun getCommands() {
-
+    private fun getCommands() : CPollerCommandList? {
+        return null
     }
 
-    private fun executeCommands() {
-
-    }
 }
