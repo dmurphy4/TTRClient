@@ -14,6 +14,7 @@ class ServerProxy {
     private val url = "https://api.github.com"
     private val gson = Gson()
     val JSON = MediaType.parse("application/json; charset=utf-8")
+    val poller = Poller()
 
     fun command(type: CommandType, data: String) {
         doAsync {
