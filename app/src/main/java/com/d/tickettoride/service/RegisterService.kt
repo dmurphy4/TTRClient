@@ -9,7 +9,6 @@ class RegisterService {
 
     fun register(userName:String, password:String) {
         val serverCommand = SRegisterCommand(userName, password)
-        val gson = Gson()
-        ServerProxy().command(CommandType.S_REGISTER, gson.toJson(serverCommand))
+        ServerProxy().command(CommandType.S_REGISTER, Gson().toJson(serverCommand))
     }
 }

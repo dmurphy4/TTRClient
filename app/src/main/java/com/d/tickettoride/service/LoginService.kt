@@ -15,14 +15,9 @@ class LoginService {
         ServerProxy().command(CommandType.S_LOGIN, data)
     }
 
-    fun loginUser(success:Boolean, errorMessage:String?) {
+    fun loginUser() {
         var rootModel = RootModel.instance
-        if (success) {
-            rootModel.loggedIn = true
-        }
-        else {
-            rootModel.errorMessage = errorMessage
-        }
+        rootModel.loggedIn = true
     }
 
     fun setUserData(username: String) {

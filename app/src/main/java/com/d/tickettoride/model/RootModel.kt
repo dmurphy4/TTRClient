@@ -18,9 +18,9 @@ class RootModel {
     var onLogIn: ((Boolean, Boolean) -> Unit)? = null
 
     var thisGame:Game? by observable<Game?>(null) {
-        _, _, _ -> onGameStarted
+        _, old, new -> onGameStarted?.invoke(old, new!!)
     }
-    var onGameStarted: ((Game, Game) -> Unit)? = null
+    var onGameStarted: ((Game?, Game) -> Unit)? = null
 
     var gameList:ArrayList<GameInfo> = ArrayList()
 
