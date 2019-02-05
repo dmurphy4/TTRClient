@@ -19,9 +19,9 @@ class ServerProxy {
 
     fun command(type: CommandType, data: String) {
         doAsync {
-            val command = CommandData(type, data)
-            val body = RequestBody.create(JSON, gson.toJson(command))
-            val request = Request.Builder().url(url).build()//.post(body).build()
+            val body = RequestBody.create(JSON, data)
+            val request = Request.Builder().url(url)
+                .addHeader("type", type.toString()).post(body).build()
             val response = client.newCall(request).execute()
             uiThread {
                 // with {} - do something with response
