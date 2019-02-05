@@ -9,17 +9,8 @@ import org.jetbrains.anko.doAsync
 
 class BeginPlayService {
 
-    fun beginPlay(gameName:String) {
-
-    }
-
     fun setCurrentGame(game:Game) {
         var rootModel = RootModel.instance
         rootModel.thisGame = game
-    }
-
-    fun removeGameFromList(gameInfo: GameInfo) {
-        var rootModel = RootModel.instance
-        rootModel.gameListLength--
     }
 }
