@@ -29,7 +29,6 @@ class RootModel {
     var gameListLength:Int by observable(0) {
         _, old, new -> onGameListChanged?.invoke(old, new)
     }
-
     var onGameListChanged: ((Int, Int) -> Unit)? = null
 
     var errorMessage:String? by observable<String?>(null) {

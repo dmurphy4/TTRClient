@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
+import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ChooseGamePresenter
 import com.d.tickettoride.util.GameInfoAdapter
 import kotlinx.android.synthetic.main.activity_choose_game.*
@@ -15,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_choose_game.*
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
 
     private lateinit var adapter: GameInfoAdapter
-    private var gameList = ArrayList<GameInfo>()
     private val chooseGamePresenter = ChooseGamePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         number_picker.minValue = 2
         number_picker.maxValue = 5
 
-        adapter = GameInfoAdapter(gameList, chooseGamePresenter)
+        adapter = GameInfoAdapter(RootModel.instance.gameList, chooseGamePresenter)
 
         // Set RecyclerView's layout manager - the linear layout manager
         // displays the list like normal
@@ -37,7 +37,7 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
             chooseGamePresenter.createNewGame(GameInfo(game_name.text.toString(), number_picker.value))
         }
         button_join_game.setOnClickListener {
-            chooseGamePresenter.joinExistingGame(gameList[adapter.selectedRowIndex])
+            chooseGamePresenter.joinExistingGame(RootModel.instance.gameList[adapter.selectedRowIndex])
         }
     }
 
@@ -46,12 +46,10 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
     }
 
     override fun displayGameInList(gameInfo: GameInfo) {
-        gameList.add(gameInfo)
-        adapter.notifyItemInserted(gameList.size)
+        adapter.notifyItemInserted(RootModel.instance.gameList.size)
     }
 
     override fun removeGameFromList(gameInfo: GameInfo?) {
-        gameList.removeAt(gameList.indexOf(gameInfo))
-        adapter.notifyItemRemoved(gameList.indexOf(gameInfo))
+        adapter.notifyItemRemoved(RootModel.instance.gameList.indexOf(gameInfo))
     }
 }
