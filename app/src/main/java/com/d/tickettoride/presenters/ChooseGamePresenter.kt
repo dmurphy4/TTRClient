@@ -6,11 +6,9 @@ import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.service.JoinGameService
 import com.d.tickettoride.views.IChooseGameView
 
-class ChooseGamePresenter(chooseGameView: IChooseGameView) : IChooseGamePresenter {
-
-    private val chooseGameActivity = chooseGameView
-    private val createGameService = CreateGameService()
-    private val joinGameService = JoinGameService()
+class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
+                          private val createGameService: CreateGameService = CreateGameService(),
+                          private val joinGameService: JoinGameService = JoinGameService()) : IChooseGamePresenter {
 
     init {
         val rootModel = RootModel.instance
@@ -21,14 +19,13 @@ class ChooseGamePresenter(chooseGameView: IChooseGameView) : IChooseGamePresente
             else { // a game was removed
                 chooseGameActivity.removeGameFromList(rootModel.gameToRemoveFromList)
             }
-
         }
     }
 
     override fun createNewGame(gameInfo: GameInfo) {
         val rootModel = RootModel.instance
         createGameService.createGame(gameInfo.name, gameInfo.numPlayers, rootModel.user?.userName)
-        createGameService.addGameToList(gameInfo) // where to put this so it depends on the response from the server
+        //createGameService.addGameToList(gameInfo) // where to put this so it depends on the response from the server
     }
 
     override fun joinExistingGame(gameInfo: GameInfo) {

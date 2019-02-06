@@ -18,10 +18,14 @@ class ServerProxy {
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(type: CommandType, data: String) {
+        println("HERE'S THE DATA GOING TO SERVER:")
+        println(data)
         doAsync {
             val body = RequestBody.create(JSON, data)
             val request = Request.Builder().url(url).addHeader("type", type.toString()).post(body).build()
             val response = client.newCall(request).execute()
+            println("RESPONSE OBJECT:")
+            println(response)
             val respBody = response.body()!!.string()
             uiThread {
                 val classType = when (type) {

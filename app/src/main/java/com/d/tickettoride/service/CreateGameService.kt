@@ -7,11 +7,11 @@ import com.d.tickettoride.servercommunicator.CommandType
 import com.d.tickettoride.servercommunicator.ServerProxy
 import com.google.gson.Gson
 
-class CreateGameService {
+class CreateGameService(private val proxy: ServerProxy = ServerProxy()) {
 
     fun createGame(gameName:String, numPlayers:Int, creator:String?) {
         val data = Gson().toJson(SCreateGameCommand(gameName, numPlayers, creator))
-        ServerProxy().command(CommandType.S_CREATE_GAME, data)
+        proxy.command(CommandType.S_CREATE_GAME, data)
     }
 
     fun addGameToList(gameInfo: GameInfo) {
