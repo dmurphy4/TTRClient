@@ -9,6 +9,10 @@ import com.google.gson.Gson
 
 class CreateGameService(private val proxy: ServerProxy = ServerProxy()) {
 
+    companion object {
+        val instance = CreateGameService()
+    }
+
     fun createGame(gameName:String, numPlayers:Int, creator:String?) {
         val data = Gson().toJson(SCreateGameCommand(gameName, numPlayers, creator))
         proxy.command(CommandType.S_CREATE_GAME, data)

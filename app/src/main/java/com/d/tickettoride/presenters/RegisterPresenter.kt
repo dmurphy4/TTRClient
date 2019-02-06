@@ -5,7 +5,7 @@ import com.d.tickettoride.service.LoginService
 import com.d.tickettoride.views.IRegisterView
 
 class RegisterPresenter(private val registerActivity: IRegisterView,
-                        private val loginService: LoginService = LoginService()) : IRegisterPresenter {
+                        private val loginService: LoginService = LoginService.instance) : IRegisterPresenter {
 
     init {
         RootModel.instance.onErrorMessageGiven = { _, message ->
@@ -13,7 +13,7 @@ class RegisterPresenter(private val registerActivity: IRegisterView,
         }
     }
 
-    override fun sendRegisterRequest(username: String, password: String, confirmPassword: String) {
+    override fun sendRegisterRequest(username: String, password: String) {
         RootModel.instance.onLogIn = { _, loggedIn ->
             if (loggedIn) {
                 registerActivity.startChooseGameActivity()
@@ -22,7 +22,6 @@ class RegisterPresenter(private val registerActivity: IRegisterView,
             }
         }
         registerActivity.enableRegister(false)
-        loginService.setUserData(username)
-        loginService.register(username, password, confirmPassword)
+        loginService.register(username, password)
     }
 }

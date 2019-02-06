@@ -7,7 +7,7 @@ import com.d.tickettoride.service.CreateGameService
 class CBeginPlayCommand(private val game: Game) : ICommand {
 
     override fun execute() {
-        BeginPlayService().setCurrentGame(game)
-        CreateGameService().removeGameFromList(game.info!!)
+        BeginPlayService.instance.setCurrentGame(game)
+        CreateGameService.instance.removeGameFromList(game.info!!)
     }
 }

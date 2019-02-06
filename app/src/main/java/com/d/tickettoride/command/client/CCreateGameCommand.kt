@@ -9,10 +9,10 @@ class CCreateGameCommand (private val errorMessage:String?, private val success:
 
     override fun execute() {
         if (success) {
-            CreateGameService().addGameToList(gameInfo)
+            CreateGameService.instance.addGameToList(gameInfo)
         }
         else {
-            ErrorMessageService().postErrorMessage(errorMessage!!)
+            ErrorMessageService.instance.postErrorMessage(errorMessage!!)
         }
     }
 }

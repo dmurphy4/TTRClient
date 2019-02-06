@@ -7,8 +7,8 @@ import com.d.tickettoride.service.JoinGameService
 import com.d.tickettoride.views.IChooseGameView
 
 class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
-                          private val createGameService: CreateGameService = CreateGameService(),
-                          private val joinGameService: JoinGameService = JoinGameService()) : IChooseGamePresenter {
+                          private val createGameService: CreateGameService = CreateGameService.instance,
+                          private val joinGameService: JoinGameService = JoinGameService.instance) : IChooseGamePresenter {
 
     init {
         val rootModel = RootModel.instance

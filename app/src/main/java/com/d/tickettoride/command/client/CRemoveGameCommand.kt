@@ -6,6 +6,6 @@ import com.d.tickettoride.service.CreateGameService
 class CRemoveGameCommand(private val gameInfo: GameInfo) : ICommand {
 
     override fun execute() {
-        CreateGameService().removeGameFromList(gameInfo)
+        CreateGameService.instance.removeGameFromList(gameInfo)
     }
 }

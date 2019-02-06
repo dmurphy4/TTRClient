@@ -11,21 +11,26 @@ import org.jetbrains.anko.doAsync
 
 class LoginService(private val proxy: ServerProxy = ServerProxy()) {
 
+    companion object {
+        val instance = LoginService()
+    }
+
     fun loginServer(username:String, password:String) {
         val data = Gson().toJson(SLoginCommand(username, password))
         proxy.command(CommandType.S_LOGIN, data)
     }
 
-    fun loginUser() {
+    fun loginUser(username:String) {
+        setUserData(username)
         RootModel.instance.loggedIn = true
     }
 
-    fun setUserData(username: String) {
+    private fun setUserData(username: String) {
         RootModel.instance.user = User(username)
     }
 
-    fun register(userName: String, password: String, confirmPassword: String) {
-        val data = Gson().toJson(SRegisterCommand(userName, password, confirmPassword))
+    fun register(userName: String, password: String) {
+        val data = Gson().toJson(SRegisterCommand(userName, password))
         proxy.command(CommandType.S_REGISTER, data)
     }
 }

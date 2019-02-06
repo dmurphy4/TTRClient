@@ -1,3 +1,3 @@
 package com.d.tickettoride.model
 
-data class User(val userName:String)
+data class User(var userName:String)
