@@ -14,7 +14,7 @@ class ServerProxy {
         val client = OkHttpClient()
     }
 
-    private val url = "http://10.37.208.17:8000/command"
+    private val url = "http://10.37.28.190:8000/command"
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(type: CommandType, data: String) {
@@ -22,6 +22,7 @@ class ServerProxy {
             val body = RequestBody.create(JSON, data)
             val request = Request.Builder().url(url).addHeader("type", type.toString()).post(body).build()
             val response = client.newCall(request).execute()
+            val respBody = response.body()!!.string()
             uiThread {
                 val classType = when (type) {
                     CommandType.S_LOGIN, CommandType.S_REGISTER -> CLoginRegisterCommand::class.java
@@ -31,8 +32,7 @@ class ServerProxy {
                     else -> ICommand::class.java
                 }
                 val gson = Gson()
-                val respBody = response.body()!!.byteStream()
-                val command = gson.fromJson(respBody.toString(), classType)
+                val command = gson.fromJson(respBody, classType)
                 command.execute()
             }
         }
