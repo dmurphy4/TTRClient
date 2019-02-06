@@ -16,7 +16,7 @@ class RegisterActivity : AppCompatActivity(), IRegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        signup_button.setOnClickListener {
+        button_signup.setOnClickListener {
             registerPresenter.sendRegisterRequest(register_username.text.toString(),
                                                   register_password.text.toString(),
                                                   register_confirm_password.text.toString())
@@ -29,5 +29,9 @@ class RegisterActivity : AppCompatActivity(), IRegisterView {
 
     override fun displayErrorMessage(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun enableRegister(enable: Boolean) {
+        button_signup.isEnabled = enable
     }
 }
