@@ -7,6 +7,7 @@ class RootModel {
     companion object {
         val instance = RootModel()
     }
+
     var user: User? by observable<User?>(null) {
         _, _, _ -> onUserChanged
     }

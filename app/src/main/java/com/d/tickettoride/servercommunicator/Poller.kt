@@ -1,5 +1,6 @@
 package com.d.tickettoride.servercommunicator
 
+import com.d.tickettoride.model.RootModel
 import java.util.*
 
 class Poller {
@@ -8,11 +9,10 @@ class Poller {
         timer.schedule(PollTask(), 0, 1 * 1000)
     }
 
-    class PollTask : TimerTask {
-        constructor()
-
+    class PollTask : TimerTask() {
         override fun run() {
-            ServerProxy().executeExistingCommands()
+            val proxy = ServerProxy()
+            proxy.command(CommandType.S_POLL, "{ userName: ${RootModel.instance.user?.userName} }")
         }
     }
 }
