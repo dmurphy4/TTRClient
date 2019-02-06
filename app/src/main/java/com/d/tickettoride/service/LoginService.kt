@@ -25,7 +25,7 @@ class LoginService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun register(userName: String, password: String, confirmPassword: String) {
-        val serverCommand = SRegisterCommand(userName, password, confirmPassword)
-        proxy.command(CommandType.S_REGISTER, Gson().toJson(serverCommand))
+        val data = Gson().toJson(SRegisterCommand(userName, password, confirmPassword))
+        proxy.command(CommandType.S_REGISTER, data)
     }
 }
