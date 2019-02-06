@@ -10,6 +10,8 @@ import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ChooseGamePresenter
+import com.d.tickettoride.servercommunicator.Poller
+import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.util.GameInfoAdapter
 import kotlinx.android.synthetic.main.activity_choose_game.*
 
@@ -39,6 +41,8 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         button_join_game.setOnClickListener {
             chooseGamePresenter.joinExistingGame(RootModel.instance.gameList[adapter.selectedRowIndex])
         }
+
+        chooseGamePresenter.startPoller() // make sure we take care of this for logging out (if we log out)
     }
 
     override fun startLobbyActivity() {

@@ -4,6 +4,7 @@ import com.d.tickettoride.command.server.SCreateGameCommand
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.servercommunicator.CommandType
+import com.d.tickettoride.servercommunicator.Poller
 import com.d.tickettoride.servercommunicator.ServerProxy
 import com.google.gson.Gson
 
@@ -29,5 +30,9 @@ class CreateGameService(private val proxy: ServerProxy = ServerProxy()) {
         rootModel.gameToRemoveFromList = gameInfo
         rootModel.gameList.remove(gameInfo)
         rootModel.gameListLength--
+    }
+
+    fun startPoller() {
+        RootModel.instance.poller = Poller()
     }
 }

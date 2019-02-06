@@ -1,10 +1,15 @@
 package com.d.tickettoride.command.client
 
-class CPollerCommandList(private val list:ArrayList<ICommand>) : ICommand {
+class CPollerCommandList(private val list:ArrayList<ICommand>?) : ICommand {
 
     override fun execute() {
-        for (command:ICommand in list) {
-            command.execute()
+        if (list != null) {
+            for (command: ICommand in list) {
+                command.execute()
+            }
+        }
+        else {
+            println("Aaron Kline")
         }
     }
 

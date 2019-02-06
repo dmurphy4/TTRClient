@@ -35,4 +35,8 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
     override fun setSelectedGameInfo(gameInfo: GameInfo) {
         return
     }
+
+    fun startPoller() {
+        CreateGameService.instance.startPoller()
+    }
 }
