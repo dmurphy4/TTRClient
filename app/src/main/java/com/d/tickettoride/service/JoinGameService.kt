@@ -8,6 +8,9 @@ import com.google.gson.Gson
 
 class JoinGameService {
 
+    companion object {
+        val instance = JoinGameService()
+    }
 
     fun joinGame(gameName:String) {
         val data = Gson().toJson(SJoinGameCommand(gameName, RootModel.instance.user!!.userName))

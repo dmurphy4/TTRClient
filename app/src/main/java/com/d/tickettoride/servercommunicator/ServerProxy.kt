@@ -44,12 +44,4 @@ class ServerProxy {
         }
     }
 
-    fun executeExistingCommands() {
-        getCommands()?.execute()
-    }
-
-    private fun getCommands() : CPollerCommandList? {
-        return null
-    }
-
 }

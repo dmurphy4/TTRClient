@@ -9,7 +9,7 @@ class CJoinGameCommand (val errorMessage:String?, val success:Boolean, val playe
 
         }
         else {
-            ErrorMessageService().postErrorMessage(errorMessage!!)
+            ErrorMessageService.instance.postErrorMessage(errorMessage!!)
         }
     }
 }

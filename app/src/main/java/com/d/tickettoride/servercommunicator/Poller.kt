@@ -6,13 +6,13 @@ import java.util.*
 class Poller {
     var timer: Timer = Timer()
     init {
-        timer.schedule(PollTask(), 0, 1 * 1000)
+        timer.schedule(PollTask(), 0, 1 * 3000)
     }
 
     class PollTask : TimerTask() {
         override fun run() {
-            val proxy = ServerProxy()
-            proxy.command(CommandType.S_POLL, "{ userName: ${RootModel.instance.user?.userName} }")
+            println("Erik Parkinson")
+            ServerProxy().command(CommandType.S_POLL, "{ \"userName\": ${RootModel.instance.user?.userName} }")
         }
     }
 }

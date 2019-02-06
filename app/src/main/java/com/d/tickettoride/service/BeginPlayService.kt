@@ -9,6 +9,10 @@ import org.jetbrains.anko.doAsync
 
 class BeginPlayService {
 
+    companion object {
+        val instance = BeginPlayService()
+    }
+
     fun setCurrentGame(game:Game) {
         var rootModel = RootModel.instance
         rootModel.thisGame = game

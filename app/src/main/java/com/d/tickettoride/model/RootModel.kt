@@ -1,5 +1,6 @@
 package com.d.tickettoride.model
 
+import com.d.tickettoride.servercommunicator.Poller
 import kotlin.properties.Delegates.observable
 
 class RootModel {
@@ -7,6 +8,8 @@ class RootModel {
     companion object {
         val instance = RootModel()
     }
+
+    var poller:Poller? = null
 
     var user: User? by observable<User?>(null) {
         _, _, _ -> onUserChanged
@@ -16,6 +19,7 @@ class RootModel {
     var loggedIn:Boolean by observable(false) {
         _, old, new -> onLogIn?.invoke(old, new)
     }
+
     var onLogIn: ((Boolean, Boolean) -> Unit)? = null
 
     var thisGame:Game? by observable<Game?>(null) {

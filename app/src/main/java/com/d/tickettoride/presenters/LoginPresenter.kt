@@ -6,7 +6,7 @@ import com.d.tickettoride.service.LoginService
 import com.d.tickettoride.views.ILoginView
 
 class LoginPresenter(private val loginActivity: ILoginView,
-                     private val loginService: LoginService = LoginService()) : ILoginPresenter {
+                     private val loginService: LoginService = LoginService.instance) : ILoginPresenter {
 
     init {
         RootModel.instance.onErrorMessageGiven = { _, message ->
@@ -24,7 +24,6 @@ class LoginPresenter(private val loginActivity: ILoginView,
             }
         }
         loginActivity.enableLogIn(false)
-        loginService.setUserData(username)
         loginService.loginServer(username, password)
     }
 
