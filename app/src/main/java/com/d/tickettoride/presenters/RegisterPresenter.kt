@@ -22,6 +22,7 @@ class RegisterPresenter(private val registerActivity: IRegisterView,
             }
         }
         registerActivity.enableRegister(false)
+        loginService.setUserData(username)
         loginService.register(username, password, confirmPassword)
     }
 }

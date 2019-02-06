@@ -24,6 +24,7 @@ class LoginPresenter(private val loginActivity: ILoginView,
             }
         }
         loginActivity.enableLogIn(false)
+        loginService.setUserData(username)
         loginService.loginServer(username, password)
     }
 

@@ -17,8 +17,7 @@ class LoginService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun loginUser() {
-        var rootModel = RootModel.instance
-        rootModel.loggedIn = true
+        RootModel.instance.loggedIn = true
     }
 
     fun setUserData(username: String) {
