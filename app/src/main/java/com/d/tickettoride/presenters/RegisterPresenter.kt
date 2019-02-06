@@ -1,33 +1,28 @@
 package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.RootModel
-import com.d.tickettoride.model.User
-import com.d.tickettoride.service.RegisterService
+import com.d.tickettoride.service.LoginService
 import com.d.tickettoride.views.IRegisterView
 
-class RegisterPresenter(registerView: IRegisterView) : IRegisterPresenter {
+class RegisterPresenter(private val registerActivity: IRegisterView,
+                        private val loginService: LoginService = LoginService()) : IRegisterPresenter {
 
-    private val registerActivity = registerView
+    init {
+        RootModel.instance.onErrorMessageGiven = { _, message ->
+            registerActivity.displayErrorMessage(message)
+        }
+    }
 
     override fun sendRegisterRequest(username: String, password: String, confirmPassword: String) {
-        when {
-            password != confirmPassword -> registerActivity.displayErrorMessage("Passwords do not match.")
-            username.length < 5 -> registerActivity.displayErrorMessage("Username must be at least 5 characters.")
-            else -> {
-
-                val rootModel = RootModel.instance
-                rootModel.onLogIn = { _, _ ->
-                    rootModel.user = User(username)
-                    registerActivity.startChooseGameActivity()
-                }
-                rootModel.onErrorMessageGiven = {
-                        _, new -> registerActivity.displayErrorMessage(new)
-                }
-                registerActivity.displayErrorMessage("You entered $username, $password")
-
-                RegisterService().register(username, password)
-                rootModel.loggedIn = true
+        RootModel.instance.onLogIn = { _, loggedIn ->
+            if (loggedIn) {
+                registerActivity.startChooseGameActivity()
+            } else {
+                registerActivity.enableRegister(true)
             }
         }
+        registerActivity.enableRegister(false)
+        loginService.setUserData(username)
+        loginService.register(username, password, confirmPassword)
     }
 }
