@@ -4,7 +4,8 @@ import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.service.LoginService
 import com.d.tickettoride.views.IRegisterView
 
-class RegisterPresenter(private val registerActivity: IRegisterView) : IRegisterPresenter {
+class RegisterPresenter(private val registerActivity: IRegisterView,
+                        private val loginService: LoginService = LoginService()) : IRegisterPresenter {
 
     init {
         RootModel.instance.onErrorMessageGiven = { _, message ->
@@ -21,6 +22,6 @@ class RegisterPresenter(private val registerActivity: IRegisterView) : IRegister
             }
         }
         registerActivity.enableRegister(false)
-        LoginService().register(username, password, confirmPassword)
+        loginService.register(username, password, confirmPassword)
     }
 }
