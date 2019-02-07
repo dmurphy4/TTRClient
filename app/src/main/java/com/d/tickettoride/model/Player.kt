@@ -11,6 +11,6 @@ class Player {
     var color:PlayerColor
 
     override fun toString(): String {
-        return this.userName + " is my name and my color is " + this.color.getColor()
+        return this.userName + " is my name and my color is " + this.color.toString()
     }
 }

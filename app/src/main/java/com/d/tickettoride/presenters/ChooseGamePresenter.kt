@@ -20,6 +20,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
                 chooseGameActivity.removeGameFromList(rootModel.gameToRemoveFromList)
             }
         }
+
     }
 
     override fun createNewGame(gameInfo: GameInfo) {
@@ -29,6 +30,9 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
     }
 
     override fun joinExistingGame(gameInfo: GameInfo) {
+        RootModel.instance.onGameStarted = { _,_ ->
+            chooseGameActivity.startLobbyActivity()
+        }
         joinGameService.joinGame(gameInfo.name)
     }
 

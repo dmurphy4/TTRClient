@@ -1,15 +1,16 @@
 package com.d.tickettoride.model
 
 enum class PlayerColor {
-    RED, BLUE, BLACK, GREEN, YELLOW;
+    RED, BLUE, BLACK, GREEN, YELLOW, NONE;
 
-    fun getColor():String {
-        return when (this) {
-            RED -> "Red"
-            BLACK -> "Black"
-            BLUE -> "Blue"
-            GREEN -> "Green"
-            YELLOW -> "Yellow"
+    fun getColor(color: String): PlayerColor {
+        return when (color) {
+            "red" -> RED
+            "black" -> BLACK
+            "blue" -> BLUE
+            "green" -> GREEN
+            "yellow" -> YELLOW
+            else -> NONE
         }
     }
 }

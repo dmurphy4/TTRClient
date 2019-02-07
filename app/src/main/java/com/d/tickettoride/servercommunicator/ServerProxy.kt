@@ -14,7 +14,7 @@ class ServerProxy {
         val client = OkHttpClient()
     }
 
-    private val url = "http://10.37.28.190:8000/command"
+    private val url = "http://10.37.152.202:8000/command"
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(type: CommandType, data: String) {
