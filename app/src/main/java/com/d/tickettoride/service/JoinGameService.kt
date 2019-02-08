@@ -24,7 +24,7 @@ class JoinGameService {
         RootModel.instance.waitingForGame = true
     }
 
-    fun setGameData(gameInfo: GameInfo, player: PlayerInfo) {
-        RootModel.instance.game = Game(gameInfo, player)
+    fun setGameData(game: Game) {
+        RootModel.instance.game = game
     }
 }
