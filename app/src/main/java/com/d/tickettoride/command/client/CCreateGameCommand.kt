@@ -4,15 +4,14 @@ import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.service.ErrorMessageService
 
-class CCreateGameCommand (private val errorMessage:String?, private val success:Boolean,
+class CCreateGameCommand (private val errorMessage:String?,
                           private val gameInfo: GameInfo) : ICommand {
 
     override fun execute() {
-        if (success) {
+        if (errorMessage != null) {
+            ErrorMessageService.instance.postErrorMessage(errorMessage)
+        } else {
             CreateGameService.instance.addGameToList(gameInfo)
-        }
-        else {
-            ErrorMessageService.instance.postErrorMessage(errorMessage!!)
         }
     }
 }

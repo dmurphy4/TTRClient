@@ -3,12 +3,18 @@ package com.d.tickettoride.command.client
 import com.d.tickettoride.model.Game
 import com.d.tickettoride.service.BeginPlayService
 import com.d.tickettoride.service.CreateGameService
+import com.d.tickettoride.service.ErrorMessageService
 
-class CBeginPlayCommand(private val game: Game?, private val errorMessage:String?, private val success:Boolean) : ICommand {
+class CBeginPlayCommand(private val game: Game?, private val errorMessage:String?) : ICommand {
 
     override fun execute() {
         //BeginPlayService.instance.setCurrentGame(game)
-        BeginPlayService.instance.startGame(success)
-        CreateGameService.instance.removeGameFromList(game!!.info)
+        if (errorMessage == null) {
+            BeginPlayService.instance.startGame(true)
+            CreateGameService.instance.removeGameFromList(game!!.info)
+        }
+        else {
+            ErrorMessageService.instance.postErrorMessage(errorMessage)
+        }
     }
 }
