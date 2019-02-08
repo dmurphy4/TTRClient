@@ -43,7 +43,7 @@ class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(gameInfo: GameInfo) {
-            view.row_game_name.text = gameInfo.name
+            view.row_game_name.text = gameInfo.gameName
             view.row_num_players.text = gameInfo.numPlayers.toString()
         }
     }
