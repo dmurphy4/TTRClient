@@ -20,7 +20,6 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
                 chooseGameActivity.removeGameFromList(rootModel.gameToRemoveFromList)
             }
         }
-
     }
 
     override fun createNewGame(gameInfo: GameInfo) {
