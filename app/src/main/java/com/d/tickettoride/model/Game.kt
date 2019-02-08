@@ -1,3 +1,3 @@
 package com.d.tickettoride.model
 
-data class Game(val info: GameInfo, private val player: Player)
+data class Game(val info: GameInfo, var players:ArrayList<PlayerInfo>)

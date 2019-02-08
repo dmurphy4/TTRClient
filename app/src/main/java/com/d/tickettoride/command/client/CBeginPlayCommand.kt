@@ -8,6 +8,6 @@ class CBeginPlayCommand(private val game: Game) : ICommand {
 
     override fun execute() {
         BeginPlayService.instance.setCurrentGame(game)
-        CreateGameService.instance.removeGameFromList(game.info!!)
+        CreateGameService.instance.removeGameFromList(game.info)
     }
 }
