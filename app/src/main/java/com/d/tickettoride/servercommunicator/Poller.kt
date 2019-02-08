@@ -6,7 +6,7 @@ import java.util.*
 class Poller {
     var timer: Timer = Timer()
     init {
-        timer.schedule(PollTask(), 0, 1 * 5000)
+        timer.schedule(PollTask(), 0, 1 * 2000)
     }
 
     class PollTask : TimerTask() {
