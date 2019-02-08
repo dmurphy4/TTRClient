@@ -30,7 +30,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
     }
 
     override fun joinExistingGame(gameInfo: GameInfo) {
-        RootModel.instance.onGameStarted = { _,_ ->
+        RootModel.instance.onGameJoined = { _,_ ->
             chooseGameActivity.startLobbyActivity()
         }
         joinGameService.joinGame(gameInfo.name)

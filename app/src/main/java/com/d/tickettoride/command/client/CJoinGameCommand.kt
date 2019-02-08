@@ -1,7 +1,7 @@
 package com.d.tickettoride.command.client
 
 import com.d.tickettoride.model.GameInfo
-import com.d.tickettoride.model.Player
+import com.d.tickettoride.model.PlayerInfo
 import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.service.ErrorMessageService
 import com.d.tickettoride.service.JoinGameService
@@ -15,7 +15,7 @@ class CJoinGameCommand (private val errorMessage:String?,
 
     override fun execute() {
         if (success) {
-            val player = Player(userName, PlayerColor.valueOf(playerColor.toUpperCase()))
+            val player = PlayerInfo(userName, PlayerColor.valueOf(playerColor.toUpperCase()))
             val gameInfo = GameInfo(gameName, numPlayers)
             JoinGameService.instance.setGameData(gameInfo, player)
         }

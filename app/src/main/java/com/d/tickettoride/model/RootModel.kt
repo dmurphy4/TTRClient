@@ -22,6 +22,12 @@ class RootModel {
 
     var onLogIn: ((Boolean, Boolean) -> Unit)? = null
 
+    var waitingForGame:Boolean by observable(false) {
+        _, old, new -> onGameJoined?.invoke(old, new)
+    }
+
+    var onGameJoined: ((Boolean, Boolean) -> Unit)? = null
+
     var game:Game? by observable<Game?>(null) {
         _, old, new -> onGameStarted?.invoke(old, new!!)
     }
