@@ -24,7 +24,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
 
     override fun createNewGame(gameInfo: GameInfo) {
         val rootModel = RootModel.instance
-        createGameService.createGame(gameInfo.name, gameInfo.numPlayers, rootModel.user?.userName)
+        createGameService.createGame(gameInfo.gameName, gameInfo.numPlayers, rootModel.user?.userName)
         //createGameService.addGameToList(gameInfo) // where to put this so it depends on the response from the server
     }
 
@@ -32,7 +32,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
         RootModel.instance.onGameJoined = { _,_ ->
             chooseGameActivity.startLobbyActivity()
         }
-        joinGameService.joinGame(gameInfo.name)
+        joinGameService.joinGame(gameInfo.gameName)
     }
 
     override fun setSelectedGameInfo(gameInfo: GameInfo) {
