@@ -21,6 +21,6 @@ class JoinGameService {
     }
 
     fun setGameData(gameInfo: GameInfo, player: PlayerInfo) {
-        RootModel.instance.game = Game(gameInfo, player)
+        RootModel.instance.game = Game(gameInfo)
     }
 }

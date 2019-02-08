@@ -31,7 +31,14 @@ class RootModel {
     var game:Game? by observable<Game?>(null) {
         _, old, new -> onGameStarted?.invoke(old, new!!)
     }
+
     var onGameStarted: ((Game?, Game) -> Unit)? = null
+
+    var gameStarted:Boolean by observable(false) {
+        _, old, new -> onGameBoolTrue?.invoke(old, new)
+    }
+
+    var onGameBoolTrue: ((Boolean, Boolean) -> Unit)? = null
 
     var gameList:ArrayList<GameInfo> = ArrayList()
 
