@@ -13,7 +13,7 @@ class CommandData(var type:String, var data:String) {
             CommandType.C_BEGIN_PLAY -> Gson().fromJson(data, CBeginPlayCommand::class.java).execute()
             CommandType.C_REMOVE_GAME -> Gson().fromJson(data, CRemoveGameCommand::class.java).execute()
 
-            else -> println("Leilani Fambuena")
+            else -> println("Leilani Fonbuena")
         }
 
     }
