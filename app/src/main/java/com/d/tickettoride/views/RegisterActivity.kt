@@ -13,6 +13,11 @@ class RegisterActivity : AppCompatActivity(), IRegisterView {
 
     private val registerPresenter = RegisterPresenter(this)
 
+    private fun passwordsMatch() : Boolean {
+        return (register_confirm_password.text.toString().isNotEmpty() && register_password.text.toString().isNotEmpty()) &&
+                (register_confirm_password.text.toString() == register_password.text.toString())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -22,9 +27,28 @@ class RegisterActivity : AppCompatActivity(), IRegisterView {
             registerPresenter.sendRegisterRequest(register_username.text.toString(),
                                                   register_password.text.toString())
         }
-        register_confirm_password.afterTextChanged { x ->
-            if (x == register_password.text.toString()) {
-                button_signup.isEnabled = true
+        register_confirm_password.afterTextChanged {
+            if (passwordsMatch()) {
+                button_signup.isEnabled = register_username.text.toString().isNotEmpty()
+            }
+            else {
+                button_signup.isEnabled = false
+            }
+        }
+        register_password.afterTextChanged {
+            if (passwordsMatch()) {
+                button_signup.isEnabled = register_username.text.toString().isNotEmpty()
+            }
+            else {
+                button_signup.isEnabled = false
+            }
+        }
+        register_username.afterTextChanged {
+            if (passwordsMatch()) {
+                button_signup.isEnabled = register_username.text.toString().isNotEmpty()
+            }
+            else {
+                button_signup.isEnabled = false
             }
         }
     }
