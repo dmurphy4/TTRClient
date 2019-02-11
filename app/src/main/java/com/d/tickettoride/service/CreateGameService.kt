@@ -25,7 +25,7 @@ class CreateGameService(private val proxy: ServerProxy = ServerProxy()) {
         rootModel.gameListLength++
     }
 
-    fun removeGameFromList(gameInfo:GameInfo) {
+    fun removeGameFromList(gameInfo:GameInfo?) {
         val rootModel = RootModel.instance
         rootModel.gameToRemoveFromList = gameInfo
         rootModel.gameList.remove(gameInfo)

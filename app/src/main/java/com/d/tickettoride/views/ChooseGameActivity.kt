@@ -13,6 +13,7 @@ import com.d.tickettoride.presenters.ChooseGamePresenter
 import com.d.tickettoride.servercommunicator.Poller
 import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.util.GameInfoAdapter
+import com.d.tickettoride.util.afterTextChanged
 import kotlinx.android.synthetic.main.activity_choose_game.*
 
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
@@ -34,6 +35,12 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         available_games_list.layoutManager = LinearLayoutManager(this)
         available_games_list.adapter = adapter
         available_games_list.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
+
+        button_create_game.isEnabled = false
+
+        game_name.afterTextChanged { x ->
+            button_create_game.isEnabled = x.isNotEmpty()
+        }
 
         button_create_game.setOnClickListener {
             chooseGamePresenter.createNewGame(GameInfo(game_name.text.toString(), number_picker.value))
