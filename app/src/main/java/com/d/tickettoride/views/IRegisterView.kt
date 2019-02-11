@@ -1,8 +1,7 @@
 package com.d.tickettoride.views
 
-interface ILoginView {
+interface IRegisterView {
     fun startChooseGameActivity()
-    fun startRegisterActivity()
     fun displayErrorMessage(message: String?)
-    fun enableLogIn(enable: Boolean)
+    fun enableRegister(enable: Boolean)
 }

@@ -1,14 +1,30 @@
 package com.d.tickettoride.presenters
 
+import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.User
+import com.d.tickettoride.service.LoginService
 import com.d.tickettoride.views.ILoginView
 
-class LoginPresenter(loginView: ILoginView) : ILoginPresenter {
+class LoginPresenter(private val loginActivity: ILoginView,
+                     private val loginService: LoginService = LoginService.instance) : ILoginPresenter {
 
-    private val loginActivity = loginView
+    init {
+        RootModel.instance.onErrorMessageGiven = { _, message ->
+            loginActivity.displayErrorMessage(message)
+        }
+    }
 
     override fun sendLoginRequest(username: String, password: String) {
-        loginActivity.displayErrorMessage("You entered $username, $password")
-        loginActivity.startChooseGameActivity()
+        RootModel.instance.onLogIn = { _, loggedIn ->
+            if (loggedIn) {
+                loginActivity.startChooseGameActivity()
+                loginActivity.displayErrorMessage("Username is ${RootModel.instance.user!!.userName}")
+            } else {
+                loginActivity.enableLogIn(true)
+            }
+        }
+        loginActivity.enableLogIn(false)
+        loginService.loginServer(username, password)
     }
 
     override fun registerButtonClicked() {

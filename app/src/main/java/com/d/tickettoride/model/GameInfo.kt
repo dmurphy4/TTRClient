@@ -1,4 +1,3 @@
 package com.d.tickettoride.model
 
-class GameInfo {
-}
+data class GameInfo(val gameName: String, val numPlayers: Int)
