@@ -11,8 +11,6 @@ import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ChooseGamePresenter
 import com.d.tickettoride.presenters.IChooseGamePresenter
-import com.d.tickettoride.servercommunicator.Poller
-import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.util.GameInfoAdapter
 import com.d.tickettoride.util.afterTextChanged
 import kotlinx.android.synthetic.main.activity_choose_game.*
