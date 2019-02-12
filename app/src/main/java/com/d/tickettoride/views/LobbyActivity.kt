@@ -4,11 +4,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.d.tickettoride.R
+import com.d.tickettoride.presenters.ILobbyPresenter
 import com.d.tickettoride.presenters.LobbyPresenter
 
 class LobbyActivity : AppCompatActivity(), ILobbyView {
 
-    private val lobbyPresenter:LobbyPresenter = LobbyPresenter(this)
+    private val lobbyPresenter: ILobbyPresenter = LobbyPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

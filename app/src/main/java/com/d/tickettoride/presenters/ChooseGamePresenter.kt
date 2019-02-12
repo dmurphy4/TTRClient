@@ -39,7 +39,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
         return
     }
 
-    fun startPoller() {
+    override fun startPoller() {
         CreateGameService.instance.startPoller()
     }
 }

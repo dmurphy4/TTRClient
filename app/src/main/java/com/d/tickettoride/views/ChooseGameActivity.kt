@@ -10,6 +10,7 @@ import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ChooseGamePresenter
+import com.d.tickettoride.presenters.IChooseGamePresenter
 import com.d.tickettoride.servercommunicator.Poller
 import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.util.GameInfoAdapter
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_choose_game.*
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
 
     private lateinit var adapter: GameInfoAdapter
-    private val chooseGamePresenter = ChooseGamePresenter(this)
+    private val chooseGamePresenter: IChooseGamePresenter = ChooseGamePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

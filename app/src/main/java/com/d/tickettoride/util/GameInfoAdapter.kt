@@ -8,10 +8,11 @@ import android.widget.Toast
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.presenters.ChooseGamePresenter
+import com.d.tickettoride.presenters.IChooseGamePresenter
 import kotlinx.android.synthetic.main.row_game_list.view.*
 
 class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,
-                      private val chooseGamePresenter: ChooseGamePresenter,
+                      private val chooseGamePresenter: IChooseGamePresenter,
                       var selectedRowIndex: Int = -1) :
       RecyclerView.Adapter<GameInfoAdapter.MyViewHolder>() {
 
