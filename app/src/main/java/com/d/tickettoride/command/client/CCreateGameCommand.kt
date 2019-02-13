@@ -1,7 +1,7 @@
 package com.d.tickettoride.command.client
 
 import com.d.tickettoride.model.GameInfo
-import com.d.tickettoride.service.CreateGameService
+import com.d.tickettoride.service.ChooseGameService
 import com.d.tickettoride.service.ErrorMessageService
 
 class CCreateGameCommand (private val errorMessage:String?,
@@ -11,7 +11,7 @@ class CCreateGameCommand (private val errorMessage:String?,
         if (errorMessage != null) {
             ErrorMessageService.instance.postErrorMessage(errorMessage)
         } else {
-            CreateGameService.instance.addGameToList(gameInfo)
+            ChooseGameService.instance.addGameToList(gameInfo)
         }
     }
 }
