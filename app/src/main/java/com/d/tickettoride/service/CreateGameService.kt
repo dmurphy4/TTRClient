@@ -14,7 +14,7 @@ class CreateGameService(private val proxy: ServerProxy = ServerProxy()) {
         val instance = CreateGameService()
     }
 
-    fun createGame(gameName:String, numPlayers:Int, creator:String?) {
+    fun createGame(gameName:String, numPlayers:Int, creator:String) {
         val data = Gson().toJson(SCreateGameCommand(gameName, numPlayers, creator))
         proxy.command(CommandType.S_CREATE_GAME, data)
     }
@@ -25,7 +25,7 @@ class CreateGameService(private val proxy: ServerProxy = ServerProxy()) {
         rootModel.gameListLength++
     }
 
-    fun removeGameFromList(gameInfo:GameInfo?) {
+    fun removeGameFromList(gameInfo:GameInfo) {
         val rootModel = RootModel.instance
         rootModel.gameToRemoveFromList = gameInfo
         rootModel.gameList.remove(gameInfo)
