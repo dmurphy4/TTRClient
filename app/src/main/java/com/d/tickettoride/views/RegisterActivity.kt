@@ -5,17 +5,27 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.d.tickettoride.R
+import com.d.tickettoride.presenters.IRegisterPresenter
 import com.d.tickettoride.presenters.RegisterPresenter
 import kotlinx.android.synthetic.main.activity_register.*
 import com.d.tickettoride.util.afterTextChanged
 
 class RegisterActivity : AppCompatActivity(), IRegisterView {
 
-    private val registerPresenter = RegisterPresenter(this)
+    private val registerPresenter: IRegisterPresenter = RegisterPresenter(this)
 
-    private fun passwordsMatch() : Boolean {
+    private fun passwordsValid() : Boolean {
         return (register_confirm_password.text.toString().isNotEmpty() && register_password.text.toString().isNotEmpty()) &&
                 (register_confirm_password.text.toString() == register_password.text.toString())
+    }
+
+    private fun checkEnableRegister() {
+        if (passwordsValid()) {
+            enableRegister(register_username.text.toString().isNotEmpty())
+        }
+        else {
+            enableRegister(false)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,28 +38,13 @@ class RegisterActivity : AppCompatActivity(), IRegisterView {
                                                   register_password.text.toString())
         }
         register_confirm_password.afterTextChanged {
-            if (passwordsMatch()) {
-                button_signup.isEnabled = register_username.text.toString().isNotEmpty()
-            }
-            else {
-                button_signup.isEnabled = false
-            }
+            checkEnableRegister()
         }
         register_password.afterTextChanged {
-            if (passwordsMatch()) {
-                button_signup.isEnabled = register_username.text.toString().isNotEmpty()
-            }
-            else {
-                button_signup.isEnabled = false
-            }
+            checkEnableRegister()
         }
         register_username.afterTextChanged {
-            if (passwordsMatch()) {
-                button_signup.isEnabled = register_username.text.toString().isNotEmpty()
-            }
-            else {
-                button_signup.isEnabled = false
-            }
+            checkEnableRegister()
         }
     }
 

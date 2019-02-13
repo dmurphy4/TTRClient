@@ -5,13 +5,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.d.tickettoride.R
+import com.d.tickettoride.presenters.ILoginPresenter
 import com.d.tickettoride.presenters.LoginPresenter
 import com.d.tickettoride.util.afterTextChanged
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), ILoginView {
 
-    private val loginPresenter = LoginPresenter(this)
+    private val loginPresenter: ILoginPresenter = LoginPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
