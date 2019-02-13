@@ -2,13 +2,12 @@ package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
-import com.d.tickettoride.service.CreateGameService
-import com.d.tickettoride.service.JoinGameService
+import com.d.tickettoride.service.ChooseGameService
 import com.d.tickettoride.views.IChooseGameView
 
 class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
-                          private val createGameService: CreateGameService = CreateGameService.instance,
-                          private val joinGameService: JoinGameService = JoinGameService.instance) : IChooseGamePresenter {
+                          private val chooseGameService: ChooseGameService = ChooseGameService.instance)
+    : IChooseGamePresenter {
 
     init {
         val rootModel = RootModel.instance
@@ -25,7 +24,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
     override fun createNewGame(gameInfo: GameInfo) {
         val rootModel = RootModel.instance
         // The user in the root model shouldn't be null at this point, so use !!.
-        createGameService.createGame(gameInfo.gameName, gameInfo.numPlayers, rootModel.user!!.userName)
+        chooseGameService.createGame(gameInfo.gameName, gameInfo.numPlayers, rootModel.user!!.userName)
     }
 
     override fun getAvailableGamesList() : ArrayList<GameInfo> {
@@ -36,10 +35,10 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
         RootModel.instance.onGameJoined = { _,_ ->
             chooseGameActivity.startLobbyActivity()
         }
-        joinGameService.joinGame(gameInfo.gameName)
+        chooseGameService.joinGame(gameInfo.gameName)
     }
 
     override fun startPoller() {
-        CreateGameService.instance.startPoller()
+        ChooseGameService.instance.startPoller()
     }
 }
