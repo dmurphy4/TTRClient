@@ -14,7 +14,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
         val rootModel = RootModel.instance
         rootModel.onGameListChanged = { old, new ->
             if (old < new) { // a game was added
-                chooseGameActivity.displayGameInList(rootModel.gameList[rootModel.gameListLength - 1])
+                chooseGameActivity.displayGameInList()
             }
             else { // a game was removed
                 chooseGameActivity.removeGameFromList(rootModel.gameToRemoveFromList)
@@ -28,15 +28,15 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
         //createGameService.addGameToList(gameInfo) // where to put this so it depends on the response from the server
     }
 
+    override fun getAvailableGamesList() : ArrayList<GameInfo> {
+        return RootModel.instance.gameList
+    }
+
     override fun joinExistingGame(gameInfo: GameInfo) {
         RootModel.instance.onGameJoined = { _,_ ->
             chooseGameActivity.startLobbyActivity()
         }
         joinGameService.joinGame(gameInfo.gameName)
-    }
-
-    override fun setSelectedGameInfo(gameInfo: GameInfo) {
-        return
     }
 
     override fun startPoller() {
