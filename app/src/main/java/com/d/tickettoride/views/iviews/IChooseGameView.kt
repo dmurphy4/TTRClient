@@ -4,6 +4,7 @@ import com.d.tickettoride.model.GameInfo
 
 interface IChooseGameView {
     fun startLobbyActivity()
-    fun displayGameInList(gameInfo: GameInfo)
+    fun displayGameInList()
     fun removeGameFromList(gameInfo: GameInfo?)
+    fun enableJoinGameButton(enable: Boolean)
 }
