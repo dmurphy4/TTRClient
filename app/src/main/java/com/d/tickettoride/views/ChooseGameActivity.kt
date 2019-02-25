@@ -10,10 +10,9 @@ import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ChooseGamePresenter
-import com.d.tickettoride.servercommunicator.Poller
-import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.util.GameInfoAdapter
 import com.d.tickettoride.util.afterTextChanged
+import com.d.tickettoride.views.iviews.IChooseGameView
 import kotlinx.android.synthetic.main.activity_choose_game.*
 
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {

@@ -1,4 +1,4 @@
-package com.d.tickettoride.presenters
+package com.d.tickettoride.presenters.ipresenters
 
 import com.d.tickettoride.model.GameInfo
 

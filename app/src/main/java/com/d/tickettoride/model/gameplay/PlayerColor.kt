@@ -1,4 +1,4 @@
-package com.d.tickettoride.model
+package com.d.tickettoride.model.gameplay
 
 enum class PlayerColor {
     RED, BLUE, BLACK, GREEN, YELLOW, NONE;

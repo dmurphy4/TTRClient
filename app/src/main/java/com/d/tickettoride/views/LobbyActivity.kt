@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.d.tickettoride.R
 import com.d.tickettoride.presenters.LobbyPresenter
+import com.d.tickettoride.views.iviews.ILobbyView
 
 class LobbyActivity : AppCompatActivity(), ILobbyView {
 

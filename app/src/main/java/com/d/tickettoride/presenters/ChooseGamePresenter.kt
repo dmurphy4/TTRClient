@@ -2,13 +2,15 @@ package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.presenters.ipresenters.IChooseGamePresenter
 import com.d.tickettoride.service.CreateGameService
 import com.d.tickettoride.service.JoinGameService
-import com.d.tickettoride.views.IChooseGameView
+import com.d.tickettoride.views.iviews.IChooseGameView
 
 class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
                           private val createGameService: CreateGameService = CreateGameService.instance,
-                          private val joinGameService: JoinGameService = JoinGameService.instance) : IChooseGamePresenter {
+                          private val joinGameService: JoinGameService = JoinGameService.instance) :
+    IChooseGamePresenter {
 
     init {
         val rootModel = RootModel.instance
