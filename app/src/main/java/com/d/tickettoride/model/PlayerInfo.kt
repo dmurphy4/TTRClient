@@ -1,5 +1,4 @@
 package com.d.tickettoride.model
 
-class PlayerInfo(var username:String, var color:PlayerColor) {
-
-}
+data class PlayerInfo(var username:String, var color: PlayerColor, var score:Int, var numDestCards:Int,
+                 var numTrainCards:Int)

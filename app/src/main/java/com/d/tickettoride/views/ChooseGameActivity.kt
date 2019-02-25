@@ -9,9 +9,10 @@ import android.support.v7.widget.RecyclerView
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.presenters.ChooseGamePresenter
-import com.d.tickettoride.presenters.IChooseGamePresenter
+import com.d.tickettoride.presenters.ipresenters.IChooseGamePresenter
 import com.d.tickettoride.util.GameInfoAdapter
 import com.d.tickettoride.util.afterTextChanged
+import com.d.tickettoride.views.iviews.IChooseGameView
 import kotlinx.android.synthetic.main.activity_choose_game.*
 
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {

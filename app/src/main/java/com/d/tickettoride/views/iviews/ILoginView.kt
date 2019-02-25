@@ -1,4 +1,4 @@
-package com.d.tickettoride.views
+package com.d.tickettoride.views.iviews
 
 interface ILoginView {
     fun startChooseGameActivity()
