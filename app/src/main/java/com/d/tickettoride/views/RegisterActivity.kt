@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.d.tickettoride.R
-import com.d.tickettoride.presenters.IRegisterPresenter
 import com.d.tickettoride.presenters.RegisterPresenter
+import com.d.tickettoride.presenters.ipresenters.IRegisterPresenter
 import kotlinx.android.synthetic.main.activity_register.*
 import com.d.tickettoride.util.afterTextChanged
 import com.d.tickettoride.views.iviews.IRegisterView

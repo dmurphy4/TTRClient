@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
-import com.d.tickettoride.views.IChooseGameView
+import com.d.tickettoride.views.iviews.IChooseGameView
 import kotlinx.android.synthetic.main.row_game_list.view.*
 
 class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,

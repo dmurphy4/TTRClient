@@ -7,7 +7,7 @@ import com.d.tickettoride.views.iviews.ILobbyView
 class LobbyPresenter(private val lobbyActivity: ILobbyView) : ILobbyPresenter {
 
     init {
-        RootModel.instance.onGameBoolTrue = { _, new ->
+        RootModel.instance.onGameBoolTrue = { _, _ ->
             lobbyActivity.displayErrorMessage("Game Started. Good luck.")
         }
     }

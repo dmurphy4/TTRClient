@@ -18,7 +18,7 @@ class JoinGameService {
         ServerProxy().command(CommandType.S_JOIN_GAME, data)
     }
 
-    fun setJoinedGame(joined: Boolean) {
+    fun setJoinedGame() {
         RootModel.instance.waitingForGame = true
     }
 
