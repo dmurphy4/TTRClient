@@ -13,7 +13,7 @@ class ServerProxy {
     companion object {
         val client = OkHttpClient()
     }
-    private val url = "http://10.37.28.85:8000/command"
+    private val url = "http://10.0.1.6:8000/command"
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(type: CommandType, data: String) {
@@ -23,8 +23,6 @@ class ServerProxy {
             val body = RequestBody.create(JSON, data)
             val request = Request.Builder().url(url).addHeader("type", type.toString()).post(body).build()
             val response = client.newCall(request).execute()
-            println("RESPONSE OBJECT:")
-            println(response)
             val respBody = response.body()!!.string()
             uiThread {
                 val classType = when (type) {
@@ -35,7 +33,7 @@ class ServerProxy {
                     else -> ICommand::class.java
                 }
                 val gson = Gson()
-                println("HEYYYYYYYYYYYYYYYYYYYYYYY!!!!!!!!!!!!!!")
+                println("HERE'S THE RESPONSE FROM THE SERVER:")
                 println(respBody)
                 val command = gson.fromJson(respBody, classType)
                 command.execute()
