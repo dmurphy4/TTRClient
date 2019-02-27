@@ -26,6 +26,9 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         button_register.setOnClickListener {
             loginPresenter.registerButtonClicked()
         }
+        button_jump_to_game.setOnClickListener {
+            startActivity(Intent(this, GameActivity::class.java))
+        }
         login_password.afterTextChanged {
             button_login.isEnabled = login_password.text.toString().isNotEmpty() && login_username.text.toString().isNotEmpty()
         }
