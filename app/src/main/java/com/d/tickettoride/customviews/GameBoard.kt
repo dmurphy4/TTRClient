@@ -10,15 +10,15 @@ import com.d.tickettoride.R
 class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private val cityPaint = Paint(ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("#ede1d1")
+        color = Color.parseColor("red")
         style = Paint.Style.FILL
     }
 
     private val routePaint = Paint(ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor("blue")
         style = Paint.Style.STROKE
-        pathEffect = DashPathEffect(floatArrayOf(40F, 10F, 40F, 10F), 0F)
-        strokeWidth = 15F
+        pathEffect = DashPathEffect(floatArrayOf(50F, 10F, 50F, 10F), 0F)
+        strokeWidth = 20F
     }
 
     private val d = resources.getDrawable(R.drawable.usterrain, null).apply {
@@ -29,9 +29,9 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         super.onDraw(canvas)
         d.draw(canvas)
         canvas.apply {
-            drawCircle(200F, 300F, 25F, cityPaint)
-            drawCircle(300F, 500F, 25F, cityPaint)
-            drawLine(200F, 300F, 300F, 500F, routePaint)
+            drawCircle(250F, 350F, 20F, cityPaint)
+            drawCircle(125F, 725F, 20F, cityPaint)
+            drawLine(250F, 350F, 125F, 725F, routePaint)
         }
     }
 }
