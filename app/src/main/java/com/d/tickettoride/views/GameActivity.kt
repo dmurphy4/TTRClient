@@ -21,10 +21,11 @@ class GameActivity : AppCompatActivity(), IGameView {
         val inputStream = resources.openRawResource(R.raw.board)
         val boardString = inputStream.bufferedReader().use { it.readText() }
         val board = Gson().fromJson(boardString, Board::class.java)
-        game_board.board = board
+        game_board.cities = board.cities
+        game_board.setRouteData(board.routes)
         game_board.invalidate()
 
-        game_board.onRouteClicked = {
+        game_board.onClaimRouteClicked = {
             Toast.makeText(this, "Route $it clicked", Toast.LENGTH_SHORT).show()
         }
     }

@@ -10,29 +10,22 @@ import android.view.MotionEvent
 import android.view.MotionEvent.ACTION_DOWN
 import android.view.View
 import com.d.tickettoride.R
-import com.d.tickettoride.model.gameplay.Board
+import com.d.tickettoride.model.gameplay.City
+import com.d.tickettoride.model.gameplay.Route
 
 class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
-    var onRouteClicked: ((Int) -> Unit)? = null
+    var onClaimRouteClicked: ((Int) -> Unit)? = null
 
     private val cityPaint = Paint(ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor("red")
         style = Paint.Style.FILL
     }
 
-    private val routePaint = Paint(ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("blue")
-        style = Paint.Style.STROKE
-        pathEffect = DashPathEffect(floatArrayOf(50F, 10F, 50F, 10F), 0F)
-        strokeWidth = 20F
-    }
-
     private var mapDrawable: Drawable? = context.getDrawable(R.drawable.usterrain)
 
-    private var eventTouchX = 0f
-    private var eventTouchY = 0f
-    var board: Board? = null
+    var cities: Map<Int, City> = HashMap()
+    private var routePaths: MutableMap<Int, Pair<Path, Paint>> = HashMap()
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -40,15 +33,13 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         mapDrawable!!.setBounds(0, 0, width, height)
         mapDrawable!!.draw(canvas)
 
-        board?.routes?.let {
-            for ((_, route) in it) {
-                val city1 = board?.cities?.get(route.city1)
-                val city2 = board?.cities?.get(route.city2)
-                canvas.drawLine(city1!!.longitude, city1!!.latitude, city2!!.longitude, city2!!.latitude, routePaint)
+        routePaths.let {
+            for ((id, pair) in it) {
+                canvas.drawPath(pair.first, pair.second)
             }
         }
 
-        board?.cities?.let {
+        cities.let {
             for ((_, city) in it) {
                 canvas.drawCircle(city.longitude, city.latitude, 20f, cityPaint)
             }
@@ -57,13 +48,41 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         Log.d("DEBUG", "onTouchEvent() called")
-        eventTouchX = event.x
-        eventTouchY = event.y
         when (event.action) {
             ACTION_DOWN -> {
-                onRouteClicked?.invoke(1)
+                onClaimRouteClicked?.invoke(0)
             }
         }
+
         return true
+    }
+
+    fun setRouteData(routes: Map<Int, Route>) {
+        routePaths.clear()
+        routes.let {
+            for ((_, route) in it) {
+                val linePath = Path()
+                val city1 = cities[route.city1]
+                val city2 = cities[route.city2]
+                linePath.moveTo(city1!!.longitude, city1.latitude)
+                linePath.lineTo(city2!!.longitude, city2.latitude)
+                val dashLength = calculateDashLength(route.numTracks, city1.longitude, city1.latitude,
+                                                     city2.longitude, city2.latitude, 10f)
+                val linePaint = Paint(ANTI_ALIAS_FLAG).apply {
+                    color = Color.parseColor(route.color.toString())
+                    style = Paint.Style.STROKE
+                    pathEffect = DashPathEffect(floatArrayOf(dashLength, 10f), 0f)
+                    strokeWidth = 30f
+                }
+                routePaths[route.id] = Pair(linePath, linePaint)
+            }
+        }
+    }
+
+    private fun calculateDashLength(numDashes: Int, x1: Float, y1: Float, x2: Float, y2: Float, off: Float): Float {
+        val diffX: Double = (x2 - x1).toDouble()
+        val diffY: Double = (y2 - y1).toDouble()
+        val distance: Double = Math.sqrt(diffX*diffX + diffY*diffY)
+        return ((distance - (off * (numDashes - 1))) / numDashes).toFloat()
     }
 }
