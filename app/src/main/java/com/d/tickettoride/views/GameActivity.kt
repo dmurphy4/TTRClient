@@ -2,43 +2,42 @@ package com.d.tickettoride.views
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.d.tickettoride.R
+import com.d.tickettoride.model.gameplay.Board
+import com.d.tickettoride.presenters.GamePresenter
+import com.d.tickettoride.presenters.ipresenters.IGamePresenter
+import com.d.tickettoride.views.iviews.IGameView
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_game.*
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+class GameActivity : AppCompatActivity(), IGameView {
 
-class GameActivity : AppCompatActivity(), OnMapReadyCallback {
-
-    private lateinit var mMap: GoogleMap
+    private val gamePresenter: IGamePresenter = GamePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        // val mapFragment = supportFragmentManager
-        //     .findFragmentById(R.id.map) as SupportMapFragment
-        // mapFragment.getMapAsync(this)
+        val inputStream = resources.openRawResource(R.raw.board)
+        val boardString = inputStream.bufferedReader().use { it.readText() }
+        val board = Gson().fromJson(boardString, Board::class.java)
+        game_board.board = board
+        game_board.invalidate()
+
+        game_board.onRouteClicked = {
+            Toast.makeText(this, "Route $it clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+    override fun enableMapClicks(enable: Boolean) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    override fun enableClaimButton(enable: Boolean) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun displayErrorMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
