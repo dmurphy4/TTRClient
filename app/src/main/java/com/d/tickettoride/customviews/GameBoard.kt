@@ -34,13 +34,10 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var eventTouchY = 0f
     var board: Board? = null
 
-    init {
-        mapDrawable?.setBounds(0, 0, width, height)
-    }
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         Log.d("DEBUG", "Hey, we're drawing!")
+        mapDrawable!!.setBounds(0, 0, width, height)
         mapDrawable!!.draw(canvas)
 
         board?.routes?.let {
@@ -70,23 +67,3 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         return true
     }
 }
-
-
-//drawCircle(250F, 350F, 20F, cityPaint)
-//drawCircle(125F, 725F, 20F, cityPaint)
-//drawCircle(630F, 640F, 20F, cityPaint)
-//drawCircle(300F, 215F, 20F, cityPaint)
-//drawCircle(325F, 85F, 20F, cityPaint)
-//drawCircle(620F, 80F, 20F, cityPaint)
-//drawCircle(825F, 425F, 20F, cityPaint)
-//drawCircle(435F, 860F, 20F, cityPaint)
-//drawCircle(300F, 1000F, 20F, cityPaint)
-//drawCircle(575F, 1100F, 20F, cityPaint)
-//drawCircle(850F, 1200F, 20F, cityPaint)
-//drawCircle(870F, 990F, 20F, cityPaint)
-//drawCircle(890F, 775F, 20F, cityPaint)
-//canvas.apply {
-//    drawLine(250F, 350F, 125F, 725F, routePaint)
-//    drawLine(250F, 350F, 630F, 640F, routePaint)
-//    drawLine(630F, 640F, 125F, 725F, routePaint)
-//}
