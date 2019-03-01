@@ -1,5 +1,5 @@
 package com.d.tickettoride.model.gameplay
 
 enum class TrainCarCardType {
-    RED, BLACK, PINK, GREEN, YELLOW, ORANGE, WHITE, LOCOMOTIVE
+    RED, BLACK, PURPLE, GREEN, YELLOW, ORANGE, WHITE, BLUE, LOCOMOTIVE
 }
