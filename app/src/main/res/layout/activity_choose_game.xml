@@ -50,7 +50,7 @@
                     <NumberPicker
                             android:id="@+id/number_picker"
                             android:layout_width="40dp"
-                            android:layout_height="60dp"/>
+                            android:layout_height="58dp"/>
 
                 </LinearLayout>
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" >
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:layout_alignParentLeft="true"
+            android:text="Brad"/>
+    <View style="@style/Divider"/>
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/score"
+            android:layout_alignParentRight="true"
+            android:text="Score: 55"/>
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/numTrainCards"
+            android:layout_below="@id/name"
+            android:text="Train Cards: 6"/>
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/numDestCards"
+            android:layout_below="@id/score"
+            android:layout_alignParentRight="true"
+            android:text="Destination Cards: 3"/>
+    <View style="@style/Divider"/>
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/numCarsRemaining"
+            android:layout_below="@id/numTrainCards"
+            android:text="Train Cars: 20"/>
+
+
+
+</RelativeLayout>
+
