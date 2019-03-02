@@ -31,7 +31,8 @@ class ServerProxy {
                     CommandType.S_LOGIN, CommandType.S_REGISTER -> CLoginRegisterCommand::class.java
                     CommandType.S_CREATE_GAME -> CCreateGameCommand::class.java
                     CommandType.S_JOIN_GAME -> CJoinGameCommand::class.java
-                    CommandType.S_POLL -> CPollerCommandList::class.java
+                    CommandType.S_POLL -> CPollerCommandListCommand::class.java
+                    CommandType.S_ASSIGN_DEST -> CReceiveDestinationHandCommand::class.java
                     else -> ICommand::class.java
                 }
                 val gson = Gson()

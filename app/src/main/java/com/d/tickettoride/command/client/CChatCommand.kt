@@ -1,9 +1,10 @@
 package com.d.tickettoride.command.client
 
 import com.d.tickettoride.model.gameplay.Event
+import com.d.tickettoride.service.ChatService
 
 class CChatCommand(val event: Event) : ICommand {
     override fun execute() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        ChatService.instance.postChat(event)
     }
 }

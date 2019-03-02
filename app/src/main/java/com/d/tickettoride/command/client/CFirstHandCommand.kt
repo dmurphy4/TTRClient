@@ -1,10 +1,11 @@
 package com.d.tickettoride.command.client
 
 import com.d.tickettoride.model.gameplay.TrainCarCardHand
+import com.d.tickettoride.service.TrainCardService
 
-class CFirstHandCommand(val hand:TrainCarCardHand) : ICommand {
+class CFirstHandCommand(private val hand:TrainCarCardHand) : ICommand {
 
     override fun execute() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TrainCardService.instance.getFirstHand(hand)
     }
 }
