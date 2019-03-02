@@ -1,5 +1,6 @@
 package com.d.tickettoride.views
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -18,7 +19,7 @@ class LobbyActivity : AppCompatActivity(), ILobbyView {
     }
 
     override fun startGame() {
-
+        startActivity(Intent(this, GameActivity::class.java))
     }
 
     override fun setGameName(name: String) {
