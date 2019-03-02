@@ -9,6 +9,7 @@ class LobbyPresenter(private val lobbyActivity: ILobbyView) : ILobbyPresenter {
     init {
         RootModel.instance.onGameBoolTrue = { _, _ ->
             lobbyActivity.displayErrorMessage("Game Started. Good luck.")
+            lobbyActivity.startGame()
         }
     }
 

@@ -13,9 +13,10 @@ class BeginPlayService {
 
     }
 
-    fun startGame(bool:Boolean) {
-        if (bool) {
-            RootModel.instance.gameStarted = true
-        }
+    fun startGame(game:Game) {
+        val model = RootModel.instance
+        model.gameStarted = true
+        model.game = game
+        model.user!!.playerInfo = game.gamePlayers[model.user!!.userName]
     }
 }
