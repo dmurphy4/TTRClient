@@ -1,12 +1,24 @@
 package com.d.tickettoride.model.gameplay
 
-class TrainCarDeck(drawPile:List<ICard>, discardPile:List<ICard>, faceUpCards:List<ICard>) : IDeck {
+class TrainCarDeck(var drawPile:List<TrainCarCard>, var discardPile:MutableList<TrainCarCard>?, var faceUpCards:List<TrainCarCard>?) : IDeck {
 
-    override fun discard(ICards: List<ICard>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    init {
+        discardPile = ArrayList()
+    }
+
+    fun discard(cards: List<TrainCarCard>) {
+        discardPile!!.addAll(cards)
     }
 
     override fun draw(): List<ICard> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val returner = ArrayList<TrainCarCard>()
+        returner.add(drawPile[0])
+        drawPile.drop(1)
+        return returner
+    }
+
+    fun faceUpCardsReady() {
+        faceUpCards = drawPile.take(5)
+        drawPile.drop(5)
     }
 }
