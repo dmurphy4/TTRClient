@@ -15,4 +15,6 @@
     <string name="lobby_waiting_message">Game will start when enough players join...</string>
     <string name="title_activity_game">Map</string>
     <string name="text_button_claim">Claim Route</string>
+    <string name="destination_pick_title">Choose 2 or 3 Destinations</string>
+    <string name="choose_dest_button_text">Choose Destinations</string>
 </resources>

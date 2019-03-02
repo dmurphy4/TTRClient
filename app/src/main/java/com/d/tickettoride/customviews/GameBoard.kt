@@ -15,8 +15,6 @@ import com.d.tickettoride.model.gameplay.Route
 
 class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
-    var onClaimRouteClicked: ((Int) -> Unit)? = null
-
     private val cityPaint = Paint(ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor("red")
         style = Paint.Style.FILL
@@ -44,17 +42,6 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
                 canvas.drawCircle(city.longitude, city.latitude, 20f, cityPaint)
             }
         }
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        Log.d("DEBUG", "onTouchEvent() called")
-        when (event.action) {
-            ACTION_DOWN -> {
-                onClaimRouteClicked?.invoke(0)
-            }
-        }
-
-        return true
     }
 
     fun setRouteData(routes: Map<Int, Route>) {

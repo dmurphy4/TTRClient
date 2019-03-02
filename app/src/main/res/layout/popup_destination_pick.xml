@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:padding="20dp" >
+
+    <TextView android:id="@+id/destination_pick_title"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/destination_pick_title"
+              android:textSize="48sp"
+              android:textColor="@color/white"
+              android:gravity="center_horizontal"
+              android:textStyle="bold"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:gravity="center_horizontal"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/destination_pick_title"
+                  android:orientation="vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="horizontal"
+                      android:layout_width="500dp"
+                      android:layout_height="wrap_content">
+
+            <CheckBox
+                    android:id="@+id/checkbox_dest_1"
+                    android:width="0dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false" />
+
+            <TextView
+                    android:id="@+id/text_dest_1"
+                    android:layout_weight="9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="horizontal"
+                      android:layout_width="500dp"
+                      android:layout_height="wrap_content">
+
+            <CheckBox
+                    android:id="@+id/checkbox_dest_2"
+                    android:width="0dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"/>
+
+            <TextView
+                    android:id="@+id/text_dest_2"
+                    android:layout_weight="9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="horizontal"
+                      android:layout_width="500dp"
+                      android:layout_height="wrap_content">
+
+            <CheckBox
+                    android:id="@+id/checkbox_dest_3"
+                    android:width="0dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"/>
+
+            <TextView
+                    android:id="@+id/text_dest_3"
+                    android:layout_weight="9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"/>
+
+        </LinearLayout>
+
+
+        <Button
+                android:id="@+id/button_choose_dest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="22dp"
+                android:width="200dp"
+                android:background="@color/colorAccent"
+                android:text="@string/choose_dest_button_text"
+                android:textAllCaps="false"
+                android:enabled="false"
+                android:textColor="#fff"
+                android:textSize="18sp" android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
