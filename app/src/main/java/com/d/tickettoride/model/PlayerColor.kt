@@ -13,4 +13,15 @@ enum class PlayerColor {
             else -> NONE
         }
     }
+
+    override fun toString(): String {
+        return when(this) {
+            RED -> "red"
+            BLUE -> "blue"
+            BLACK -> "black"
+            GREEN -> "green"
+            YELLOW -> "yellow"
+            NONE -> "gray"
+        }
+    }
 }

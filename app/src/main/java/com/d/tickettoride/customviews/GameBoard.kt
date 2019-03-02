@@ -34,7 +34,7 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         mapDrawable!!.draw(canvas)
 
         routePaths.let {
-            for ((id, pair) in it) {
+            for ((_, pair) in it) {
                 canvas.drawPath(pair.first, pair.second)
             }
         }
@@ -69,10 +69,12 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
                 val dashLength = calculateDashLength(route.numTracks, city1.longitude, city1.latitude,
                                                      city2.longitude, city2.latitude, 10f)
                 val linePaint = Paint(ANTI_ALIAS_FLAG).apply {
-                    color = Color.parseColor(route.color.toString())
-                    style = Paint.Style.STROKE
-                    pathEffect = DashPathEffect(floatArrayOf(dashLength, 10f), 0f)
-                    strokeWidth = 30f
+                    if (route.owner == null) {
+                        color = Color.parseColor(route.color.toString())
+                        strokeWidth = 30f
+                        style = Paint.Style.STROKE
+                        pathEffect = DashPathEffect(floatArrayOf(dashLength, 10f), 0f)
+                    }
                 }
                 routePaths[route.id] = Pair(linePath, linePaint)
             }
