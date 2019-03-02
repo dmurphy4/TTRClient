@@ -16,4 +16,5 @@
     <string name="title_activity_game">Map</string>
     <string name="title_fragment_stats">Players Stats</string>
     <string name="title_fragment_chat">Chat</string>
+    <string name="chat_hint">Type your message here</string>
 </resources>
