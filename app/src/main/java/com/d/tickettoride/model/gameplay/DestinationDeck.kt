@@ -7,7 +7,7 @@ class DestinationDeck (var cards:List<DestinationCard>) : IDeck {
         return ArrayList() // empty for now
     }
 
-    override fun discard(cards:List<ICard>) {
+    fun discard(cards:List<ICard>) {
 
     }
 }
