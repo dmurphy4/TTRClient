@@ -77,6 +77,144 @@
       "latitude": 775.0,
       "longitude": 890.0,
       "name": "Denver"
+    },
+    "13": {
+      "id": 13,
+      "latitude": 175.0,
+      "longitude": 1150.0,
+      "name": "Winnipeg"
+    },
+    "14": {
+      "id": 14,
+      "latitude": 475.0,
+      "longitude": 1435.0,
+      "name": "Duluth"
+    },
+    "15": {
+      "id": 15,
+      "latitude": 640.0,
+      "longitude": 1275.0,
+      "name": "Omaha"
+    },
+    "16": {
+      "id": 16,
+      "latitude": 800.0,
+      "longitude": 1350.0,
+      "name": "Kansas City"
+    },
+    "17": {
+      "id": 17,
+      "latitude": 1010.0,
+      "longitude": 1250.0,
+      "name": "Oklahoma City"
+    },
+    "18": {
+      "id": 18,
+      "latitude": 1175.0,
+      "longitude": 1250.0,
+      "name": "Dallas"
+    },
+    "19": {
+      "id": 19,
+      "latitude": 1275.0,
+      "longitude": 1350.0,
+      "name": "Houston"
+    },
+    "20": {
+      "id": 20,
+      "latitude": 1300.0,
+      "longitude": 1540.0,
+      "name": "New Orleans"
+    },
+    "21": {
+      "id": 21,
+      "latitude": 1020.0,
+      "longitude": 1490.0,
+      "name": "Little Rock"
+    },
+    "22": {
+      "id": 22,
+      "latitude": 820.0,
+      "longitude": 1535.0,
+      "name": "Saint Louis"
+    },
+    "23": {
+      "id": 23,
+      "latitude": 640.0,
+      "longitude": 1650.0,
+      "name": "Chicago"
+    },
+    "24": {
+      "id": 24,
+      "latitude": 375.0,
+      "longitude": 1775.0,
+      "name": "Sault St. Marie"
+    },
+    "25": {
+      "id": 25,
+      "latitude": 475.0,
+      "longitude": 1970.0,
+      "name": "Toronto"
+    },
+    "26": {
+      "id": 26,
+      "latitude": 640.0,
+      "longitude": 2050.0,
+      "name": "Pittsburgh"
+    },
+    "27": {
+      "id": 27,
+      "latitude": 960.0,
+      "longitude": 1770.0,
+      "name": "Nashville"
+    },
+    "28": {
+      "id": 28,
+      "latitude": 1070.0,
+      "longitude": 1870.0,
+      "name": "Atlanta"
+    },
+    "29": {
+      "id": 29,
+      "latitude": 1500.0,
+      "longitude": 2090.0,
+      "name": "Miami"
+    },
+    "30": {
+      "id": 30,
+      "latitude": 1100.0,
+      "longitude": 2060.0,
+      "name": "Charleston"
+    },
+    "31": {
+      "id": 31,
+      "latitude": 945.0,
+      "longitude": 2030.0,
+      "name": "Raleigh"
+    },
+    "32": {
+      "id": 32,
+      "latitude": 750.0,
+      "longitude": 2155.0,
+      "name": "Washington D.C."
+    },
+    "33": {
+      "id": 33,
+      "latitude": 620.0,
+      "longitude": 2250.0,
+      "name": "New York City"
+    },
+    "34": {
+      "id": 34,
+      "latitude": 500.0,
+      "longitude": 2340.0,
+      "name": "Boston"
+    },
+    "35": {
+      "id": 35,
+      "latitude": 290.0,
+      "longitude": 2190.0,
+      "name": "Montreal"
     }
   },
   "routes": {
@@ -233,6 +371,286 @@
       "city2": 11,
       "numTracks": 2,
       "color": "GRAY"
+    },
+    "22": {
+      "id": 22,
+      "city1": 5,
+      "city2": 13,
+      "numTracks": 6,
+      "color": "WHITE"
+    },
+    "23": {
+      "id": 23,
+      "city1": 6,
+      "city2": 13,
+      "numTracks": 4,
+      "color": "BLUE"
+    },
+    "24": {
+      "id": 24,
+      "city1": 6,
+      "city2": 14,
+      "numTracks": 6,
+      "color": "ORANGE"
+    },
+    "25": {
+      "id": 25,
+      "city1": 13,
+      "city2": 14,
+      "numTracks": 4,
+      "color": "BLACK"
+    },
+    "26": {
+      "id": 26,
+      "city1": 12,
+      "city2": 15,
+      "numTracks": 4,
+      "color": "PINK"
+    },
+    "27": {
+      "id": 27,
+      "city1": 6,
+      "city2": 15,
+      "numTracks": 5,
+      "color": "RED"
+    },
+    "28": {
+      "id": 28,
+      "city1": 14,
+      "city2": 15,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "29": {
+      "id": 29,
+      "city1": 12,
+      "city2": 16,
+      "numTracks": 4,
+      "color": "BLACK"
+    },
+    "30": {
+      "id": 30,
+      "city1": 15,
+      "city2": 16,
+      "numTracks": 1,
+      "color": "GRAY"
+    },
+    "31": {
+      "id": 31,
+      "city1": 12,
+      "city2": 17,
+      "numTracks": 4,
+      "color": "RED"
+    },
+    "32": {
+      "id": 32,
+      "city1": 16,
+      "city2": 17,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "33": {
+      "id": 33,
+      "city1": 11,
+      "city2": 17,
+      "numTracks": 3,
+      "color": "BLUE"
+    },
+    "34": {
+      "id": 34,
+      "city1": 10,
+      "city2": 17,
+      "numTracks": 5,
+      "color": "YELLOW"
+    },
+    "35": {
+      "id": 35,
+      "city1": 17,
+      "city2": 18,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "36": {
+      "id": 36,
+      "city1": 10,
+      "city2": 18,
+      "numTracks": 4,
+      "color": "RED"
+    },
+    "37": {
+      "id": 37,
+      "city1": 18,
+      "city2": 19,
+      "numTracks": 1,
+      "color": "GRAY"
+    },
+    "38": {
+      "id": 38,
+      "city1": 10,
+      "city2": 19,
+      "numTracks": 6,
+      "color": "GREEN"
+    },
+    "39": {
+      "id": 39,
+      "city1": 19,
+      "city2": 20,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "40": {
+      "id": 40,
+      "city1": 18,
+      "city2": 21,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "41": {
+      "id": 41,
+      "city1": 17,
+      "city2": 21,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "42": {
+      "id": 42,
+      "city1": 20,
+      "city2": 21,
+      "numTracks": 3,
+      "color": "GREEN"
+    },
+    "43": {
+      "id": 43,
+      "city1": 21,
+      "city2": 22,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "44": {
+      "id": 44,
+      "city1": 16,
+      "city2": 22,
+      "numTracks": 2,
+      "color": "PINK"
+    },
+    "45": {
+      "id": 45,
+      "city1": 22,
+      "city2": 23,
+      "numTracks": 2,
+      "color": "WHITE"
+    },
+    "46": {
+      "id": 46,
+      "city1": 15,
+      "city2": 23,
+      "numTracks": 4,
+      "color": "BLUE"
+    },
+    "47": {
+      "id": 47,
+      "city1": 14,
+      "city2": 23,
+      "numTracks": 3,
+      "color": "RED"
+    },
+    "48": {
+      "id": 48,
+      "city1": 14,
+      "city2": 24,
+      "numTracks": 3,
+      "color": "GRAY"
+    },
+    "49": {
+      "id": 49,
+      "city1": 13,
+      "city2": 24,
+      "numTracks": 6,
+      "color": "GRAY"
+    },
+    "50": {
+      "id": 50,
+      "city1": 24,
+      "city2": 25,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "51": {
+      "id": 51,
+      "city1": 14,
+      "city2": 25,
+      "numTracks": 6,
+      "color": "PINK"
+    },
+    "52": {
+      "id": 52,
+      "city1": 23,
+      "city2": 25,
+      "numTracks": 4,
+      "color": "WHITE"
+    },
+    "53": {
+      "id": 53,
+      "city1": 23,
+      "city2": 26,
+      "numTracks": 3,
+      "color": "ORANGE"
+    },
+    "54": {
+      "id": 54,
+      "city1": 22,
+      "city2": 26,
+      "numTracks": 5,
+      "color": "GREEN"
+    },
+    "55": {
+      "id": 55,
+      "city1": 26,
+      "city2": 27,
+      "numTracks": 4,
+      "color": "YELLOW"
+    },
+    "56": {
+      "id": 56,
+      "city1": 22,
+      "city2": 27,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "57": {
+      "id": 57,
+      "city1": 21,
+      "city2": 27,
+      "numTracks": 3,
+      "color": "WHITE"
+    },
+    "58": {
+      "id": 58,
+      "city1": 27,
+      "city2": 28,
+      "numTracks": 1,
+      "color": "GRAY"
+    },
+    "59": {
+      "id": 59,
+      "city1": 20,
+      "city2": 28,
+      "numTracks": 4,
+      "color": "YELLOW"
+    },
+    "60": {
+      "id": 60,
+      "city1": 20,
+      "city2": 29,
+      "numTracks": 6,
+      "color": "RED"
+    },
+    "61": {
+      "id": 61,
+      "city1": 28,
+      "city2": 29,
+      "numTracks": 5,
+      "color": "BLUE"
     }
 }
 }
