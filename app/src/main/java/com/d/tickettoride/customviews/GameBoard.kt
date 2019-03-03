@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.MotionEvent.ACTION_DOWN
 import android.view.View
 import com.d.tickettoride.R
+import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.gameplay.City
 import com.d.tickettoride.model.gameplay.Route
 
@@ -24,6 +25,16 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     var cities: Map<Int, City> = HashMap()
     private var routePaths: MutableMap<Int, Pair<Path, Paint>> = HashMap()
+
+    fun changeRoutePaintToClaimed(id: Int, playerColor: PlayerColor) {
+        val oldPair = routePaths[id]
+        routePaths[id] = oldPair!!.copy(second = Paint(ANTI_ALIAS_FLAG).apply {
+            color = Color.parseColor(playerColor.toString())
+            style = Paint.Style.STROKE
+            strokeWidth = 20f
+
+        })
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)

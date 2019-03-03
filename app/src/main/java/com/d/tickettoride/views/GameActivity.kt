@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.Toast
 import com.d.tickettoride.R
+import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.presenters.GamePresenter
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
@@ -35,6 +36,11 @@ class GameActivity : AppCompatActivity(), IGameView {
         game_board.cities = board.cities
         game_board.setRouteData(board.routes)
         game_board.invalidate()
+
+        button_claim_route.setOnClickListener {
+            game_board.changeRoutePaintToClaimed(10, PlayerColor.GREEN)
+            game_board.invalidate()
+        }
     }
 
     override fun onStart() {
@@ -52,6 +58,7 @@ class GameActivity : AppCompatActivity(), IGameView {
         buttonChooseDest = popupView.findViewById<Button>(R.id.button_choose_dest)
         buttonChooseDest.setOnClickListener {
             popupWindow.dismiss()
+            enableClaimButton(true)
         }
 
         // Showing the popup window in .post ensures it isn't displayed until the activity is ready

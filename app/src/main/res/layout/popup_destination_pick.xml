@@ -96,7 +96,7 @@
                 android:background="@color/colorAccent"
                 android:text="@string/choose_dest_button_text"
                 android:textAllCaps="false"
-                android:enabled="false"
+                android:enabled="true"
                 android:textColor="#fff"
                 android:textSize="18sp" android:layout_gravity="center"/>
 

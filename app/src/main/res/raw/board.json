@@ -56,7 +56,7 @@
     },
     "9": {
       "id": 9,
-      "latitude": 1100.0,
+      "latitude": 1000.0,
       "longitude": 575.0,
       "name": "Phoenix"
     },
@@ -205,6 +205,34 @@
       "city2": 12,
       "numTracks": 3,
       "color": "RED"
+    },
+    "18": {
+      "id": 18,
+      "city1": 1,
+      "city2": 8,
+      "numTracks": 3,
+      "color": "YELLOW"
+    },
+    "19": {
+      "id": 19,
+      "city1": 6,
+      "city2": 12,
+      "numTracks": 4,
+      "color": "GREEN"
+    },
+    "20": {
+      "id": 20,
+      "city1": 11,
+      "city2": 12,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "21": {
+      "id": 21,
+      "city1": 10,
+      "city2": 11,
+      "numTracks": 2,
+      "color": "GRAY"
     }
 }
 }
