@@ -6,43 +6,64 @@ import android.view.View
 import android.view.ViewGroup
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
+import com.d.tickettoride.model.PlayerInfo
 import com.d.tickettoride.views.iviews.IChooseGameView
+import com.d.tickettoride.views.iviews.IStatsView
 import kotlinx.android.synthetic.main.row_game_list.view.*
+import kotlinx.android.synthetic.main.row_stats_list.view.*
 
-class StatsAdapter(private val messageList: ArrayList<>,
-                  private val chooseGameActivity: IChooseGameView,
-                  var selectedRowIndex: Int = -1) :
+class StatsAdapter(private val playerInfoList: ArrayList<PlayerInfo>,
+                   private val StatsFragment: IStatsView,
+                   var selectedRowIndex: Int = -1) :
     RecyclerView.Adapter<StatsAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = parent.inflate(R.layout.row_game_list, false)
+        val view = parent.inflate(R.layout.row_stats_list, false)
         return MyViewHolder(view)
     }
 
-    override fun getItemCount(): Int = gameList.size
+    override fun getItemCount(): Int = playerInfoList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val gameInfo = gameList[position]
-        holder.bind(gameInfo)
+        val stats = playerInfoList[position]
+        holder.bind(stats)
         holder.view.setOnClickListener {
             selectedRowIndex = position
-            chooseGameActivity.enableJoinGameButton(true)
             notifyDataSetChanged()
         }
 
         if (selectedRowIndex == position) {
-            holder.view.row_game_name_layout.setBackgroundColor(Color.parseColor("#BEEB9F"))
-            holder.view.row_game_name.setTextColor(Color.parseColor("#000000"))
+            holder.view.row_player_stats_layout.setBackgroundColor(Color.parseColor("#BEEB9F"))
+            holder.view.name.setTextColor(Color.parseColor("#000000"))
+            holder.view.scoreLabel.setTextColor(Color.parseColor("#000000"))
+            holder.view.score.setTextColor(Color.parseColor("#000000"))
+            holder.view.trainCardsLabel.setTextColor(Color.parseColor("#000000"))
+            holder.view.numTrainCards.setTextColor(Color.parseColor("#000000"))
+            holder.view.destCardsLabel.setTextColor(Color.parseColor("#000000"))
+            holder.view.numDestCards.setTextColor(Color.parseColor("#000000"))
+            holder.view.trainCarsLabel.setTextColor(Color.parseColor("#000000"))
+            holder.view.numCars.setTextColor(Color.parseColor("#000000"))
         } else {
-            holder.view.row_game_name_layout.setBackgroundColor(Color.parseColor("#79BD8F"))
-            holder.view.row_game_name.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.row_player_stats_layout.setBackgroundColor(Color.parseColor("#79BD8F"))
+            holder.view.name.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.scoreLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.score.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.trainCardsLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.numTrainCards.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.destCardsLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.numDestCards.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.trainCarsLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.numCars.setTextColor(Color.parseColor("#FFFFFF"))
         }
     }
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(gameInfo: GameInfo) {
-            view.row_game_name.text = gameInfo.gameName
-            view.row_num_players.text = gameInfo.numPlayers.toString()
+        fun bind(stats: PlayerInfo) {
+            view.name.text = stats.username
+            view.score.text = stats.score.toString()
+            view.numDestCards.text = stats.numDestCards.toString()
+            view.numTrainCards.text = stats.numTrainCards.toString()
+            view.numCars.text = stats.numTrains.toString()
         }
     }
 
