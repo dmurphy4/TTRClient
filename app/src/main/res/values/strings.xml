@@ -17,4 +17,7 @@
     <string name="text_button_claim">Claim Route</string>
     <string name="destination_pick_title">Choose 2 or 3 Destinations</string>
     <string name="choose_dest_button_text">Choose Destinations</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
