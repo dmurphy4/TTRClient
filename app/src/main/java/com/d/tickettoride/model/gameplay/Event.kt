@@ -1,4 +1,3 @@
 package com.d.tickettoride.model.gameplay
 
-class Event {
-}
+data class Event(val type:EventType, val username:String, val content:String)
