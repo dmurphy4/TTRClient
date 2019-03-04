@@ -26,7 +26,7 @@ class LoginService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     private fun setUserData(username: String) {
-        RootModel.instance.user = User(username)
+        RootModel.instance.user = User(username, null, null, null)
     }
 
     fun register(userName: String, password: String) {
