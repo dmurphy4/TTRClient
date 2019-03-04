@@ -651,6 +651,118 @@
       "city2": 29,
       "numTracks": 5,
       "color": "BLUE"
+    },
+    "62": {
+      "id": 62,
+      "city1": 28,
+      "city2": 30,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "63": {
+      "id": 63,
+      "city1": 29,
+      "city2": 30,
+      "numTracks": 4,
+      "color": "PINK"
+    },
+    "64": {
+      "id": 64,
+      "city1": 30,
+      "city2": 31,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "65": {
+      "id": 65,
+      "city1": 28,
+      "city2": 31,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "66": {
+      "id": 66,
+      "city1": 27,
+      "city2": 31,
+      "numTracks": 3,
+      "color": "BLACK"
+    },
+    "67": {
+      "id": 67,
+      "city1": 31,
+      "city2": 32,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "68": {
+      "id": 68,
+      "city1": 26,
+      "city2": 31,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "69": {
+      "id": 69,
+      "city1": 26,
+      "city2": 32,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "70": {
+      "id": 70,
+      "city1": 32,
+      "city2": 33,
+      "numTracks": 2,
+      "color": "ORANGE"
+    },
+    "71": {
+      "id": 71,
+      "city1": 26,
+      "city2": 33,
+      "numTracks": 2,
+      "color": "GREEN"
+    },
+    "72": {
+      "id": 72,
+      "city1": 33,
+      "city2": 34,
+      "numTracks": 2,
+      "color": "RED"
+    },
+    "73": {
+      "id": 73,
+      "city1": 33,
+      "city2": 35,
+      "numTracks": 3,
+      "color": "BLUE"
+    },
+    "74": {
+      "id": 74,
+      "city1": 34,
+      "city2": 35,
+      "numTracks": 2,
+      "color": "GRAY"
+    },
+    "75": {
+      "id": 75,
+      "city1": 24,
+      "city2": 35,
+      "numTracks": 5,
+      "color": "BLACK"
+    },
+    "76": {
+      "id": 76,
+      "city1": 25,
+      "city2": 35,
+      "numTracks": 3,
+      "color": "GRAY"
+    },
+    "77": {
+      "id": 77,
+      "city1": 25,
+      "city2": 26,
+      "numTracks": 2,
+      "color": "GRAY"
     }
 }
 }
