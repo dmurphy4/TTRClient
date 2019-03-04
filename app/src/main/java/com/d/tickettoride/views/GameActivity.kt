@@ -73,10 +73,6 @@ class GameActivity : AppCompatActivity(), IGameView {
         popupWindow.dismiss()
     }
 
-    override fun enableMapClicks(enable: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun enableClaimButton(enable: Boolean) {
         button_claim_route.isEnabled = enable
     }
