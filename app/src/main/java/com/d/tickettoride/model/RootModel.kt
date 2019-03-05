@@ -1,6 +1,7 @@
 package com.d.tickettoride.model
 
 import com.d.tickettoride.model.gameplay.DestinationCard
+import com.d.tickettoride.model.gameplay.Event
 import com.d.tickettoride.servercommunicator.Poller
 import kotlin.properties.Delegates.observable
 

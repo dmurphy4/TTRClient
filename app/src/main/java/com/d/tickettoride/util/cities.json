@@ -1,0 +1,82 @@
+{
+  "cities": {
+    "0": {
+      "id": 0,
+      "latitude": 350.0,
+      "longitude": 250.0,
+      "name": "Portland"
+    },
+    "1": {
+      "id": 1,
+      "latitude": 725.0,
+      "longitude": 125.0,
+      "name": "San Francisco"
+    },
+    "2": {
+      "id": 2,
+      "latitude": 640.0,
+      "longitude": 630.0,
+      "name": "Salt Lake City"
+    },
+    "3": {
+      "id": 3,
+      "latitude": 215.0,
+      "longitude": 300.0,
+      "name": "Seattle"
+    },
+    "4": {
+      "id": 4,
+      "latitude": 85.0,
+      "longitude": 325.0,
+      "name": "Vancouver"
+    },
+    "5": {
+      "id": 5,
+      "latitude": 80.0,
+      "longitude": 620.0,
+      "name": "Calgary"
+    },
+    "6": {
+      "id": 6,
+      "latitude": 425.0,
+      "longitude": 825.0,
+      "name": "Helena"
+    },
+    "7": {
+      "id": 7,
+      "latitude": 860.0,
+      "longitude": 435.0,
+      "name": "Las Vegas"
+    },
+    "8": {
+      "id": 8,
+      "latitude": 1000.0,
+      "longitude": 300.0,
+      "name": "Los Angeles"
+    },
+    "9": {
+      "id": 9,
+      "latitude": 1100.0,
+      "longitude": 575.0,
+      "name": "Phoenix"
+    },
+    "10": {
+      "id": 10,
+      "latitude": 1200.0,
+      "longitude": 850.0,
+      "name": "El Paso"
+    },
+    "11": {
+      "id": 11,
+      "latitude": 990.0,
+      "longitude": 870.0,
+      "name": "Santa Fe"
+    },
+    "12": {
+      "id": 12,
+      "latitude": 775.0,
+      "longitude": 890.0,
+      "name": "Denver"
+    }
+  }
+}
