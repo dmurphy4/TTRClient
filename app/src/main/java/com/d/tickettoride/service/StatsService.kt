@@ -1,8 +1,8 @@
 package com.d.tickettoride.service
 
-class BoardService {
+class StatsService {
 
-    fun claimRoute() {
+    fun updateStats() {
 
     }
 }
