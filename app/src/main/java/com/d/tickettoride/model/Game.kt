@@ -9,4 +9,8 @@ class Game(val gameInfo: GameInfo, var gamePlayers:Map<String, PlayerInfo>, var 
     fun addEvent(event:Event) {
         eventHistory.add(event)
     }
+
+    fun prepareCards() {
+        board.prepFaceUpCards()
+    }
 }

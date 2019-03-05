@@ -16,7 +16,6 @@ class ChatService(private val proxy: ServerProxy = ServerProxy()) {
     fun sendChat(event:Event) {
         val data = Gson().toJson(SSendMessageCommand(event))
         proxy.command(CommandType.S_SEND_MESSAGE, data)
-
     }
 
     fun postChat(event:Event) {
