@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.Toast
+import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.widget.DrawerLayout
 import com.d.tickettoride.R
 import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.gameplay.Board
@@ -26,6 +29,8 @@ class GameActivity : AppCompatActivity(), IGameView {
     // kotlinx imports gives null pointer exception
     private lateinit var buttonChooseDest: Button
     private lateinit var popupWindow: PopupWindow
+    private val statsFragment = StatsFragment()
+    private val chatFragment = ChatFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +42,28 @@ class GameActivity : AppCompatActivity(), IGameView {
         game_board.setRouteData(board.routes)
         game_board.invalidate()
 
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.content_frame, statsFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+
         button_claim_route.setOnClickListener {
             game_board.changeRoutePaintToClaimed(10, PlayerColor.GREEN)
             game_board.invalidate()
+        }
+
+        button_stats.setOnClickListener {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.content_frame, statsFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
+        button_chat.setOnClickListener {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.content_frame, chatFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
 
@@ -83,6 +107,11 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun enableChooseDestButton(enable: Boolean) {
         buttonChooseDest.isEnabled = enable
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // val mapFragment = supportFragmentManager
+        //     .findFragmentById(R.id.map) as SupportMapFragment
+        // mapFragment.getMapAsync(this)
     }
 
     override fun dismissDestPickPopup() {
