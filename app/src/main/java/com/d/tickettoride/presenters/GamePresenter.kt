@@ -10,9 +10,9 @@ class GamePresenter(private val gameActivity: IGameView,
                     private val boardService: BoardService = BoardService.instance): IGamePresenter {
 
     init {
-        var rootModel = RootModel.instance
+        val rootModel = RootModel.instance
         rootModel.onDestinationCardsGiven = { _, new ->
-            gameActivity.displayDestPickPopup()
+            gameActivity.displayDestPickPopup(new)
         }
     }
 
