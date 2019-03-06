@@ -4,7 +4,7 @@ import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.model.gameplay.Event
 import kotlin.properties.Delegates
 
-class Game(val gameInfo: GameInfo, var gamePlayers:Map<String, PlayerInfo>, var board: Board,
+class Game(val gameInfo: GameInfo, var playerStats:List<PlayerInfo>, var board: Board,
                 var turnOrder:List<String>, var eventHistory:ArrayList<Event>) {
 
     var eventListLength:Int by Delegates.observable(0) { _, old, new ->
