@@ -4,13 +4,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.Toast
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.widget.DrawerLayout
+import android.widget.*
 import com.d.tickettoride.R
 import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.gameplay.Board
@@ -29,7 +26,14 @@ class GameActivity : AppCompatActivity(), IGameView {
     // Popup window values need to be stored as data members. Trying to use the
     // kotlinx imports gives null pointer exception
     private lateinit var buttonChooseDest: Button
+    private lateinit var destination1: TextView
+    private lateinit var destination2: TextView
+    private lateinit var destination3: TextView
+    private lateinit var checkBox1: CheckBox
+    private lateinit var checkBox2: CheckBox
+    private lateinit var checkBox3: CheckBox
     private lateinit var popupWindow: PopupWindow
+
     private val statsFragment = StatsFragment()
     private val chatFragment = ChatFragment()
 
@@ -85,6 +89,13 @@ class GameActivity : AppCompatActivity(), IGameView {
             popupWindow.dismiss()
             enableClaimButton(true)
         }
+
+        destination1 = popupView.findViewById(R.id.text_dest_1)
+        checkBox1 = popupView.findViewById(R.id.checkbox_dest_1)
+        destination2 = popupView.findViewById(R.id.text_dest_2)
+        checkBox2 = popupView.findViewById(R.id.checkbox_dest_2)
+        destination3 = popupView.findViewById(R.id.text_dest_3)
+        checkBox3 = popupView.findViewById(R.id.checkbox_dest_3)
     }
 
     override fun onDestroy() {
@@ -95,6 +106,9 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun displayDestPickPopup(cards:List<DestinationCard>) {
         // Showing the popup window in .post ensures it isn't displayed until the activity is ready
+        destination1.text = "${cards[0].city1.name} to ${cards[0].city2.name} - ${cards[0].points} points"
+        destination2.text = "${cards[1].city1.name} to ${cards[1].city2.name} - ${cards[1].points} points"
+        destination3.text = "${cards[2].city1.name} to ${cards[2].city2.name} - ${cards[2].points} points"
         game_board.post {
             popupWindow.showAtLocation(contentView, Gravity.CENTER, 0, 0)
         }
@@ -110,11 +124,6 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun enableChooseDestButton(enable: Boolean) {
         buttonChooseDest.isEnabled = enable
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        // val mapFragment = supportFragmentManager
-        //     .findFragmentById(R.id.map) as SupportMapFragment
-        // mapFragment.getMapAsync(this)
     }
 
     override fun dismissDestPickPopup() {
