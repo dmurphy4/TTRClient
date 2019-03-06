@@ -1,7 +1,8 @@
 package com.d.tickettoride.servercommunicator
 
 import com.d.tickettoride.model.RootModel
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 class Poller {
     var timer: Timer = Timer()
@@ -11,8 +12,7 @@ class Poller {
 
     class PollTask : TimerTask() {
         override fun run() {
-            println("Erik Parkinson")
-            ServerProxy().command(CommandType.S_POLL, "{ \"userName\": ${RootModel.instance.user?.userName} }")
+            ServerProxy().command(CommandType.S_POLL, "{ \"username\": ${RootModel.instance.user?.username} }")
         }
     }
 }

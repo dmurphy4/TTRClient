@@ -26,7 +26,7 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
     override fun createNewGame(gameInfo: GameInfo) {
         val rootModel = RootModel.instance
         // The user in the root model shouldn't be null at this point, so use !!.
-        chooseGameService.createGame(gameInfo.gameName, gameInfo.numPlayers, rootModel.user!!.userName)
+        chooseGameService.createGame(gameInfo.gameName, gameInfo.numPlayers, rootModel.user!!.username)
     }
 
     override fun getAvailableGamesList() : ArrayList<GameInfo> {

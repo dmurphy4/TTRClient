@@ -35,7 +35,7 @@ class ChooseGameService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun joinGame(gameName:String) {
-        val data = Gson().toJson(SJoinGameCommand(gameName, RootModel.instance.user!!.userName))
+        val data = Gson().toJson(SJoinGameCommand(gameName, RootModel.instance.user!!.username))
         ServerProxy().command(CommandType.S_JOIN_GAME, data)
     }
 

@@ -19,7 +19,7 @@ class LoginPresenter(private val loginActivity: ILoginView,
         RootModel.instance.onLogIn = { _, loggedIn ->
             if (loggedIn) {
                 loginActivity.startChooseGameActivity()
-                loginActivity.displayErrorMessage("Username is ${RootModel.instance.user!!.userName}")
+                loginActivity.displayErrorMessage("Username is ${RootModel.instance.user!!.username}")
             } else {
                 loginActivity.enableLogIn(true)
             }

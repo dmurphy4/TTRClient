@@ -17,6 +17,6 @@ class BeginPlayService {
         val model = RootModel.instance
         model.gameStarted = true
         model.game = game
-        model.user!!.playerInfo = game.gamePlayers[model.user!!.userName]
+        model.user!!.playerInfo = game.gamePlayers[model.user!!.username]
     }
 }

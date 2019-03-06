@@ -8,6 +8,7 @@ import com.d.tickettoride.R
 import com.d.tickettoride.presenters.LobbyPresenter
 import com.d.tickettoride.presenters.ipresenters.ILobbyPresenter
 import com.d.tickettoride.views.iviews.ILobbyView
+import kotlinx.android.synthetic.main.activity_lobby.*
 
 class LobbyActivity : AppCompatActivity(), ILobbyView {
 
@@ -16,6 +17,10 @@ class LobbyActivity : AppCompatActivity(), ILobbyView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lobby)
+
+        button_jump_to_game.setOnClickListener {
+            startActivity(Intent(this, GameActivity::class.java))
+        }
     }
 
     override fun startGame() {

@@ -14,10 +14,10 @@ class ChatPresenter(private val chatFragment: IChatView,
                     private val chatService: ChatService = ChatService.instance) : IChatPresenter {
 
     override fun sendMessage(message:String) {
-        val username = RootModel.instance.user!!.userName
+        val username = RootModel.instance.user!!.username
         val event = Event(EventType.MESSAGE, username, message)
 
-        ChatService.instance.sendChat(event)
+        chatService.sendChat(event)
     }
 
     override fun getChatList(): ArrayList<Event> {
