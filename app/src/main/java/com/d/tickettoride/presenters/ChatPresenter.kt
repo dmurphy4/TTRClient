@@ -5,13 +5,17 @@ import com.d.tickettoride.model.gameplay.Event
 import com.d.tickettoride.model.gameplay.EventType
 import com.d.tickettoride.presenters.ipresenters.IChatPresenter
 import com.d.tickettoride.service.ChatService
-import com.d.tickettoride.service.ChooseGameService
-import com.d.tickettoride.views.ChatFragment
 import com.d.tickettoride.views.iviews.IChatView
-import com.d.tickettoride.views.iviews.IChooseGameView
 
 class ChatPresenter(private val chatFragment: IChatView,
                     private val chatService: ChatService = ChatService.instance) : IChatPresenter {
+
+    init {
+        val rootModel = RootModel.instance
+        rootModel.game!!.onEventAdded = { _, _ ->
+            chatFragment.displayChatInList()
+        }
+    }
 
     override fun sendMessage(message:String) {
         val username = RootModel.instance.user!!.username
@@ -20,7 +24,7 @@ class ChatPresenter(private val chatFragment: IChatView,
         chatService.sendChat(event)
     }
 
-    override fun getChatList(): ArrayList<Event> {
-        return ArrayList()
+    override fun getChatList() : ArrayList<Event> {
+        return RootModel.instance.game!!.eventHistory
     }
 }

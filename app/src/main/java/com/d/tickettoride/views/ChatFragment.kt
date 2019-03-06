@@ -28,9 +28,8 @@ class ChatFragment : Fragment(), IChatView {
         //val chatInfo = ArrayList(RootModel.instance.game!!.eventHistory)
 
         view.post {
-            val chatInfo = ArrayList<Event>()
 
-            adapter = ChatAdapter(chatInfo, this)
+            adapter = ChatAdapter(chatPresenter.getChatList(), this)
             player_chat_list.layoutManager = LinearLayoutManager(activity) // Displays games 1 per row
             player_chat_list.adapter = adapter
             player_chat_list.addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
@@ -49,7 +48,7 @@ class ChatFragment : Fragment(), IChatView {
         return view
     }
 
-    fun displayChatInList() {
+    override fun displayChatInList() {
         adapter.notifyItemInserted(chatPresenter.getChatList().size)
     }
 }
