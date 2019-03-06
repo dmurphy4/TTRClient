@@ -19,4 +19,11 @@ class GamePresenter(private val gameActivity: IGameView,
     override fun getBoard(): Board {
         return boardService.getBoard()
     }
+
+    fun phase2Update() {
+        RootModel.instance.game!!.playerStats[0].score += 4
+        RootModel.instance.game!!.playerStats[0].numTrains -= 3
+        RootModel.instance.game!!.playerStats[0].numTrainCards -= 3
+        RootModel.instance.user!!.trainCardHand
+    }
 }
