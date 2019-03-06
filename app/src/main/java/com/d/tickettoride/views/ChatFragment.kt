@@ -1,7 +1,5 @@
 package com.d.tickettoride.views
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
@@ -11,19 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.d.tickettoride.R
-import com.d.tickettoride.model.GameInfo
-import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Event
 import com.d.tickettoride.presenters.ChatPresenter
-import com.d.tickettoride.presenters.ChooseGamePresenter
 import com.d.tickettoride.presenters.ipresenters.IChatPresenter
-import com.d.tickettoride.presenters.ipresenters.IChooseGamePresenter
 import com.d.tickettoride.util.ChatAdapter
-import com.d.tickettoride.util.GameInfoAdapter
 import com.d.tickettoride.util.afterTextChanged
 import com.d.tickettoride.views.iviews.IChatView
-import com.d.tickettoride.views.iviews.IGameView
-import kotlinx.android.synthetic.main.activity_choose_game.*
 import kotlinx.android.synthetic.main.fragment_chat.*
 
 class ChatFragment : Fragment(), IChatView {
