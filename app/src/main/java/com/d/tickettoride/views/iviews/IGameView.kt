@@ -5,4 +5,5 @@ interface IGameView {
     fun enableChooseDestButton(enable: Boolean)
     fun dismissDestPickPopup()
     fun displayErrorMessage(message: String)
+    fun displayDestPickPopup()
 }

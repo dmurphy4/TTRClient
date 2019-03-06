@@ -69,6 +69,16 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun onStart() {
         super.onStart()
+        displayDestPickPopup()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // In case the back button is pressed, dismiss the popup window to avoid window leak error
+        popupWindow.dismiss()
+    }
+
+    override fun displayDestPickPopup() {
         val popupView = LayoutInflater.from(baseContext).inflate(R.layout.popup_destination_pick, null)
         popupWindow = PopupWindow(
             popupView,
@@ -89,12 +99,6 @@ class GameActivity : AppCompatActivity(), IGameView {
         game_board.post {
             popupWindow.showAtLocation(contentView, Gravity.CENTER, 0, 0)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // In case the back button is pressed, dismiss the popup window to avoid window leak error
-        popupWindow.dismiss()
     }
 
     override fun enableClaimButton(enable: Boolean) {
