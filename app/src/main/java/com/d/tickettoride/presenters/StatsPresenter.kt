@@ -1,16 +1,22 @@
 package com.d.tickettoride.presenters
 
+import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ipresenters.IStatsPresenter
-import com.d.tickettoride.service.ChatService
 import com.d.tickettoride.service.StatsService
-import com.d.tickettoride.views.iviews.IChatView
 import com.d.tickettoride.views.iviews.IStatsView
 
 class StatsPresenter(private val statsFragment: IStatsView,
                      private val chatService: StatsService = StatsService.instance)
                     : IStatsPresenter {
 
-    override fun updateStats() {
-
+    init {
+        val rootModel = RootModel.instance
+        rootModel.game!!.onStatsChanged = { _, new ->
+            if (new) {
+                statsFragment.updateStats()
+            }
+            rootModel.game!!.statsChanged = false
+        }
     }
+
 }
