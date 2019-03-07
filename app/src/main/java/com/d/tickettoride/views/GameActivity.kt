@@ -57,6 +57,10 @@ class GameActivity : AppCompatActivity(), IGameView {
             game_board.invalidate()
         }
 
+        button_draw_destinations.setOnClickListener {
+            gamePresenter.drawDestinationCards()
+        }
+
         button_stats.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.content_frame, statsFragment)
@@ -105,13 +109,10 @@ class GameActivity : AppCompatActivity(), IGameView {
     }
 
     override fun displayDestPickPopup(cards:List<DestinationCard>) {
-        // Showing the popup window in .post ensures it isn't displayed until the activity is ready
         destination1.text = "${gamePresenter.getCityFromGame(cards[0].city1).name} to ${gamePresenter.getCityFromGame(cards[0].city2).name} - ${cards[0].points} points"
         destination2.text = "${gamePresenter.getCityFromGame(cards[1].city1).name} to ${gamePresenter.getCityFromGame(cards[1].city2).name} - ${cards[1].points} points"
         destination3.text = "${gamePresenter.getCityFromGame(cards[2].city1).name} to ${gamePresenter.getCityFromGame(cards[2].city2).name} - ${cards[2].points} points"
-        game_board.post {
-            popupWindow.showAtLocation(contentView, Gravity.CENTER, 0, 0)
-        }
+        popupWindow.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
 
     override fun enableClaimButton(enable: Boolean) {

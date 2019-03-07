@@ -14,10 +14,11 @@
     <string name="join_game_button">Join Game</string>
     <string name="lobby_waiting_message">Game will start when enough players join...</string>
     <string name="title_activity_game">Map</string>
-    <string name="text_button_claim">Claim Route</string>
+    <string name="text_button_claim">Claim a Route</string>
     <string name="destination_pick_title">Choose 2 or 3 Destinations</string>
-    <string name="choose_dest_button_text">Choose Destinations</string>
+    <string name="choose_dest_button_text">Submit</string>
     <string name="title_fragment_stats">Players Stats</string>
     <string name="title_fragment_chat">Chat</string>
     <string name="chat_hint">Type your message here</string>
+    <string name="text_button_choose_destinations">Draw Destinations</string>
 </resources>

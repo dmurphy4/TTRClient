@@ -11,7 +11,6 @@ class DestCardService {
     }
 
     fun postFirstDestCards(cards:List<DestinationCard>) {
-        Thread.sleep(5000)
         RootModel.instance.destinationCardsToChoose = cards
         RootModel.instance.destCardsGiven = true
     }

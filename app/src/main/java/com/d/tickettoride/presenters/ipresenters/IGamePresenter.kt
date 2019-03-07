@@ -6,4 +6,5 @@ import com.d.tickettoride.model.gameplay.City
 interface IGamePresenter {
     fun getBoard(): Board
     fun getCityFromGame(id:Int) : City
+    fun drawDestinationCards()
 }

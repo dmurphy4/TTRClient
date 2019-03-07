@@ -48,7 +48,7 @@ class RootModel {
     var destinationCardsToChoose:List<DestinationCard>? = null
 
     var destCardsGiven:Boolean by observable(false) {
-            _, old, new -> onDestinjationCardsGiven?.invoke(old, new)
+            _, old, new -> onDestinationCardsGiven?.invoke(old, new)
     }
 
     var onDestinationCardsGiven:((Boolean, Boolean) -> Unit)? = null

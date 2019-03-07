@@ -1,10 +1,13 @@
 package com.d.tickettoride.service
 
+import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Board
+import com.d.tickettoride.servercommunicator.ServerProxy
+import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 import com.google.gson.Gson
 import java.io.File
 
-class BoardService {
+class BoardService(val proxy: ServerProxy = ServerProxy()) {
 
     companion object {
         val instance = BoardService()
@@ -12,6 +15,11 @@ class BoardService {
 
     fun claimRoute() {
 
+    }
+
+    fun drawDestinationCards() {
+        val username = RootModel.instance.user!!.username
+        proxy.command(ServerCommand.DrawDestinationCards(username))
     }
 
     fun getBoard(): Board {

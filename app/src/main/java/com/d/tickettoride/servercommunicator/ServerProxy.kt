@@ -14,7 +14,7 @@ class ServerProxy {
     companion object {
         val client = OkHttpClient()
     }
-    private val url = "http://10.37.117.159:8000/command"
+    private val url = "http://10.37.145.250:8080/command"
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(command: ServerCommand) {
@@ -32,6 +32,7 @@ class ServerProxy {
                     is ServerCommand.JoinGame -> JoinGameResponse::class.java
                     is ServerCommand.Login, is ServerCommand.Register -> LoginRegisterResponse::class.java
                     is ServerCommand.Poll -> CommandListResponse::class.java
+                    is ServerCommand.DrawDestinationCards -> DrawDestinationCardResponse::class.java
                     else -> GenericResponse::class.java
                 }
                 val gson = Gson()
