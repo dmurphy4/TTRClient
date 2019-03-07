@@ -1,9 +1,10 @@
-package com.d.tickettoride.command.client
+package com.d.tickettoride.servercommunicator.response
 
 import com.d.tickettoride.service.ChooseGameService
 import com.d.tickettoride.service.ErrorMessageService
 
-class CJoinGameCommand (private val errorMessage:String?) : ICommand {
+class JoinGameResponse (private val errorMessage:String?) :
+    GenericResponse(errorMessage) {
 
     override fun execute() {
         if (errorMessage == null) {
