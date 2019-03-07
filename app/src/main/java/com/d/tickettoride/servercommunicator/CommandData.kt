@@ -1,5 +1,6 @@
 package com.d.tickettoride.servercommunicator
 
+import com.d.tickettoride.command.CommandType
 import com.d.tickettoride.command.client.*
 import com.google.gson.Gson
 
