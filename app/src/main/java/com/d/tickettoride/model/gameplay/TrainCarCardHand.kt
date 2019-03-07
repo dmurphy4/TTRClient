@@ -5,7 +5,7 @@ class TrainCarCardHand(var cards:List<TrainCarCard>, var cardMap:MutableMap<Trai
     init {
         for (card in cards) {
             if (cardMap.containsKey(card.type)) {
-                cardMap.getValue(card.type).plus(1)
+                cardMap[card.type]!!.plus(1)
             }
             else {
                 cardMap[card.type] = 1
