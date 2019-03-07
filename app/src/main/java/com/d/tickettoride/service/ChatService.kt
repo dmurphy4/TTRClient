@@ -1,6 +1,7 @@
 package com.d.tickettoride.service
 
 import com.d.tickettoride.command.server.SSendMessageCommand
+import com.d.tickettoride.command.server.ServerCommand
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Event
 import com.d.tickettoride.servercommunicator.CommandType
@@ -14,8 +15,7 @@ class ChatService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun sendChat(event:Event) {
-        val data = Gson().toJson(SSendMessageCommand(event))
-        proxy.command(CommandType.S_SEND_MESSAGE, data)
+        proxy.command(ServerCommand.SendMessage(event))
     }
 
     fun postChat(event:Event) {

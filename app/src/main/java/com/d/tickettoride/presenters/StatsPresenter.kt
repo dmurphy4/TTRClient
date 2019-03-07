@@ -11,7 +11,7 @@ class StatsPresenter(private val statsFragment: IStatsView,
 
     init {
         val rootModel = RootModel.instance
-        rootModel.game!!.onStatsChanged = { _, new ->
+        rootModel.game?.onStatsChanged = { _, new ->
             if (new) {
                 statsFragment.updateStats()
             }

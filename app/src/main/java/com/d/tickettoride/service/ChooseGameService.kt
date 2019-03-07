@@ -1,14 +1,11 @@
 package com.d.tickettoride.service
 
-import com.d.tickettoride.command.server.SCreateGameCommand
-import com.d.tickettoride.command.server.SJoinGameCommand
+import com.d.tickettoride.command.server.ServerCommand
 import com.d.tickettoride.model.Game
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
-import com.d.tickettoride.servercommunicator.CommandType
 import com.d.tickettoride.servercommunicator.Poller
 import com.d.tickettoride.servercommunicator.ServerProxy
-import com.google.gson.Gson
 
 class ChooseGameService(private val proxy: ServerProxy = ServerProxy()) {
 
@@ -17,8 +14,7 @@ class ChooseGameService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun createGame(gameName:String, numPlayers:Int, creator:String) {
-        val data = Gson().toJson(SCreateGameCommand(gameName, numPlayers, creator))
-        proxy.command(CommandType.S_CREATE_GAME, data)
+        proxy.command(ServerCommand.CreateGame(gameName, numPlayers, creator))
     }
 
     fun addGameToList(gameInfo: GameInfo) {
@@ -35,8 +31,7 @@ class ChooseGameService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun joinGame(gameName:String) {
-        val data = Gson().toJson(SJoinGameCommand(gameName, RootModel.instance.user!!.username))
-        ServerProxy().command(CommandType.S_JOIN_GAME, data)
+        proxy.command(ServerCommand.JoinGame(gameName, RootModel.instance.user!!.username))
     }
 
     fun setJoinedGame(joined: Boolean) {

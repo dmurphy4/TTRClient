@@ -1,6 +1,6 @@
 package com.d.tickettoride.servercommunicator
 
-import com.d.tickettoride.command.client.*
+import com.d.tickettoride.command.server.ServerCommand
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.MediaType
@@ -16,7 +16,9 @@ class ServerProxy {
     private val url = "http://10.37.115.211:8000/command"
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
-    fun command(type: CommandType, data: String) {
+    fun command(command: ServerCommand) {
+        val data = command.toJson()
+        val type = command.type()
         println("HERE'S THE DATA GOING TO SERVER:")
         println(data)
         doAsync {
@@ -25,19 +27,11 @@ class ServerProxy {
             val response = client.newCall(request).execute()
             val respBody = response.body()!!.string()
             uiThread {
-                val classType = when (type) {
-                    CommandType.S_LOGIN, CommandType.S_REGISTER -> CLoginRegisterCommand::class.java
-                    CommandType.S_CREATE_GAME -> CCreateGameCommand::class.java
-                    CommandType.S_JOIN_GAME -> CJoinGameCommand::class.java
-                    CommandType.S_POLL -> CPollerCommandListCommand::class.java
-                    CommandType.S_ASSIGN_DEST -> CReceiveDestinationHandCommand::class.java
-                    else -> ICommand::class.java
-                }
                 val gson = Gson()
                 println("HERE'S THE RESPONSE FROM THE SERVER:")
                 println(respBody)
-                val command = gson.fromJson(respBody, classType)
-                command.execute()
+                val clientCommand = gson.fromJson(respBody, command.responseType())
+                clientCommand.execute()
             }
         }
     }
