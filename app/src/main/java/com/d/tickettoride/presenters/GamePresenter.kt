@@ -24,6 +24,10 @@ class GamePresenter(private val gameActivity: IGameView,
         return boardService.getBoard()
     }
 
+    override fun setBoard(boardString: String) {
+        boardService.setBoard(boardString)
+    }
+
     override fun getCityFromGame(id:Int) : City {
         val rootModel = RootModel.instance
         return rootModel.game!!.board.cities.getValue(id)

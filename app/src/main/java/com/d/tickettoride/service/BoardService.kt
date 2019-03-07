@@ -23,9 +23,11 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun getBoard(): Board {
-        val bufferedReader = File("../util/board.json").bufferedReader()
-        val boardString = bufferedReader.use { it.readText() }
+        return RootModel.instance.game!!.board
+    }
 
-        return Gson().fromJson(boardString, Board::class.java)
+    fun setBoard(boardString: String) {
+        val board = Gson().fromJson(boardString, Board::class.java)
+        RootModel.instance.game?.board = board
     }
 }
