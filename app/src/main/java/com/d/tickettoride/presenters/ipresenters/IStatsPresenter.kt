@@ -1,5 +1,7 @@
 package com.d.tickettoride.presenters.ipresenters
 
-interface IStatsPresenter {
+import com.d.tickettoride.model.PlayerInfo
 
+interface IStatsPresenter {
+    fun getStatsList(): ArrayList<PlayerInfo>
 }

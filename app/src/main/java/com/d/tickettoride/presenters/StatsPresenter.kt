@@ -1,5 +1,6 @@
 package com.d.tickettoride.presenters
 
+import com.d.tickettoride.model.PlayerInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ipresenters.IStatsPresenter
 import com.d.tickettoride.service.StatsService
@@ -19,4 +20,7 @@ class StatsPresenter(private val statsFragment: IStatsView,
         }
     }
 
+    override fun getStatsList(): ArrayList<PlayerInfo> {
+        return RootModel.instance.game!!.playerStats
+    }
 }

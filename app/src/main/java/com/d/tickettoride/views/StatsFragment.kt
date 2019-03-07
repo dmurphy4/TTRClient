@@ -33,9 +33,7 @@ class StatsFragment : Fragment(), IStatsView {
         //val playerInfo = ArrayList(rootModel.game!!.gamePlayers.values)
 
         view.post {
-            val playerInfo = ArrayList<PlayerInfo>()
-
-            adapter = StatsAdapter(playerInfo, this)
+            adapter = StatsAdapter(statsPresenter.getStatsList(), this)
             player_info_list.layoutManager = LinearLayoutManager(activity) // Displays games 1 per row
             player_info_list.adapter = adapter
             player_info_list.addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
