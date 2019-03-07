@@ -41,8 +41,8 @@ class GameActivity : AppCompatActivity(), IGameView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         val inputStream = resources.openRawResource(R.raw.board)
-        val boardString = inputStream.bufferedReader().use { it.readText() }
-        val board = Gson().fromJson(boardString, Board::class.java)
+        gamePresenter.setBoard(inputStream.bufferedReader().use { it.readText() })
+        val board = gamePresenter.getBoard()
         game_board.cities = board.cities
         game_board.setRouteData(board.routes)
         game_board.invalidate()
