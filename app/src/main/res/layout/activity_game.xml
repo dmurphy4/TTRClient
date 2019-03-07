@@ -36,7 +36,7 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:padding="12dp"
-                android:enabled="false"
+                android:enabled="true"
                 android:layout_marginBottom="5dp"
                 android:text="@string/text_button_choose_destinations"/>
 

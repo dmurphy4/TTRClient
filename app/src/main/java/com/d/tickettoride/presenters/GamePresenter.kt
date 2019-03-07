@@ -25,7 +25,8 @@ class GamePresenter(private val gameActivity: IGameView,
     }
 
     override fun getCityFromGame(id:Int) : City {
-        return RootModel.instance.game!!.board.cities.getValue(id)
+        val rootModel = RootModel.instance
+        return rootModel.game!!.board.cities.getValue(id)
     }
 
     override fun drawDestinationCards() {
