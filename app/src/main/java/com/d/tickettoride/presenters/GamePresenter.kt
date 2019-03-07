@@ -13,7 +13,10 @@ class GamePresenter(private val gameActivity: IGameView,
     init {
         val rootModel = RootModel.instance
         rootModel.onDestinationCardsGiven = { _, new ->
-            gameActivity.displayDestPickPopup(new)
+            if (new) {
+                gameActivity.displayDestPickPopup(rootModel.destinationCardsToChoose!!)
+                rootModel.destCardsGiven = false
+            }
         }
     }
 

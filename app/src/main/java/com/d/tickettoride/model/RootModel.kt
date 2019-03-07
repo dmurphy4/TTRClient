@@ -45,11 +45,13 @@ class RootModel {
 
     var onGameListChanged: ((Int, Int) -> Unit)? = null
 
-    var destinationCardsToChoose:List<DestinationCard>? by observable<List<DestinationCard>?>(null) {
-        _, old, new -> onDestinationCardsGiven?.invoke(old, new!!)
+    var destinationCardsToChoose:List<DestinationCard>? = null
+
+    var destCardsGiven:Boolean by observable(false) {
+            _, old, new -> onDestinjationCardsGiven?.invoke(old, new)
     }
 
-    var onDestinationCardsGiven:((List<DestinationCard>?, List<DestinationCard>) -> Unit)? = null
+    var onDestinationCardsGiven:((Boolean, Boolean) -> Unit)? = null
 
     var errorMessage:String? by observable<String?>(null) {
         _,old,new -> onErrorMessageGiven?.invoke(old, new)
