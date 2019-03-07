@@ -1,8 +1,8 @@
-package com.d.tickettoride.command.server
+package com.d.tickettoride.servercommunicator.command.server
 
 import com.d.tickettoride.model.gameplay.DestinationCard
 import com.d.tickettoride.model.gameplay.Event
-import com.d.tickettoride.command.CommandType
+import com.d.tickettoride.servercommunicator.command.CommandType
 import com.google.gson.Gson
 
 sealed class ServerCommand {
