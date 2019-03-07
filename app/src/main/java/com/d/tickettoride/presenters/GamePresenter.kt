@@ -2,6 +2,7 @@ package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Board
+import com.d.tickettoride.model.gameplay.City
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.views.iviews.IGameView
@@ -18,6 +19,10 @@ class GamePresenter(private val gameActivity: IGameView,
 
     override fun getBoard(): Board {
         return boardService.getBoard()
+    }
+
+    override fun getCityFromGame(id:Int) : City {
+        return RootModel.instance.game!!.board.cities.getValue(id)
     }
 
     fun phase2Update() {

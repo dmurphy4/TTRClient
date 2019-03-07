@@ -106,9 +106,9 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun displayDestPickPopup(cards:List<DestinationCard>) {
         // Showing the popup window in .post ensures it isn't displayed until the activity is ready
-        destination1.text = "${cards[0].city1.name} to ${cards[0].city2.name} - ${cards[0].points} points"
-        destination2.text = "${cards[1].city1.name} to ${cards[1].city2.name} - ${cards[1].points} points"
-        destination3.text = "${cards[2].city1.name} to ${cards[2].city2.name} - ${cards[2].points} points"
+        destination1.text = "${gamePresenter.getCityFromGame(cards[0].city1).name} to ${gamePresenter.getCityFromGame(cards[0].city2).name} - ${cards[0].points} points"
+        destination2.text = "${gamePresenter.getCityFromGame(cards[1].city1).name} to ${gamePresenter.getCityFromGame(cards[1].city2).name} - ${cards[1].points} points"
+        destination3.text = "${gamePresenter.getCityFromGame(cards[2].city1).name} to ${gamePresenter.getCityFromGame(cards[2].city2).name} - ${cards[2].points} points"
         game_board.post {
             popupWindow.showAtLocation(contentView, Gravity.CENTER, 0, 0)
         }
