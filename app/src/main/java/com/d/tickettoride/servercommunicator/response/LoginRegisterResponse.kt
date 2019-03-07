@@ -1,16 +1,17 @@
-package com.d.tickettoride.command.client
+package com.d.tickettoride.servercommunicator.response
 
 import com.d.tickettoride.service.ErrorMessageService
 import com.d.tickettoride.service.LoginService
 
-class CLoginRegisterCommand (private val errorMessage:String?, private val username:String?) : ICommand {
+class LoginRegisterResponse (private val username:String?) :
+    GenericResponse() {
 
     override fun execute() {
         if (errorMessage == null) {
             LoginService.instance.loginUser(username!!)
         }
         else {
-            ErrorMessageService.instance.postErrorMessage(errorMessage)
+            ErrorMessageService.instance.postErrorMessage(errorMessage!!)
         }
     }
 }

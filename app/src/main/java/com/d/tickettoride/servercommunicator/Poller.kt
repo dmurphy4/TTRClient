@@ -1,6 +1,6 @@
 package com.d.tickettoride.servercommunicator
 
-import com.d.tickettoride.command.server.ServerCommand
+import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 import com.d.tickettoride.model.RootModel
 import java.util.Timer
 import java.util.TimerTask

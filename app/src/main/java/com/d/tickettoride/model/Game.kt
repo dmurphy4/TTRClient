@@ -13,7 +13,7 @@ class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var bo
 
     var onEventAdded: ((Int, Int) -> Unit)? = null
 
-    var statsChanged:Boolean by Delegates.observable(false) {_, old, new ->
+    var statsChanged:Boolean by Delegates.observable(false) { _, old, new ->
         onStatsChanged?.invoke(old, new)
     }
 

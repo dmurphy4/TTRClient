@@ -7,7 +7,7 @@ import com.d.tickettoride.service.StatsService
 import com.d.tickettoride.views.iviews.IStatsView
 
 class StatsPresenter(private val statsFragment: IStatsView,
-                     private val chatService: StatsService = StatsService.instance)
+                     private val statsService: StatsService = StatsService.instance)
                     : IStatsPresenter {
 
     init {
@@ -15,8 +15,8 @@ class StatsPresenter(private val statsFragment: IStatsView,
         rootModel.game!!.onStatsChanged = { _, new ->
             if (new) {
                 statsFragment.updateStats()
+                rootModel.game!!.statsChanged = false
             }
-            rootModel.game!!.statsChanged = false
         }
     }
 

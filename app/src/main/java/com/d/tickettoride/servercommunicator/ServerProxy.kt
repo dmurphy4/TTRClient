@@ -1,7 +1,7 @@
 package com.d.tickettoride.servercommunicator
 
-import com.d.tickettoride.command.client.*
-import com.d.tickettoride.command.server.ServerCommand
+import com.d.tickettoride.servercommunicator.command.server.ServerCommand
+import com.d.tickettoride.servercommunicator.response.*
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.MediaType
@@ -28,18 +28,17 @@ class ServerProxy {
             val respBody = response.body()!!.string()
             uiThread {
                 val type = when(command) {
-                    is ServerCommand.ChooseDestinationCard -> CChooseDestCardCommand::class.java
-                    is ServerCommand.CreateGame -> CCreateGameCommand::class.java
-                    is ServerCommand.JoinGame -> CJoinGameCommand::class.java
-                    is ServerCommand.Login, is ServerCommand.Register -> CLoginRegisterCommand::class.java
-                    is ServerCommand.Poll -> CPollerCommandListCommand::class.java
-                    is ServerCommand.SendMessage -> CChatCommand::class.java
+                    is ServerCommand.ChooseDestinationCard -> FirstDestinationHandResponse::class.java
+                    is ServerCommand.JoinGame -> JoinGameResponse::class.java
+                    is ServerCommand.Login, is ServerCommand.Register -> LoginRegisterResponse::class.java
+                    is ServerCommand.Poll -> CommandListResponse::class.java
+                    else -> GenericResponse::class.java
                 }
                 val gson = Gson()
                 println("HERE'S THE RESPONSE FROM THE SERVER:")
                 println(respBody)
-                val clientCommand = gson.fromJson(respBody, type)
-                clientCommand.execute()
+                val clientResponse = gson.fromJson(respBody, type)
+                clientResponse.execute()
             }
         }
     }

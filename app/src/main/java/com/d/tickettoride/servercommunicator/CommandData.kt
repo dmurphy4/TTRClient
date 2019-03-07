@@ -1,12 +1,12 @@
 package com.d.tickettoride.servercommunicator
 
-import com.d.tickettoride.command.CommandType
-import com.d.tickettoride.command.client.*
+import com.d.tickettoride.servercommunicator.command.CommandType
+import com.d.tickettoride.servercommunicator.command.client.*
 import com.google.gson.Gson
 
 class CommandData(var type:String, var data:String) {
 
-    fun execute(){
+    fun execute() {
         when (CommandType.valueOf(type)) {
             CommandType.C_CREATE_GAME -> Gson().fromJson(data, CCreateGameCommand::class.java).execute()
             CommandType.C_BEGIN_PLAY -> Gson().fromJson(data, CBeginPlayCommand::class.java).execute()
