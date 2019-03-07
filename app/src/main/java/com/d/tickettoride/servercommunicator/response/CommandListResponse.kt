@@ -3,8 +3,8 @@ package com.d.tickettoride.servercommunicator.response
 import com.d.tickettoride.servercommunicator.CommandData
 import com.d.tickettoride.service.ErrorMessageService
 
-class CommandListResponse(private val errorMessage:String?, private val commandList:ArrayList<CommandData>?) :
-    GenericResponse(errorMessage) {
+class CommandListResponse(private val commandList:ArrayList<CommandData>?) :
+    GenericResponse() {
 
     override fun execute() {
         if (errorMessage == null) {

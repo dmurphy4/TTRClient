@@ -4,7 +4,7 @@ import com.d.tickettoride.model.gameplay.DestinationCardHand
 import com.d.tickettoride.service.DestCardService
 import com.d.tickettoride.service.ErrorMessageService
 
-class FirstDestinationHandResponse(val errorMessage:String?, var hand: DestinationCardHand?) : GenericResponse(errorMessage) {
+class FirstDestinationHandResponse(var hand: DestinationCardHand?) : GenericResponse() {
 
     override fun execute() {
         if (errorMessage != null) {

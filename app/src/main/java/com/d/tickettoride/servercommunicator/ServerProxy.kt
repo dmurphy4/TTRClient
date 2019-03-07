@@ -14,7 +14,7 @@ class ServerProxy {
     companion object {
         val client = OkHttpClient()
     }
-    private val url = "http://10.37.115.211:8000/command"
+    private val url = "http://10.37.117.159:8000/command"
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(command: ServerCommand) {
@@ -28,8 +28,7 @@ class ServerProxy {
             val respBody = response.body()!!.string()
             uiThread {
                 val type = when(command) {
-                    is ServerCommand.ChooseDestinationCard -> FirstDestinationHandResponse::class.java // wondering whether we will receive first hand as a command or as a response
-                    is ServerCommand.CreateGame -> CreateGameResponse::class.java
+                    is ServerCommand.ChooseDestinationCard -> FirstDestinationHandResponse::class.java
                     is ServerCommand.JoinGame -> JoinGameResponse::class.java
                     is ServerCommand.Login, is ServerCommand.Register -> LoginRegisterResponse::class.java
                     is ServerCommand.Poll -> CommandListResponse::class.java
