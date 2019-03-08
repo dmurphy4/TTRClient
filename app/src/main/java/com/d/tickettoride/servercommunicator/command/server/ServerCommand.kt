@@ -1,12 +1,11 @@
 package com.d.tickettoride.servercommunicator.command.server
 
-import com.d.tickettoride.model.gameplay.DestinationCard
 import com.d.tickettoride.model.gameplay.Event
 import com.d.tickettoride.servercommunicator.command.CommandType
 import com.google.gson.Gson
 
 sealed class ServerCommand {
-    data class ChooseDestinationCard(var player:String, var chosenCards:List<DestinationCard>): ServerCommand() {
+    data class ChooseDestinationCard(var player:String, var ids:ArrayList<Int>): ServerCommand() {
         override fun type() = CommandType.S_ASSIGN_DEST
     }
 
