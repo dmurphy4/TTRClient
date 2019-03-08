@@ -2,18 +2,18 @@ package com.d.tickettoride.model
 
 import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.model.gameplay.Event
-import kotlin.properties.Delegates
+import kotlin.properties.Delegates.observable
 
 class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var board: Board,
-                var turnOrder:List<String>, var eventHistory:ArrayList<Event>) {
+                var turnOrder:List<String>, var eventHistory:ArrayList<Event> = ArrayList()) {
 
-    var eventListLength:Int by Delegates.observable(0) { _, old, new ->
+    var eventListLength:Int by observable(0) { _, old, new ->
         onEventAdded?.invoke(old, new)
     }
 
     var onEventAdded: ((Int, Int) -> Unit)? = null
 
-    var statsChanged:Boolean by Delegates.observable(false) { _, old, new ->
+    var statsChanged:Boolean by observable(false) { _, old, new ->
         onStatsChanged?.invoke(old, new)
     }
 
