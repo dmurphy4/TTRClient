@@ -39,6 +39,7 @@ class ChatFragment : Fragment(), IChatView {
             // send message
             button_send_message.setOnClickListener {
                 chatPresenter.sendMessage(chat_box.text.toString())
+                chat_box.setText("");
             }
         }
 

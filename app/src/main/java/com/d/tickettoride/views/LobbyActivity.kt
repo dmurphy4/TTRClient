@@ -17,10 +17,6 @@ class LobbyActivity : AppCompatActivity(), ILobbyView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lobby)
-
-        button_jump_to_game.setOnClickListener {
-            startActivity(Intent(this, GameActivity::class.java))
-        }
     }
 
     override fun startGame() {

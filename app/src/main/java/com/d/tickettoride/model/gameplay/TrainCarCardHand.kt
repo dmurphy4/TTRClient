@@ -1,6 +1,6 @@
 package com.d.tickettoride.model.gameplay
 
-class TrainCarCardHand(var cards:List<TrainCarCard>, var cardMap:MutableMap<TrainCarCardType, Int>) : IHand {
+class TrainCarCardHand(var cards:List<TrainCarCard>, var cardMap:MutableMap<TrainCarCardType, Int> = HashMap()) : IHand {
 
     init {
         for (card in cards) {
