@@ -27,7 +27,7 @@ class ChatFragment : Fragment(), IChatView {
 
         view.post {
             adapter = ChatAdapter(chatPresenter.getChatList(), this)
-            player_chat_list.layoutManager = LinearLayoutManager(activity) // Displays games 1 per row
+            player_chat_list.layoutManager = LinearLayoutManager(context) // Displays games 1 per row
             player_chat_list.adapter = adapter
             player_chat_list.addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
 
