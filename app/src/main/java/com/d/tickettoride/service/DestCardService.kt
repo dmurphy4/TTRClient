@@ -10,7 +10,7 @@ class DestCardService {
         val instance = DestCardService()
     }
 
-    fun postFirstDestCards(cards:List<DestinationCard>) {
+    fun postFirstDestCards(cards:ArrayList<DestinationCard>) {
         RootModel.instance.destinationCardsToChoose = cards
         RootModel.instance.destCardsGiven = true
     }

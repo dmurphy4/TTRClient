@@ -34,6 +34,8 @@ class GameActivity : AppCompatActivity(), IGameView {
     private lateinit var checkBox3: CheckBox
     private lateinit var popupWindow: PopupWindow
 
+    private lateinit var destinationCards: ArrayList<DestinationCard>
+
     private val statsFragment = StatsFragment()
     private val chatFragment = ChatFragment()
 
@@ -90,6 +92,12 @@ class GameActivity : AppCompatActivity(), IGameView {
 
         buttonChooseDest = popupView.findViewById(R.id.button_choose_dest)
         buttonChooseDest.setOnClickListener {
+            val cards = ArrayList<Int>()
+            if (checkBox1.isChecked) cards.add(destinationCards[0].id)
+            if (checkBox2.isChecked) cards.add(destinationCards[1].id)
+            if (checkBox3.isChecked) cards.add(destinationCards[2].id)
+
+            gamePresenter.chooseDestinationCards(cards)
             popupWindow.dismiss()
             enableClaimButton(true)
         }
@@ -108,7 +116,8 @@ class GameActivity : AppCompatActivity(), IGameView {
         popupWindow.dismiss()
     }
 
-    override fun displayDestPickPopup(cards:List<DestinationCard>) {
+    override fun displayDestPickPopup(cards:ArrayList<DestinationCard>) {
+        destinationCards = cards
         destination1.text = "${gamePresenter.getCityFromGame(cards[0].city1).name} to ${gamePresenter.getCityFromGame(cards[0].city2).name} - ${cards[0].points} points"
         destination2.text = "${gamePresenter.getCityFromGame(cards[1].city1).name} to ${gamePresenter.getCityFromGame(cards[1].city2).name} - ${cards[1].points} points"
         destination3.text = "${gamePresenter.getCityFromGame(cards[2].city1).name} to ${gamePresenter.getCityFromGame(cards[2].city2).name} - ${cards[2].points} points"

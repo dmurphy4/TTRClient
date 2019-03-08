@@ -7,5 +7,5 @@ interface IGameView {
     fun enableChooseDestButton(enable: Boolean)
     fun dismissDestPickPopup()
     fun displayErrorMessage(message: String)
-    fun displayDestPickPopup(cards:List<DestinationCard>)
+    fun displayDestPickPopup(cards:ArrayList<DestinationCard>)
 }
