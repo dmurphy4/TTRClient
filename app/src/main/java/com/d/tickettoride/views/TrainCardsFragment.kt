@@ -28,6 +28,7 @@ class TrainCardsFragment : Fragment() {
             }
             image_card_4.setImageResource(R.drawable.cardgreen)
             image_card_5.setImageResource(R.drawable.cardred)
+            train_deck_count.text = "45"
         }
 
         return view
