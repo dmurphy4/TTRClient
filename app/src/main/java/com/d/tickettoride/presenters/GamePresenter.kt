@@ -21,6 +21,7 @@ class GamePresenter(private val gameActivity: IGameView,
         }
         rootModel.user!!.onHandObjectCreated = { _, hand ->
             // hand shouldn't be null when this is called
+            rootModel.user!!.trainCardHand!!.setUpMap()
             gameActivity.updateTrainCards(
                 hand!!.cardMap[TrainCarCardType.BLACK].toString(),
                 hand.cardMap[TrainCarCardType.BLUE].toString(),
