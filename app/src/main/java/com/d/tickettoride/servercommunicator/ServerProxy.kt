@@ -25,7 +25,7 @@ class ServerProxy {
         println(data)
         doAsync {
             val body = RequestBody.create(JSON, data)
-            val request = Request.Builder().url(url).header("Connection", "close").addHeader("type", command.type().toString()).post(body).build()
+            val request = Request.Builder().url(url).header("Accept-Encoding", "identity").addHeader("type", command.type().toString()).post(body).build()
             val response = client.newCall(request).execute()
             val respBody = response.body()!!.string()
             uiThread {
