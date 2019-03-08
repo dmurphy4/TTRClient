@@ -46,6 +46,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_black_cards"
                       android:background="@color/cardBlack"
                       android:text="0"
                       android:textSize="30sp"
@@ -55,6 +56,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_blue_cards"
                       android:background="@color/cardBlue"
                       android:text="0"
                       android:textSize="30sp"
@@ -64,6 +66,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_green_cards"
                       android:background="@color/cardGreen"
                       android:text="0"
                       android:textSize="30sp"
@@ -73,6 +76,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_orange_cards"
                       android:background="@color/cardOrange"
                       android:text="0"
                       android:textSize="30sp"
@@ -82,6 +86,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_pink_cards"
                       android:background="@color/cardPink"
                       android:text="0"
                       android:textSize="30sp"
@@ -91,6 +96,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_red_cards"
                       android:background="@color/cardRed"
                       android:text="0"
                       android:textSize="30sp"
@@ -100,6 +106,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_white_cards"
                       android:background="@color/cardWhite"
                       android:text="0"
                       android:textSize="30sp"
@@ -109,6 +116,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_yellow_cards"
                       android:background="@color/cardYellow"
                       android:text="0"
                       android:textSize="30sp"
@@ -118,6 +126,7 @@
 
             <TextView android:layout_width="50dp"
                       android:layout_height="50dp"
+                      android:id="@+id/box_locomotive_cards"
                       android:background="@drawable/rainbowsquare"
                       android:text="0"
                       android:textSize="30sp"
@@ -126,8 +135,6 @@
                       android:layout_margin="5dp"/>
 
         </GridLayout>
-
-
 
     </FrameLayout>
 

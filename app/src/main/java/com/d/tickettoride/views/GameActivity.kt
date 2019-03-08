@@ -12,6 +12,8 @@ import com.d.tickettoride.R
 import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.model.gameplay.DestinationCard
+import com.d.tickettoride.model.gameplay.TrainCarCardHand
+import com.d.tickettoride.model.gameplay.TrainCarCardType
 import com.d.tickettoride.presenters.GamePresenter
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.views.iviews.IGameView
@@ -126,6 +128,19 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun enableClaimButton(enable: Boolean) {
         button_claim_route.isEnabled = enable
+    }
+
+    override fun updateTrainCards(black: String, blue: String, green: String, orange: String,
+                                  pink: String, red: String, white: String, yellow: String, locomotive: String) {
+        box_black_cards.text = black
+        box_blue_cards.text = blue
+        box_green_cards.text = green
+        box_orange_cards.text = orange
+        box_pink_cards.text = pink
+        box_red_cards.text = red
+        box_white_cards.text = white
+        box_yellow_cards.text = yellow
+        box_locomotive_cards.text = locomotive
     }
 
     override fun displayErrorMessage(message: String) {

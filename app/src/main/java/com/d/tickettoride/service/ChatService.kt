@@ -18,5 +18,6 @@ class ChatService(private val proxy: ServerProxy = ServerProxy()) {
     fun postChat(event:Event) {
         val rootModel = RootModel.instance
         rootModel.game!!.addEvent(event)
+        println(RootModel.instance.game!!.eventHistory)
     }
 }
