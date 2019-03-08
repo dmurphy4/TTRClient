@@ -24,9 +24,9 @@ class ChatFragment : Fragment(), IChatView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_chat, container, false)
+        adapter = ChatAdapter(chatPresenter.getChatList(), this)
 
         view.post {
-            adapter = ChatAdapter(chatPresenter.getChatList(), this)
             player_chat_list.layoutManager = LinearLayoutManager(context) // Displays games 1 per row
             player_chat_list.adapter = adapter
             player_chat_list.addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
