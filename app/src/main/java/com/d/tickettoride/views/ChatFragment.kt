@@ -25,10 +25,7 @@ class ChatFragment : Fragment(), IChatView {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_chat, container, false)
 
-        //val chatInfo = ArrayList(RootModel.instance.game!!.eventHistory)
-
         view.post {
-
             adapter = ChatAdapter(chatPresenter.getChatList(), this)
             player_chat_list.layoutManager = LinearLayoutManager(activity) // Displays games 1 per row
             player_chat_list.adapter = adapter

@@ -5,16 +5,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.d.tickettoride.R
-import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.gameplay.Event
 import com.d.tickettoride.views.iviews.IChatView
-import com.d.tickettoride.views.iviews.IChooseGameView
 import kotlinx.android.synthetic.main.row_chat_list.view.*
-import kotlinx.android.synthetic.main.row_game_list.view.*
 
 class ChatAdapter(private val messageList: ArrayList<Event>,
-                      private val ChatFragment: IChatView,
-                      var selectedRowIndex: Int = -1) :
+                  private val ChatFragment: IChatView,
+                  var selectedRowIndex: Int = -1) :
     RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -25,8 +22,8 @@ class ChatAdapter(private val messageList: ArrayList<Event>,
     override fun getItemCount(): Int = messageList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val statsInfo = messageList[position]
-        holder.bind(statsInfo)
+        val event = messageList[position]
+        holder.bind(event)
         holder.view.setOnClickListener {
             selectedRowIndex = position
             notifyDataSetChanged()
