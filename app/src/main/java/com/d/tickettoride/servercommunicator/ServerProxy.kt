@@ -16,6 +16,7 @@ class ServerProxy {
     }
 
     private val url = "http://192.168.255.61:8080/command"
+
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(command: ServerCommand) {
@@ -24,7 +25,7 @@ class ServerProxy {
         println(data)
         doAsync {
             val body = RequestBody.create(JSON, data)
-            val request = Request.Builder().url(url).addHeader("type", command.type().toString()).post(body).build()
+            val request = Request.Builder().url(url).header("Connection", "close").addHeader("type", command.type().toString()).post(body).build()
             val response = client.newCall(request).execute()
             val respBody = response.body()!!.string()
             uiThread {
