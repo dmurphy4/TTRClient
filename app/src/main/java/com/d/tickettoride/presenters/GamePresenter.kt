@@ -36,6 +36,10 @@ class GamePresenter(private val gameActivity: IGameView,
         boardService.drawDestinationCards()
     }
 
+    override fun chooseDestinationCards(destinationIDs: ArrayList<Int>) {
+        boardService.chooseDestinationCards(destinationIDs)
+    }
+
     fun phase2Update() {
         RootModel.instance.game!!.playerStats[0].score += 4
         RootModel.instance.game!!.playerStats[0].numTrains -= 3

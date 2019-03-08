@@ -8,4 +8,5 @@ interface IGamePresenter {
     fun setBoard(boardString: String)
     fun getCityFromGame(id:Int) : City
     fun drawDestinationCards()
+    fun chooseDestinationCards(destinationIDs: ArrayList<Int>)
 }
