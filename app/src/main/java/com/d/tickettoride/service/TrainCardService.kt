@@ -12,6 +12,13 @@ class TrainCardService {
 
     fun getFirstHand(hand:TrainCarCardHand) {
         RootModel.instance.user!!.trainCardHand = hand
+        for (playerStats in RootModel.instance.game!!.playerStats) {
+            if (playerStats.username == RootModel.instance.user!!.username) {
+                playerStats.numTrainCards = hand.cards.size
+                RootModel.instance.game!!.statsChanged = true
+                break
+            }
+        }
     }
 
     fun drawCard() {
