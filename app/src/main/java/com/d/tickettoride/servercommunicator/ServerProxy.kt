@@ -15,7 +15,7 @@ class ServerProxy {
         val client = OkHttpClient()
     }
 
-    private val url = "http://192.168.255.61:8080/command"
+    private val url = "http://192.168.2.184:8080/command"
 
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
@@ -25,7 +25,7 @@ class ServerProxy {
         println(data)
         doAsync {
             val body = RequestBody.create(JSON, data)
-            val request = Request.Builder().url(url).header("Connection", "close").addHeader("type", command.type().toString()).post(body).build()
+            val request = Request.Builder().url(url).header("Accept-Encoding", "identity").addHeader("type", command.type().toString()).post(body).build()
             val response = client.newCall(request).execute()
             val respBody = response.body()!!.string()
             uiThread {
