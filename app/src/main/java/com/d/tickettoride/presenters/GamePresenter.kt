@@ -41,6 +41,7 @@ class GamePresenter(private val gameActivity: IGameView,
         RootModel.instance.game!!.playerStats[0].score += 4
         RootModel.instance.game!!.playerStats[0].numTrains -= 3
         RootModel.instance.game!!.playerStats[0].numTrainCards -= 3
+        RootModel.instance.game!!.statsChanged = true
         RootModel.instance.user!!.trainCardHand
     }
 }
