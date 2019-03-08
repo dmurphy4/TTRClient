@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
+import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.PlayerInfo
 import com.d.tickettoride.views.iviews.IChooseGameView
 import com.d.tickettoride.views.iviews.IStatsView
@@ -64,7 +65,20 @@ class StatsAdapter(private val playerInfoList: ArrayList<PlayerInfo>,
             view.numDestCards.text = stats.numDestCards.toString()
             view.numTrainCards.text = stats.numTrainCards.toString()
             view.numCars.text = stats.numTrains.toString()
+            view.color.text = stats.color.toString()
         }
+
+        private fun getColor(color: PlayerColor): Int {
+            return when (color) {
+                PlayerColor.RED -> Color.parseColor("#B82044")
+                PlayerColor.BLACK -> Color.parseColor("#000000")
+                PlayerColor.BLUE -> Color.parseColor("#48A3CF")
+                PlayerColor.GREEN -> Color.parseColor("#93BC53")
+                PlayerColor.YELLOW -> Color.parseColor("#E6EE58")
+                PlayerColor.NONE -> Color.parseColor("BEEB9F")
+            }
+        }
+
     }
 
 }
