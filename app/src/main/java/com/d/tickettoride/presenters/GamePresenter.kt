@@ -3,6 +3,7 @@ package com.d.tickettoride.presenters
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.model.gameplay.City
+import com.d.tickettoride.model.gameplay.TrainCarCardType
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.views.iviews.IGameView
@@ -17,6 +18,20 @@ class GamePresenter(private val gameActivity: IGameView,
                 gameActivity.displayDestPickPopup(rootModel.destinationCardsToChoose!!)
                 rootModel.destCardsGiven = false
             }
+        }
+        rootModel.user!!.onHandObjectCreated = { _, hand ->
+            // hand shouldn't be null when this is called
+            gameActivity.updateTrainCards(
+                hand!!.cardMap[TrainCarCardType.BLACK].toString(),
+                hand.cardMap[TrainCarCardType.BLUE].toString(),
+                hand.cardMap[TrainCarCardType.GREEN].toString(),
+                hand.cardMap[TrainCarCardType.ORANGE].toString(),
+                hand.cardMap[TrainCarCardType.PURPLE].toString(),
+                hand.cardMap[TrainCarCardType.RED].toString(),
+                hand.cardMap[TrainCarCardType.WHITE].toString(),
+                hand.cardMap[TrainCarCardType.YELLOW].toString(),
+                hand.cardMap[TrainCarCardType.LOCOMOTIVE].toString()
+            )
         }
     }
 
