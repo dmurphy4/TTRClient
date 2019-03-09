@@ -1,9 +1,9 @@
 package com.d.tickettoride.model.gameplay
 
+import kotlin.properties.Delegates.observable
+
 
 class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
-
-
 
     lateinit var cardMap:HashMap<TrainCarCardType, Int>
 

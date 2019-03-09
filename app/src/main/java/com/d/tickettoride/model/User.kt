@@ -8,6 +8,12 @@ import kotlin.properties.Delegates.observable
 class User(var username:String, var playerInfo:PlayerInfo?,
            var destinationHand:DestinationCardHand?) {
 
+    var cardAmountsChanged:Boolean by observable(true) {
+            _, old, new -> onCardAmountsChanged?.invoke(old, new)
+    }
+
+    var onCardAmountsChanged: ((Boolean, Boolean) -> Unit)? = null
+
     var trainCardHand by observable<TrainCarCardHand?>(null) { _, old, new ->
         onHandObjectCreated?.invoke(old, new)
     }

@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.d.tickettoride.R
+import com.d.tickettoride.presenters.TrainCardsPresenter
+import com.d.tickettoride.presenters.ipresenters.ITrainCardsPresenter
+import com.d.tickettoride.views.iviews.ITrainCardsView
 import kotlinx.android.synthetic.main.fragment_train_cards.*
 
-class TrainCardsFragment : Fragment() {
+class TrainCardsFragment : Fragment(), ITrainCardsView {
+
+    val trainCardsPresenter: ITrainCardsPresenter = TrainCardsPresenter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +33,11 @@ class TrainCardsFragment : Fragment() {
             }
             image_card_4.setImageResource(R.drawable.cardgreen)
             image_card_5.setImageResource(R.drawable.cardred)
+            train_deck_count.text = "105"
         }
 
         return view
     }
+
+
 }

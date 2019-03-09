@@ -17,6 +17,7 @@ class DestCardService {
 
     fun getFirstDestCardHand(hand:DestinationCardHand) {
         RootModel.instance.user!!.destinationHand = hand
+        RootModel.instance.game!!.onTurnChanged?.invoke(0, 0)
     }
 
     fun claimDestCards() {

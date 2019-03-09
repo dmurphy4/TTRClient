@@ -17,6 +17,10 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
 
     }
 
+    fun getPlayerName(id: Int): String {
+        return RootModel.instance.game!!.turnOrder[id]
+    }
+
     fun drawDestinationCards() {
         val username = RootModel.instance.user!!.username
         proxy.command(ServerCommand.DrawDestinationCards(username))
