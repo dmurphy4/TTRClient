@@ -10,4 +10,5 @@ interface IGameView {
                          pink: String, red: String, white: String, yellow: String, locomotive: String)
     fun displayErrorMessage(message: String)
     fun displayDestPickPopup(cards:ArrayList<DestinationCard>)
+    fun updatePlayerTurn(player: String)
 }

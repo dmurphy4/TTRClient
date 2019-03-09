@@ -3,8 +3,6 @@ package com.d.tickettoride.model.gameplay
 
 class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
 
-
-
     lateinit var cardMap:HashMap<TrainCarCardType, Int>
 
     override fun draw(cardsDrawn: List<ICard>) {

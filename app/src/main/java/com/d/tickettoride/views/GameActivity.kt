@@ -65,6 +65,10 @@ class GameActivity : AppCompatActivity(), IGameView {
             gamePresenter.drawDestinationCards()
         }
 
+        button_phase_2.setOnClickListener {
+            gamePresenter.testPhase2()
+        }
+
         button_stats.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.content_frame, statsFragment)
@@ -153,5 +157,9 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun dismissDestPickPopup() {
         popupWindow.dismiss()
+    }
+
+    override fun updatePlayerTurn(player: String) {
+        turn_indicator.text = "Turn: $player"
     }
 }

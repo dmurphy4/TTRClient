@@ -11,6 +11,8 @@ import com.d.tickettoride.views.iviews.IGameView
 class GamePresenter(private val gameActivity: IGameView,
                     private val boardService: BoardService = BoardService.instance): IGamePresenter {
 
+    private var phase2Iteration = 0
+
     init {
         val rootModel = RootModel.instance
         rootModel.onDestinationCardsGiven = { _, new ->
@@ -33,6 +35,9 @@ class GamePresenter(private val gameActivity: IGameView,
                 hand.cardMap[TrainCarCardType.YELLOW].toString(),
                 hand.cardMap[TrainCarCardType.LOCOMOTIVE].toString()
             )
+        }
+        rootModel.game!!.onTurnChanged = { _, turn ->
+            gameActivity.updatePlayerTurn(boardService.getPlayerName(turn))
         }
     }
 
@@ -57,11 +62,35 @@ class GamePresenter(private val gameActivity: IGameView,
         boardService.chooseDestinationCards(destinationIDs)
     }
 
-    fun phase2Update() {
-        RootModel.instance.game!!.playerStats[0].score += 4
-        RootModel.instance.game!!.playerStats[0].numTrains -= 3
-        RootModel.instance.game!!.playerStats[0].numTrainCards -= 3
-        RootModel.instance.game!!.statsChanged = true
-        RootModel.instance.user!!.trainCardHand
+    override fun testPhase2() {
+        when(phase2Iteration) {
+            0 -> {
+                gameActivity.displayErrorMessage("Adding 10 to each player's stats...")
+                for (playerStats in RootModel.instance.game!!.playerStats) {
+                    playerStats.numTrainCards += 10
+                    playerStats.numDestCards += 10
+                    playerStats.numTrains += 10
+                    playerStats.score += 10
+                }
+                RootModel.instance.game!!.statsChanged = true
+                phase2Iteration += 1
+            }
+            1 -> {
+                gameActivity.displayErrorMessage("Subtracting 10 from each player's stats...")
+                for (playerStats in RootModel.instance.game!!.playerStats) {
+                    playerStats.numTrainCards -= 10
+                    playerStats.numDestCards -= 10
+                    playerStats.numTrains -= 10
+                    playerStats.score -= 10
+                }
+                RootModel.instance.game!!.statsChanged = true
+                phase2Iteration += 1
+            }
+            2 -> {
+                gameActivity.displayErrorMessage("Changing player turn...")
+                RootModel.instance.game!!.updateTurn()
+                phase2Iteration += 1
+            }
+        }
     }
 }

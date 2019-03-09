@@ -13,6 +13,12 @@ class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var bo
 
     var onEventAdded: ((Int, Int) -> Unit)? = null
 
+    var turn: Int by observable(0) {_, old, new ->
+        onTurnChanged?.invoke(old, new)
+    }
+
+    var onTurnChanged: ((Int, Int) -> Unit)? = null
+
     var statsChanged:Boolean by observable(false) { _, old, new ->
         onStatsChanged?.invoke(old, new)
     }
@@ -26,5 +32,9 @@ class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var bo
 
     fun prepareCards() {
         board.prepFaceUpCards()
+    }
+
+    fun updateTurn() {
+        turn = (turn + 1) % turnOrder.size
     }
 }
