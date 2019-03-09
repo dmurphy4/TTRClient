@@ -35,6 +35,8 @@ class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var bo
     }
 
     fun updateTurn() {
+        playerStats[turn].yourTurn = false
         turn = (turn + 1) % turnOrder.size
+        playerStats[turn].yourTurn = true
     }
 }
