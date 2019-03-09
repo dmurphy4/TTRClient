@@ -118,7 +118,6 @@ class GamePresenter(private val gameActivity: IGameView,
             }
             3 -> {
                 gameActivity.displayErrorMessage("Adding train car cards (5 of black, 2 of red, 3 of blue, 1 locomotive...")
-                val rootModel = RootModel.instance
 
                 RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE] =
                     RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE]!! + 1
@@ -145,6 +144,22 @@ class GamePresenter(private val gameActivity: IGameView,
                     RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLUE]!! - 3
 
                 RootModel.instance.user!!.cardAmountsChanged = true
+
+                phase2Iteration += 1
+            }
+            5 -> {
+                gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[0].username} " +
+                        "from Las Vegas to Salt Lake City")
+                gameActivity.drawRoute(10, RootModel.instance.game!!.playerStats[0].color!!)
+                RootModel.instance.game!!.board.routes[10]!!.owner = RootModel.instance.game!!.playerStats[0].username
+
+                phase2Iteration += 1
+            }
+            6 -> {
+                gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[1].username} " +
+                        "from Toronto to Montreal")
+                gameActivity.drawRoute(76, RootModel.instance.game!!.playerStats[1].color!!)
+                RootModel.instance.game!!.board.routes[10]!!.owner = RootModel.instance.game!!.playerStats[0].username
 
                 phase2Iteration += 1
             }
