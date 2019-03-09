@@ -65,6 +65,10 @@ class GameActivity : AppCompatActivity(), IGameView {
             gamePresenter.drawDestinationCards()
         }
 
+        button_show_destinations.setOnClickListener {
+            gamePresenter.showDestinationCards()
+        }
+
         button_phase_2.setOnClickListener {
             gamePresenter.testPhase2()
         }
