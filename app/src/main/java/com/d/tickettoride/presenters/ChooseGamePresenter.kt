@@ -2,6 +2,7 @@ package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.GameInfo
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.gameplay.ICard
 import com.d.tickettoride.presenters.ipresenters.IChooseGamePresenter
 
 import com.d.tickettoride.service.ChooseGameService
@@ -43,4 +44,5 @@ class ChooseGamePresenter(private val chooseGameActivity: IChooseGameView,
     override fun startPoller() {
         ChooseGameService.instance.startPoller()
     }
+
 }
