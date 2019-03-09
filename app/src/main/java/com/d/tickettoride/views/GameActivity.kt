@@ -57,7 +57,7 @@ class GameActivity : AppCompatActivity(), IGameView {
         fragmentTransaction.commit()
 
         button_claim_route.setOnClickListener {
-            game_board.changeRoutePaintToClaimed(10, PlayerColor.GREEN)
+            game_board.changeRoutePaintToClaimed(10, PlayerColor.BLUE)
             game_board.invalidate()
         }
 
@@ -157,6 +157,11 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     override fun dismissDestPickPopup() {
         popupWindow.dismiss()
+    }
+
+    override fun drawRoute(id:Int, color:PlayerColor) {
+        game_board.changeRoutePaintToClaimed(id, color)
+        game_board.invalidate()
     }
 
     override fun updatePlayerTurn(player: String) {
