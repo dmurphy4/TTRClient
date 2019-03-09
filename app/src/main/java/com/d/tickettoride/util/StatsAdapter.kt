@@ -32,30 +32,6 @@ class StatsAdapter(private val playerInfoList: ArrayList<PlayerInfo>,
             selectedRowIndex = position
             notifyDataSetChanged()
         }
-
-        if (selectedRowIndex == position) {
-            holder.view.row_player_stats_layout.setBackgroundColor(Color.parseColor("#BEEB9F"))
-            holder.view.name.setTextColor(Color.parseColor("#000000"))
-            holder.view.scoreLabel.setTextColor(Color.parseColor("#000000"))
-            holder.view.score.setTextColor(Color.parseColor("#000000"))
-            holder.view.trainCardsLabel.setTextColor(Color.parseColor("#000000"))
-            holder.view.numTrainCards.setTextColor(Color.parseColor("#000000"))
-            holder.view.destCardsLabel.setTextColor(Color.parseColor("#000000"))
-            holder.view.numDestCards.setTextColor(Color.parseColor("#000000"))
-            holder.view.trainCarsLabel.setTextColor(Color.parseColor("#000000"))
-            holder.view.numCars.setTextColor(Color.parseColor("#000000"))
-        } else {
-            holder.view.row_player_stats_layout.setBackgroundColor(Color.parseColor("#79BD8F"))
-            holder.view.name.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.scoreLabel.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.score.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.trainCardsLabel.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.numTrainCards.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.destCardsLabel.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.numDestCards.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.trainCarsLabel.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.view.numCars.setTextColor(Color.parseColor("#FFFFFF"))
-        }
     }
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -66,16 +42,32 @@ class StatsAdapter(private val playerInfoList: ArrayList<PlayerInfo>,
             view.numTrainCards.text = stats.numTrainCards.toString()
             view.numCars.text = stats.numTrains.toString()
             view.color.text = stats.color.toString()
+            if (stats.yourTurn) {
+                view.row_player_stats_layout.setBackgroundColor(Color.parseColor("#BEEB9F"))
+            }
+            else {
+                view.row_player_stats_layout.setBackgroundColor(Color.parseColor("#79BD8F"))
+            }
+            view.name.setTextColor(Color.parseColor("#FFFFFF"))
+            view.scoreLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            view.score.setTextColor(Color.parseColor("#FFFFFF"))
+            view.trainCardsLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            view.numTrainCards.setTextColor(Color.parseColor("#FFFFFF"))
+            view.destCardsLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            view.numDestCards.setTextColor(Color.parseColor("#FFFFFF"))
+            view.trainCarsLabel.setTextColor(Color.parseColor("#FFFFFF"))
+            view.numCars.setTextColor(Color.parseColor("#FFFFFF"))
+
         }
 
         private fun getColor(color: PlayerColor): Int {
             return when (color) {
-                PlayerColor.RED -> Color.parseColor("#B82044")
+                PlayerColor.RED -> Color.parseColor("#ff0000")
                 PlayerColor.BLACK -> Color.parseColor("#000000")
                 PlayerColor.BLUE -> Color.parseColor("#48A3CF")
-                PlayerColor.GREEN -> Color.parseColor("#93BC53")
-                PlayerColor.YELLOW -> Color.parseColor("#E6EE58")
-                PlayerColor.NONE -> Color.parseColor("BEEB9F")
+                PlayerColor.GREEN -> Color.parseColor("#669900")
+                PlayerColor.YELLOW -> Color.parseColor("#ffff00")
+                PlayerColor.NONE -> Color.parseColor("#a6a6a6")
             }
         }
 

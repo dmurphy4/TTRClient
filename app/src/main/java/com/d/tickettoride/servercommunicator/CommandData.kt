@@ -3,7 +3,6 @@ package com.d.tickettoride.servercommunicator
 import com.d.tickettoride.servercommunicator.command.CommandType
 import com.d.tickettoride.servercommunicator.command.client.*
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 
 class CommandData(var type:String, var data:String) {
 
