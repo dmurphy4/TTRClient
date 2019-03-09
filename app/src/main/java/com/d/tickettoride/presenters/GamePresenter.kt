@@ -1,12 +1,11 @@
 package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.RootModel
-import com.d.tickettoride.model.gameplay.Board
-import com.d.tickettoride.model.gameplay.City
-import com.d.tickettoride.model.gameplay.TrainCarCardType
+import com.d.tickettoride.model.gameplay.*
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.views.iviews.IGameView
+import java.lang.StringBuilder
 
 class GamePresenter(private val gameActivity: IGameView,
                     private val boardService: BoardService = BoardService.instance): IGamePresenter {
@@ -82,6 +81,27 @@ class GamePresenter(private val gameActivity: IGameView,
 
     override fun chooseDestinationCards(destinationIDs: ArrayList<Int>) {
         boardService.chooseDestinationCards(destinationIDs)
+    }
+    override fun getDestCards(): String{
+        var sb = StringBuilder()
+
+        if (RootModel.instance.user!!.destinationHand == null){
+            sb.append("You have no Destination Cards")
+            return sb.toString()
+        }
+
+        val cards: List<DestinationCard> = RootModel.instance.user!!.destinationHand!!.cards
+        for (dest in ArrayList(cards)){
+            sb.append(RootModel.instance.game!!.board.cities[dest.city1]!!.name)
+            sb.append(" -> ")
+            sb.append(RootModel.instance.game!!.board.cities[dest.city2]!!.name)
+            sb.append(": ")
+            sb.append(dest.points.toString())
+            sb.append(" points\n")
+        }
+        return sb.toString()
+
+
     }
 
     override fun testPhase2() {

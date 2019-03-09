@@ -10,10 +10,7 @@ import android.support.v4.widget.DrawerLayout
 import android.widget.*
 import com.d.tickettoride.R
 import com.d.tickettoride.model.PlayerColor
-import com.d.tickettoride.model.gameplay.Board
-import com.d.tickettoride.model.gameplay.DestinationCard
-import com.d.tickettoride.model.gameplay.TrainCarCardHand
-import com.d.tickettoride.model.gameplay.TrainCarCardType
+import com.d.tickettoride.model.gameplay.*
 import com.d.tickettoride.presenters.GamePresenter
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.views.iviews.IGameView
@@ -63,6 +60,10 @@ class GameActivity : AppCompatActivity(), IGameView {
 
         button_draw_destinations.setOnClickListener {
             gamePresenter.drawDestinationCards()
+        }
+        button_show_dest.setOnClickListener{
+            val message: String = gamePresenter.getDestCards()
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
 
         button_phase_2.setOnClickListener {
