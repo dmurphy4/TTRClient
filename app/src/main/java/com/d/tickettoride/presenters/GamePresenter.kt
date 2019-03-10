@@ -189,6 +189,10 @@ class GamePresenter(private val gameActivity: IGameView,
 
                 phase2Iteration += 1
             }
+            8 -> {
+                //decrease number of destination cards
+                gameActivity.displayErrorMessage("Removing 2 from the destination card deck")
+            }
         }
     }
 }
