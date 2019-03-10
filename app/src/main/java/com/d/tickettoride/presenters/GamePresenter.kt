@@ -104,6 +104,11 @@ class GamePresenter(private val gameActivity: IGameView,
 
     }
 
+    override fun getNumDestCards(): Int {
+        var cards = RootModel.instance.game!!.board.destinationDeck.cards
+        return cards.size
+    }
+
     override fun testPhase2() {
         when(phase2Iteration) {
             0 -> {

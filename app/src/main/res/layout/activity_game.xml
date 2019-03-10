@@ -49,6 +49,17 @@
                 android:padding="12dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/text_button_show_dest"/>
+        <Button
+                android:id="@+id/button_show_num_dest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:background="@color/colorAccent"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:padding="12dp"
+                android:layout_marginBottom="5dp"
+                android:text="Number of Destination Cards"/>
 
         <Button
                 android:id="@+id/button_phase_2"

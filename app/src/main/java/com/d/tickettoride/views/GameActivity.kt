@@ -65,7 +65,10 @@ class GameActivity : AppCompatActivity(), IGameView {
             val message: String = gamePresenter.getDestCards()
             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
-
+        button_show_num_dest.setOnClickListener{
+            val num: Int = gamePresenter.getNumDestCards()
+            Toast.makeText(this, num.toString(), Toast.LENGTH_LONG).show()
+        }
         button_phase_2.setOnClickListener {
             gamePresenter.testPhase2()
         }

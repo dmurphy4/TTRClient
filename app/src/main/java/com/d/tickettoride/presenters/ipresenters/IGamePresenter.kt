@@ -13,4 +13,5 @@ interface IGamePresenter {
     fun testPhase2()
     fun chooseDestinationCards(destinationIDs: ArrayList<Int>)
     fun getDestCards(): String
+    fun getNumDestCards(): Int
 }
