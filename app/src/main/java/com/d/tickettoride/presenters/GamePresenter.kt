@@ -105,7 +105,7 @@ class GamePresenter(private val gameActivity: IGameView,
     }
 
     override fun getNumDestCards(): Int {
-        var cards = RootModel.instance.game!!.board.destinationDeck.cards
+        var cards = RootModel.instance.game!!.board.destinationDeck!!.cards
         return cards.size
     }
 
@@ -197,6 +197,8 @@ class GamePresenter(private val gameActivity: IGameView,
             8 -> {
                 //decrease number of destination cards
                 gameActivity.displayErrorMessage("Removing 2 from the destination card deck")
+                var deck: ArrayList<DestinationCard> = RootModel.instance.game!!.board.destinationDeck!!.cards
+                RootModel.instance.game!!.board.destinationDeck!!.cards = ArrayList(deck.drop(2))
             }
         }
     }
