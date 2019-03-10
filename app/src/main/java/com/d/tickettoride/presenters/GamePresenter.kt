@@ -20,7 +20,6 @@ class GamePresenter(private val gameActivity: IGameView,
                 rootModel.destCardsGiven = false
             }
         }
-
         rootModel.user!!.onHandObjectCreated = { _, hand ->
             // hand shouldn't be null when this is called
             rootModel.user!!.trainCardHand!!.setUpMap()
@@ -66,8 +65,8 @@ class GamePresenter(private val gameActivity: IGameView,
         return boardService.getBoard()
     }
 
-    override fun setBoard(boardString: String) {
-        boardService.setBoard(boardString)
+    override fun setBoard(cities: String, routes: String) {
+        boardService.setBoard(cities, routes)
     }
 
     override fun getCityFromGame(id:Int) : City {

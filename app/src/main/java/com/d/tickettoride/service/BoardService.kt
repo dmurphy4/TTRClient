@@ -2,9 +2,12 @@ package com.d.tickettoride.service
 
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Board
+import com.d.tickettoride.model.gameplay.City
+import com.d.tickettoride.model.gameplay.Route
 import com.d.tickettoride.servercommunicator.ServerProxy
 import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.File
 
 class BoardService(val proxy: ServerProxy = ServerProxy()) {
@@ -35,8 +38,12 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         return RootModel.instance.game!!.board
     }
 
-    fun setBoard(boardString: String) {
-        val board = Gson().fromJson(boardString, Board::class.java)
-        RootModel.instance.game?.board = board
+    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
+
+    fun setBoard(cities: String, routes: String) {
+        val cities = Gson().fromJson<Map<Int, City>>(cities)
+        val routes = Gson().fromJson<Map<Int, Route>>(routes)
+        RootModel.instance.game!!.board.cities = cities
+        RootModel.instance.game!!.board.routes = routes
     }
 }

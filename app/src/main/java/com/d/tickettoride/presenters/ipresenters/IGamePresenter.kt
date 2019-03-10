@@ -7,7 +7,7 @@ import com.d.tickettoride.model.gameplay.ICard
 
 interface IGamePresenter {
     fun getBoard(): Board
-    fun setBoard(boardString: String)
+    fun setBoard(cities: String, routes: String)
     fun getCityFromGame(id:Int) : City
     fun drawDestinationCards()
     fun testPhase2()
