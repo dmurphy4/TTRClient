@@ -188,12 +188,6 @@ class GamePresenter(private val gameActivity: IGameView,
                 phase2Iteration += 1
             }
             7 -> {
-                gameActivity.displayErrorMessage("Removing the second destination card")
-                RootModel.instance.user!!.destinationHand!!.cards.removeAt(1)
-
-                phase2Iteration += 1
-            }
-            8 -> {
                 //decrease number of destination cards
                 gameActivity.displayErrorMessage("Removing 2 from the destination card deck")
                 var deck: ArrayList<DestinationCard> = RootModel.instance.game!!.board.destinationDeck!!.cards
