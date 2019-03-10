@@ -44,8 +44,10 @@ class GameActivity : AppCompatActivity(), IGameView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        val inputStream = resources.openRawResource(R.raw.board)
-        gamePresenter.setBoard(inputStream.bufferedReader().use { it.readText() })
+        val citiesStream = resources.openRawResource(R.raw.cities)
+        val routesStream = resources.openRawResource(R.raw.routes)
+        gamePresenter.setBoard(citiesStream.bufferedReader().use { it.readText() },
+                               routesStream.bufferedReader().use { it.readText() })
         val board = gamePresenter.getBoard()
         game_board.cities = board.cities
         game_board.setRouteData(board.routes)

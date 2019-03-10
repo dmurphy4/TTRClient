@@ -14,7 +14,6 @@ class CommandData(var type:String, var data:String) {
             CommandType.C_DEST_CARD -> Gson().fromJson(data, CChooseDestCardCommand::class.java).execute()
             CommandType.C_FIRST_HAND -> Gson().fromJson(data, CFirstHandCommand::class.java).execute()
             CommandType.C_EVENT -> Gson().fromJson(data, CChatCommand::class.java).execute()
-
             else -> println("Leilani Fonbuena")
         }
 
