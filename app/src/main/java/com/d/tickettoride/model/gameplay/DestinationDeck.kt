@@ -1,6 +1,6 @@
 package com.d.tickettoride.model.gameplay
 
-class DestinationDeck (var cards:List<DestinationCard>) : IDeck {
+class DestinationDeck (var cards:ArrayList<DestinationCard> = ArrayList()) : IDeck {
 
     override fun draw() : List<ICard> {
 

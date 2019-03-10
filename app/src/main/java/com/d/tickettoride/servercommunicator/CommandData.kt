@@ -5,7 +5,6 @@ import com.d.tickettoride.servercommunicator.command.client.*
 import com.google.gson.Gson
 
 class CommandData(var type:String, var data:String) {
-
     fun execute() {
         when (CommandType.valueOf(type)) {
             CommandType.C_CREATE_GAME -> Gson().fromJson(data, CCreateGameCommand::class.java).execute()

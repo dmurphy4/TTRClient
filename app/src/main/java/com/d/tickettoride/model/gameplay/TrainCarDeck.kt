@@ -5,10 +5,6 @@ class TrainCarDeck(var drawPile:MutableList<TrainCarCard>, var discardPile:Mutab
     var onFaceUpChanged: ((Int, TrainCarCardType) -> Unit)? = null
     private lateinit var faceUpCards: MutableList<TrainCarCard>
 
-    fun discard(cards: List<TrainCarCard>) {
-        discardPile!!.addAll(cards)
-    }
-
     override fun draw(): List<ICard> {
         val returner = ArrayList<TrainCarCard>()
         returner.add(drawPile[0])

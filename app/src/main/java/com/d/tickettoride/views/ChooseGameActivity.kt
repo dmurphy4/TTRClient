@@ -14,6 +14,7 @@ import com.d.tickettoride.util.GameInfoAdapter
 import com.d.tickettoride.util.afterTextChanged
 import com.d.tickettoride.views.iviews.IChooseGameView
 import kotlinx.android.synthetic.main.activity_choose_game.*
+import kotlinx.android.synthetic.main.activity_game.*
 
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
 
