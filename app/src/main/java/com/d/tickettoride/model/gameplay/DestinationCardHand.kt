@@ -1,6 +1,6 @@
 package com.d.tickettoride.model.gameplay
 
-class DestinationCardHand(var cards:List<DestinationCard>) : IHand {
+class DestinationCardHand(var cards:ArrayList<DestinationCard>) : IHand {
 
 
 

@@ -175,18 +175,28 @@ class GamePresenter(private val gameActivity: IGameView,
             5 -> {
                 gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[0].username} " +
                         "from Las Vegas to Salt Lake City")
-                gameActivity.drawRoute(10, RootModel.instance.game!!.playerStats[0].color!!)
                 RootModel.instance.game!!.board.routes[10]!!.owner = RootModel.instance.game!!.playerStats[0].username
+                gameActivity.drawRoute(10, RootModel.instance.game!!.playerStats[0].color!!)
 
                 phase2Iteration += 1
             }
             6 -> {
                 gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[1].username} " +
                         "from Toronto to Montreal")
+                RootModel.instance.game!!.board.routes[76]!!.owner = RootModel.instance.game!!.playerStats[0].username
                 gameActivity.drawRoute(76, RootModel.instance.game!!.playerStats[1].color!!)
-                RootModel.instance.game!!.board.routes[10]!!.owner = RootModel.instance.game!!.playerStats[0].username
 
                 phase2Iteration += 1
+            }
+            7 -> {
+                gameActivity.displayErrorMessage("Removing the second destination card")
+                RootModel.instance.user!!.destinationHand!!.cards.removeAt(1)
+
+                phase2Iteration += 1
+            }
+            8 -> {
+                //decrease number of destination cards
+                gameActivity.displayErrorMessage("Removing 2 from the destination card deck")
             }
         }
     }

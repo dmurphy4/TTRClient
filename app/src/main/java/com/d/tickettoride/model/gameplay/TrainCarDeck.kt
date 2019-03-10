@@ -1,13 +1,14 @@
 package com.d.tickettoride.model.gameplay
 
-class TrainCarDeck(var drawPile:List<TrainCarCard>, var discardPile:MutableList<TrainCarCard>?, var faceUpCards:List<TrainCarCard>?) : IDeck {
+class TrainCarDeck(var drawPile:ArrayList<TrainCarCard>, var discardPile:ArrayList<TrainCarCard>,
+                   var faceUpCards:ArrayList<TrainCarCard>) : IDeck {
 
     init {
         discardPile = ArrayList()
     }
 
     fun discard(cards: List<TrainCarCard>) {
-        discardPile!!.addAll(cards)
+        discardPile.addAll(cards)
     }
 
     override fun draw(): List<ICard> {
@@ -18,7 +19,7 @@ class TrainCarDeck(var drawPile:List<TrainCarCard>, var discardPile:MutableList<
     }
 
     fun faceUpCardsReady() {
-        faceUpCards = drawPile.take(5)
-        drawPile.drop(5)
+        faceUpCards = ArrayList(drawPile.take(5))
+        drawPile = ArrayList(drawPile.drop(5))
     }
 }
