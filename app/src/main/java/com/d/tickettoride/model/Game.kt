@@ -13,7 +13,7 @@ class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var bo
 
     var onEventAdded: ((Int, Int) -> Unit)? = null
 
-    var turn: Int by observable(0) {_, old, new ->
+    var turn: Int by observable(0) { _, old, new ->
         onTurnChanged?.invoke(old, new)
     }
 

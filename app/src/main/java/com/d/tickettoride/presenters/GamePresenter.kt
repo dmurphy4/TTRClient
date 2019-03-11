@@ -78,6 +78,10 @@ class GamePresenter(private val gameActivity: IGameView,
         boardService.drawDestinationCards()
     }
 
+    /*
+     *
+     *
+     */
     override fun chooseDestinationCards(destinationIDs: ArrayList<Int>) {
         boardService.chooseDestinationCards(destinationIDs)
     }
