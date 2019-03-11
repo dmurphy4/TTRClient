@@ -1,8 +1,6 @@
 package com.d.tickettoride.views.iviews
 
-import com.d.tickettoride.model.gameplay.TrainCarCardType
-
 interface ITrainCardsView {
-    fun updateCardAt(idx: Int, type: TrainCarCardType)
+    fun updateCardAt(idx: Int, res: Int)
     fun updateDeckSize(idx: Int)
 }
