@@ -1,8 +1,8 @@
 package com.d.tickettoride.service
 
 import com.d.tickettoride.model.RootModel
-import com.d.tickettoride.model.gameplay.TrainCarCard
 import com.d.tickettoride.model.gameplay.TrainCarCardHand
+import com.d.tickettoride.model.gameplay.TrainCarCardType
 
 class TrainCardService {
 
@@ -21,11 +21,19 @@ class TrainCardService {
         }
     }
 
-    fun drawCard() {
-
+    fun drawFromDeck() {
+        RootModel.instance.game!!.board.trainDeck.draw()
     }
 
-    fun buildWithCards(cards:List<TrainCarCard>) {
+    fun drawPileSize(): Int {
+        return RootModel.instance.game!!.board.trainDeck.drawPile.size
+    }
 
+    fun takeFaceUpCard(idx: Int) {
+        RootModel.instance.game!!.board.trainDeck.replaceFaceUpCard(idx)
+    }
+
+    fun setFaceUpChangedListener(callback: ((index: Int, type: TrainCarCardType) -> Unit)) {
+        RootModel.instance.game!!.board.trainDeck.onFaceUpChanged = callback
     }
 }

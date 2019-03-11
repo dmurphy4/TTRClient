@@ -47,6 +47,9 @@ class TrainCardsFragment : Fragment(), ITrainCardsView {
             image_card_5.setOnClickListener {
                 trainCardsPresenter.replaceFaceUpCard(4)
             }
+            image_deck.setOnClickListener {
+                trainCardsPresenter.drawFromDeck()
+            }
             train_deck_count.text = "Cards Left: 105"
         }
 

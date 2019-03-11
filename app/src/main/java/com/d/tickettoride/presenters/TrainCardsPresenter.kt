@@ -1,22 +1,25 @@
 package com.d.tickettoride.presenters
 
-import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ipresenters.ITrainCardsPresenter
+import com.d.tickettoride.service.TrainCardService
 import com.d.tickettoride.views.iviews.ITrainCardsView
 
-class TrainCardsPresenter(val trainCardsFragment: ITrainCardsView): ITrainCardsPresenter {
+class TrainCardsPresenter(private val trainCardsFragment: ITrainCardsView): ITrainCardsPresenter {
+
+    private val trainCardService: TrainCardService = TrainCardService.instance
 
     override fun replaceFaceUpCard(idx: Int) {
-        RootModel.instance.game!!.board.trainDeck.onFaceUpChanged = { index, type ->
-            val deckSize = RootModel.instance.game!!.board.trainDeck.drawPile.size
+        trainCardService.setFaceUpChangedListener { index, type ->
+            val deckSize = trainCardService.drawPileSize()
             trainCardsFragment.updateCardAt(index, type)
             trainCardsFragment.updateDeckSize(deckSize)
         }
-        RootModel.instance.game!!.board.trainDeck.replaceFaceUpCard(idx)
+        trainCardService.takeFaceUpCard(idx)
     }
 
     override fun drawFromDeck() {
-
+        trainCardService.drawFromDeck()
+        trainCardsFragment.updateDeckSize(trainCardService.drawPileSize())
     }
 
 }

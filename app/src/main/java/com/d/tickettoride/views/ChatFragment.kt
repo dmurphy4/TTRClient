@@ -18,13 +18,12 @@ import com.d.tickettoride.views.iviews.IChatView
 import kotlinx.android.synthetic.main.fragment_chat.*
 
 class ChatFragment : Fragment(), IChatView {
-    private lateinit var adapter: ChatAdapter
     private val chatPresenter: IChatPresenter = ChatPresenter(this)
+    private var adapter: ChatAdapter = ChatAdapter(chatPresenter.getChatList(), this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_chat, container, false)
-        adapter = ChatAdapter(chatPresenter.getChatList(), this)
 
         view.post {
             player_chat_list.layoutManager = LinearLayoutManager(context) // Displays games 1 per row
@@ -42,7 +41,6 @@ class ChatFragment : Fragment(), IChatView {
                 chat_box.setText("");
             }
         }
-
         return view
     }
 
