@@ -5,11 +5,7 @@ import com.d.tickettoride.model.gameplay.Event
 import kotlin.properties.Delegates.observable
 
 class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var board: Board,
-                var turnOrder:List<String>, var eventHistory:ArrayList<Event> = ArrayList()) {
-
-    var eventListLength:Int by observable(0) { _, old, new ->
-        onEventAdded?.invoke(old, new)
-    }
+           var turnOrder:List<String>, val eventHistory:ArrayList<Event> = ArrayList()) {
 
     var onEventAdded: ((Int, Int) -> Unit)? = null
 
@@ -27,7 +23,7 @@ class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var bo
 
     fun addEvent(event:Event) {
         eventHistory.add(event)
-        eventListLength = eventHistory.size
+        onEventAdded?.invoke(0, eventHistory.size)
     }
 
     fun prepareCards() {

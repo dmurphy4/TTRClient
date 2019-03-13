@@ -16,7 +16,7 @@ class GamePresenter(private val gameActivity: IGameView,
         val rootModel = RootModel.instance
         rootModel.onDestinationCardsGiven = { _, new ->
             if (new) {
-                gameActivity.displayDestPickPopup(rootModel.destinationCardsToChoose!!)
+                gameActivity.displayDestPickPopup(boardService.getFormattedDestinations())
                 rootModel.destCardsGiven = false
             }
         }
@@ -24,37 +24,33 @@ class GamePresenter(private val gameActivity: IGameView,
             // hand shouldn't be null when this is called
             rootModel.user!!.trainCardHand!!.setUpMap()
             gameActivity.updateTrainCards(
-                hand!!.cardMap[TrainCarCardType.BLACK].toString(),
-                hand.cardMap[TrainCarCardType.BLUE].toString(),
-                hand.cardMap[TrainCarCardType.GREEN].toString(),
-                hand.cardMap[TrainCarCardType.ORANGE].toString(),
-                hand.cardMap[TrainCarCardType.PURPLE].toString(),
-                hand.cardMap[TrainCarCardType.RED].toString(),
-                hand.cardMap[TrainCarCardType.WHITE].toString(),
-                hand.cardMap[TrainCarCardType.YELLOW].toString(),
-                hand.cardMap[TrainCarCardType.LOCOMOTIVE].toString()
+                hand!!.cardMap[TrainCarCardType.BLACK]!!,
+                hand.cardMap[TrainCarCardType.BLUE]!!,
+                hand.cardMap[TrainCarCardType.GREEN]!!,
+                hand.cardMap[TrainCarCardType.ORANGE]!!,
+                hand.cardMap[TrainCarCardType.PURPLE]!!,
+                hand.cardMap[TrainCarCardType.RED]!!,
+                hand.cardMap[TrainCarCardType.WHITE]!!,
+                hand.cardMap[TrainCarCardType.YELLOW]!!,
+                hand.cardMap[TrainCarCardType.LOCOMOTIVE]!!
             )
         }
 
         rootModel.game!!.playerStats[0].yourTurn = true
 
-        rootModel.game!!.onTurnChanged = { _, turn ->
-            gameActivity.updatePlayerTurn(boardService.getPlayerName(turn))
-        }
-
         rootModel.user!!.onCardAmountsChanged = { _, new ->
             if (new) {
                 val handMap = rootModel.user!!.trainCardHand!!.cardMap
                 gameActivity.updateTrainCards(
-                    handMap[TrainCarCardType.BLACK].toString(),
-                    handMap[TrainCarCardType.BLUE].toString(),
-                    handMap[TrainCarCardType.GREEN].toString(),
-                    handMap[TrainCarCardType.ORANGE].toString(),
-                    handMap[TrainCarCardType.PURPLE].toString(),
-                    handMap[TrainCarCardType.RED].toString(),
-                    handMap[TrainCarCardType.WHITE].toString(),
-                    handMap[TrainCarCardType.YELLOW].toString(),
-                    handMap[TrainCarCardType.LOCOMOTIVE].toString()
+                    handMap[TrainCarCardType.BLACK]!!,
+                    handMap[TrainCarCardType.BLUE]!!,
+                    handMap[TrainCarCardType.GREEN]!!,
+                    handMap[TrainCarCardType.ORANGE]!!,
+                    handMap[TrainCarCardType.PURPLE]!!,
+                    handMap[TrainCarCardType.RED]!!,
+                    handMap[TrainCarCardType.WHITE]!!,
+                    handMap[TrainCarCardType.YELLOW]!!,
+                    handMap[TrainCarCardType.LOCOMOTIVE]!!
                 )
                 rootModel.user!!.cardAmountsChanged = false
             }
@@ -78,12 +74,8 @@ class GamePresenter(private val gameActivity: IGameView,
         boardService.drawDestinationCards()
     }
 
-    /*
-     *
-     *
-     */
-    override fun chooseDestinationCards(destinationIDs: ArrayList<Int>) {
-        boardService.chooseDestinationCards(destinationIDs)
+    override fun chooseDestinationCards(indexes: ArrayList<Int>) {
+        boardService.chooseDestinationCards(indexes)
     }
     override fun getDestCards(): String{
         var sb = StringBuilder()
@@ -178,7 +170,7 @@ class GamePresenter(private val gameActivity: IGameView,
                 gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[0].username} " +
                         "from Las Vegas to Salt Lake City")
                 RootModel.instance.game!!.board.routes[10]!!.owner = RootModel.instance.game!!.playerStats[0].username
-                gameActivity.drawRoute(10, RootModel.instance.game!!.playerStats[0].color!!)
+                gameActivity.drawRoute(10, RootModel.instance.game!!.playerStats[0].color!!.toString())
 
                 phase2Iteration += 1
             }
@@ -186,7 +178,7 @@ class GamePresenter(private val gameActivity: IGameView,
                 gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[1].username} " +
                         "from Toronto to Montreal")
                 RootModel.instance.game!!.board.routes[76]!!.owner = RootModel.instance.game!!.playerStats[0].username
-                gameActivity.drawRoute(76, RootModel.instance.game!!.playerStats[1].color!!)
+                gameActivity.drawRoute(76, RootModel.instance.game!!.playerStats[1].color!!.toString())
 
                 phase2Iteration += 1
             }

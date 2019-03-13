@@ -16,10 +16,6 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         val instance = BoardService()
     }
 
-    fun claimRoute() {
-
-    }
-
     fun getPlayerName(id: Int): String {
         return RootModel.instance.game!!.turnOrder[id]
     }
@@ -29,9 +25,22 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         proxy.command(ServerCommand.DrawDestinationCards(username))
     }
 
-    fun chooseDestinationCards(destinationIDs: ArrayList<Int>) {
+    fun chooseDestinationCards(indexes: ArrayList<Int>) {
         val username = RootModel.instance.user!!.username
+        val destinationIDs = ArrayList<Int>()
+        for (idx in indexes) {
+            destinationIDs.add(RootModel.instance.destinationCardsToChoose!![idx].id)
+        }
         proxy.command(ServerCommand.ChooseDestinationCard(username, destinationIDs))
+    }
+
+    fun getFormattedDestinations(): ArrayList<String> {
+        val cards = RootModel.instance.destinationCardsToChoose!!
+        return arrayListOf(
+            "${getCity(cards[0].city1).name} to ${getCity(cards[0].city2).name} - ${cards[0].points} points",
+            "${getCity(cards[1].city1).name} to ${getCity(cards[1].city2).name} - ${cards[1].points} points",
+            "${getCity(cards[2].city1).name} to ${getCity(cards[2].city2).name} - ${cards[2].points} points"
+        )
     }
 
     fun getBoard(): Board {
@@ -45,5 +54,9 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         val routes = Gson().fromJson<Map<Int, Route>>(routes)
         RootModel.instance.game!!.board.cities = cities
         RootModel.instance.game!!.board.routes = routes
+    }
+
+    private fun getCity(id:Int) : City {
+        return RootModel.instance.game!!.board.cities.getValue(id)
     }
 }
