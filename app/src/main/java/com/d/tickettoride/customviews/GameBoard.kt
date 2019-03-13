@@ -13,6 +13,9 @@ import com.d.tickettoride.R
 import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.gameplay.City
 import com.d.tickettoride.model.gameplay.Route
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.sqrt
 
 class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
@@ -84,5 +87,35 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         val diffY: Double = (y2 - y1).toDouble()
         val distance: Double = Math.sqrt(diffX*diffX + diffY*diffY)
         return ((distance - (off * (numDashes - 1))) / numDashes).toFloat()
+    }
+
+    private fun isTouchInRoute(x1:Float, y1:Float, x2:Float, y2:Float, width:Float, touchX:Float, touchY:Float): Boolean {
+        if ((min(y1, y2) <= touchY) && (touchY <= max(y1, y2))) {
+            if ((min(x1, x2) <= touchX) && (touchX <= max(x1, x2))) {
+                val u = ArrayList<Float>()
+                u.add(x2 - x1)
+                u.add(y2 - y1)
+
+                val finalV = ArrayList<Float>()
+                finalV.add(touchX - u[0] * ((u[0] * touchX - u[1] * touchY) / (u[0] * u[0] + u[1] * u[1])))
+                finalV.add(touchY - u[1] * ((u[0] * touchX - u[1] * touchY) / (u[0] * u[0] + u[1] * u[1])))
+
+                return width / 2 > norm(finalV)
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+
+    private fun norm(nums:ArrayList<Float>) : Float {
+        var final = 0.0.toFloat()
+        for (x:Float in nums) {
+            final += x * x
+        }
+        return sqrt(final)
     }
 }
