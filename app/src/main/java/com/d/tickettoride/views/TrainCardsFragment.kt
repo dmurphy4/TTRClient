@@ -71,7 +71,7 @@ class TrainCardsFragment : Fragment(), ITrainCardsView {
         }
     }
 
-    override fun updateDeckSize(idx: Int) {
-        train_deck_count.text = "Cards Left: $idx"
+    override fun updateDeckSize(size: Int) {
+        train_deck_count.text = "Cards Left: $size"
     }
 }

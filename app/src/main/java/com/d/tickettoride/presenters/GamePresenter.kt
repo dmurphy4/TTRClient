@@ -139,7 +139,6 @@ class GamePresenter(private val gameActivity: IGameView,
             2 -> {
                 gameActivity.displayErrorMessage("Changing player turn...")
                 RootModel.instance.game!!.updateTurn()
-
                 RootModel.instance.game!!.statsChanged = true
 
                 phase2Iteration += 1
