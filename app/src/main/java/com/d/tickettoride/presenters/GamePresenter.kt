@@ -3,12 +3,18 @@ package com.d.tickettoride.presenters
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.*
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
+import com.d.tickettoride.presenters.ipresenters.ITrainCardsPresenter
+import com.d.tickettoride.presenters.states.NotYourTurnState
+import com.d.tickettoride.presenters.states.Statelike
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.views.iviews.IGameView
 import java.lang.StringBuilder
 
 class GamePresenter(private val gameActivity: IGameView,
-                    private val boardService: BoardService = BoardService.instance): IGamePresenter {
+                    private val boardService: BoardService = BoardService.instance,
+                    private val trainCardsPresenter: ITrainCardsPresenter,
+                    private var currentState: Statelike
+): IGamePresenter {
 
     private var phase2Iteration = 0
 
@@ -55,6 +61,8 @@ class GamePresenter(private val gameActivity: IGameView,
                 rootModel.user!!.cardAmountsChanged = false
             }
         }
+
+        currentState = NotYourTurnState()
     }
 
     override fun getBoard(): Board {
@@ -77,8 +85,17 @@ class GamePresenter(private val gameActivity: IGameView,
     override fun chooseDestinationCards(indexes: ArrayList<Int>) {
         boardService.chooseDestinationCards(indexes)
     }
+
+    override fun postErrorMessage(message:String) {
+        gameActivity.displayErrorMessage(message)
+    }
+
+    override fun setState(state: Statelike) {
+        currentState = state
+    }
+
     override fun getDestCards(): String{
-        var sb = StringBuilder()
+        val sb = StringBuilder()
 
         if (RootModel.instance.user!!.destinationHand == null){
             sb.append("You have no Destination Cards")
@@ -100,7 +117,7 @@ class GamePresenter(private val gameActivity: IGameView,
     }
 
     override fun getNumDestCards(): Int {
-        var cards = RootModel.instance.game!!.board.destinationDeck!!.cards
+        val cards = RootModel.instance.game!!.board.destinationDeck!!.cards
         return cards.size
     }
 

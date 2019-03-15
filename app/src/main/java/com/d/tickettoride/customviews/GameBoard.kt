@@ -6,11 +6,8 @@ import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
-import android.view.MotionEvent
-import android.view.MotionEvent.ACTION_DOWN
 import android.view.View
 import com.d.tickettoride.R
-import com.d.tickettoride.model.PlayerColor
 import com.d.tickettoride.model.gameplay.City
 import com.d.tickettoride.model.gameplay.Route
 import kotlin.math.max
