@@ -30,6 +30,15 @@ class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var bo
         board.prepFaceUpCards()
     }
 
+    fun getPlayerByUsername(username: String) : PlayerInfo? {
+        for (player in playerStats) {
+            if (player.username == username) {
+                return player
+            }
+        }
+        return null
+    }
+
     fun updateTurn() {
         playerStats[turn].yourTurn = false
         turn = (turn + 1) % turnOrder.size
