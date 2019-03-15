@@ -12,11 +12,12 @@ import java.lang.StringBuilder
 
 class GamePresenter(private val gameActivity: IGameView,
                     private val boardService: BoardService = BoardService.instance,
-                    private val trainCardsPresenter: ITrainCardsPresenter,
-                    private var currentState: Statelike
+                    private val trainCardsPresenter: ITrainCardsPresenter
 ): IGamePresenter {
 
     private var phase2Iteration = 0
+
+    lateinit var currentState: Statelike
 
     init {
         val rootModel = RootModel.instance
@@ -62,6 +63,12 @@ class GamePresenter(private val gameActivity: IGameView,
             }
         }
 
+        rootModel.user!!.onYourTurn = { _, new ->
+            if (new) {
+                currentState.beginTurn(this)
+            }
+        }
+
         currentState = NotYourTurnState()
     }
 
@@ -79,11 +86,11 @@ class GamePresenter(private val gameActivity: IGameView,
     }
 
     override fun drawDestinationCards() {
-        boardService.drawDestinationCards()
+        currentState.drawDestinations(this)
     }
 
     override fun chooseDestinationCards(indexes: ArrayList<Int>) {
-        boardService.chooseDestinationCards(indexes)
+        currentState.returnDestinations(this, indexes)
     }
 
     override fun postErrorMessage(message:String) {
@@ -202,7 +209,7 @@ class GamePresenter(private val gameActivity: IGameView,
             7 -> {
                 //decrease number of destination cards
                 gameActivity.displayErrorMessage("Removing 2 from the destination card deck")
-                var deck: ArrayList<DestinationCard> = RootModel.instance.game!!.board.destinationDeck!!.cards
+                val deck: ArrayList<DestinationCard> = RootModel.instance.game!!.board.destinationDeck!!.cards
                 RootModel.instance.game!!.board.destinationDeck!!.cards = ArrayList(deck.drop(2))
             }
         }

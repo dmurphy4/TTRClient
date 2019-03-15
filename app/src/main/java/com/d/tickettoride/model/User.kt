@@ -9,7 +9,7 @@ class User(var username:String, var playerInfo:PlayerInfo?,
            var destinationHand:DestinationCardHand?) {
 
     var cardAmountsChanged:Boolean by observable(true) {
-            _, old, new -> onCardAmountsChanged?.invoke(old, new)
+        _, old, new -> onCardAmountsChanged?.invoke(old, new)
     }
 
     var onCardAmountsChanged: ((Boolean, Boolean) -> Unit)? = null
@@ -19,4 +19,10 @@ class User(var username:String, var playerInfo:PlayerInfo?,
     }
 
     var onHandObjectCreated: ((TrainCarCardHand?, TrainCarCardHand?) -> Unit)? = null
+
+    var yourTurn: Boolean by observable(false) {
+        _, old, new -> onYourTurn?.invoke(old, new)
+    }
+
+    var onYourTurn: ((Boolean, Boolean) -> Unit)? = null
 }

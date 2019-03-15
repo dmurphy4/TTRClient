@@ -37,6 +37,10 @@ sealed class ServerCommand {
         override fun type() = CommandType.S_DRAW_THREE_DESTINATION_CARDS_FROM_DRAW_PILE
     }
 
+    data class EndTurn(val username: String): ServerCommand() {
+        override fun type() = CommandType.S_END_TURN
+    }
+
     abstract fun type(): CommandType
 
     fun toJson(): String {

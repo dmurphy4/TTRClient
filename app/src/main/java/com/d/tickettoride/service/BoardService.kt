@@ -59,4 +59,8 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
     private fun getCity(id:Int) : City {
         return RootModel.instance.game!!.board.cities.getValue(id)
     }
+
+    fun claimRoute(id:Int) {
+
+    }
 }

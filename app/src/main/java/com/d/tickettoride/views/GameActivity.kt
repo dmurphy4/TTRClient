@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.*
 import com.d.tickettoride.R
 import com.d.tickettoride.presenters.GamePresenter
+import com.d.tickettoride.presenters.TrainCardsPresenter
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.views.iviews.IGameView
 import kotlinx.android.synthetic.main.activity_game.*
@@ -33,9 +34,11 @@ import org.jetbrains.anko.contentView
  */
 class GameActivity : AppCompatActivity(), IGameView {
 
-    private val gamePresenter: IGamePresenter = GamePresenter(this)
     private val statsFragment = StatsFragment()
     private val chatFragment = ChatFragment()
+    private val trainCardsFragment = TrainCardsFragment()
+    private val gamePresenter: IGamePresenter = GamePresenter(this, trainCardsPresenter = TrainCardsPresenter(trainCardsFragment))
+
 
     // kotlinx imports can't be used for popup window, so store them here
     private lateinit var buttonChooseDest: Button

@@ -1,23 +1,22 @@
 package com.d.tickettoride.presenters.states
 
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
+import com.d.tickettoride.service.BoardService
+import com.d.tickettoride.service.TurnService
 
 class NewTurnState : Statelike() {
 
     override fun drawDestinations(gamePresenter: IGamePresenter) {
-
-
-
-
+        BoardService.instance.drawDestinationCards()
 
         gamePresenter.setState(DrewDestinationsState())
     }
 
-    override fun claimRoute(gamePresenter: IGamePresenter) {
+    override fun claimRoute(gamePresenter: IGamePresenter, id:Int) {
+        BoardService.instance.claimRoute(id)
 
 
-
-
+        TurnService.instance.endTurn()
         gamePresenter.setState(NotYourTurnState())
     }
 

@@ -16,11 +16,11 @@ open class Statelike {
         gamePresenter.postErrorMessage("Sorry, you can't draw destination cards right now.")
     }
 
-    open fun returnDestinations(gamePresenter: IGamePresenter) {//not sure if this one is necessary...
+    open fun returnDestinations(gamePresenter: IGamePresenter, indexes: ArrayList<Int>) {//not sure if this one is necessary...
         gamePresenter.postErrorMessage("Sorry, you can't return destination cards right now.")
     }
 
-    open fun claimRoute(gamePresenter: IGamePresenter) {
+    open fun claimRoute(gamePresenter: IGamePresenter, id:Int) {
         gamePresenter.postErrorMessage("Sorry, you can't claim a route right now.")
     }
 
