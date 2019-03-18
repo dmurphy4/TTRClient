@@ -1,5 +1,6 @@
 package com.d.tickettoride.model
 
+import com.d.tickettoride.model.gameplay.DestinationCard
 import com.d.tickettoride.servercommunicator.Poller
 import kotlin.properties.Delegates.observable
 
@@ -11,10 +12,7 @@ class RootModel {
 
     var poller:Poller? = null
 
-    var user: User? by observable<User?>(null) {
-        _, _, _ -> onUserChanged
-    }
-    var onUserChanged: ((User, User) -> Unit)? = null
+    var user: User? = null
 
     var loggedIn:Boolean by observable(false) {
         _, old, new -> onLogIn?.invoke(old, new)
@@ -28,11 +26,7 @@ class RootModel {
 
     var onGameJoined: ((Boolean, Boolean) -> Unit)? = null
 
-    var game:Game? by observable<Game?>(null) {
-        _, old, new -> onGameStarted?.invoke(old, new!!)
-    }
-
-    var onGameStarted: ((Game?, Game) -> Unit)? = null
+    var game:Game? = null
 
     var gameStarted:Boolean by observable(false) {
         _, old, new -> onGameBoolTrue?.invoke(old, new)
@@ -47,7 +41,16 @@ class RootModel {
     var gameListLength:Int by observable(0) {
         _, old, new -> onGameListChanged?.invoke(old, new)
     }
+
     var onGameListChanged: ((Int, Int) -> Unit)? = null
+
+    var destinationCardsToChoose:ArrayList<DestinationCard>? = null
+
+    var destCardsGiven:Boolean by observable(false) {
+            _, old, new -> onDestinationCardsGiven?.invoke(old, new)
+    }
+
+    var onDestinationCardsGiven:((Boolean, Boolean) -> Unit)? = null
 
     var errorMessage:String? by observable<String?>(null) {
         _,old,new -> onErrorMessageGiven?.invoke(old, new)

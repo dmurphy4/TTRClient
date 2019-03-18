@@ -8,18 +8,18 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
-import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ChooseGamePresenter
-import com.d.tickettoride.servercommunicator.Poller
-import com.d.tickettoride.service.CreateGameService
+import com.d.tickettoride.presenters.ipresenters.IChooseGamePresenter
 import com.d.tickettoride.util.GameInfoAdapter
 import com.d.tickettoride.util.afterTextChanged
+import com.d.tickettoride.views.iviews.IChooseGameView
 import kotlinx.android.synthetic.main.activity_choose_game.*
+import kotlinx.android.synthetic.main.activity_game.*
 
 class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
 
     private lateinit var adapter: GameInfoAdapter
-    private val chooseGamePresenter = ChooseGamePresenter(this)
+    private val chooseGamePresenter: IChooseGamePresenter = ChooseGamePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,25 +28,24 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         number_picker.minValue = 2
         number_picker.maxValue = 5
 
-        adapter = GameInfoAdapter(RootModel.instance.gameList, chooseGamePresenter)
-
-        // Set RecyclerView's layout manager - the linear layout manager
-        // displays the list like normal
-        available_games_list.layoutManager = LinearLayoutManager(this)
+        adapter = GameInfoAdapter(chooseGamePresenter.getAvailableGamesList(), this)
+        available_games_list.layoutManager = LinearLayoutManager(this) // Displays games 1 per row
         available_games_list.adapter = adapter
         available_games_list.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
 
+        // Disable buttons to start with
         button_create_game.isEnabled = false
+        button_join_game.isEnabled = false
 
-        game_name.afterTextChanged { x ->
-            button_create_game.isEnabled = x.isNotEmpty()
+        game_name.afterTextChanged { gameName ->
+            button_create_game.isEnabled = gameName.isNotEmpty()
         }
-
         button_create_game.setOnClickListener {
             chooseGamePresenter.createNewGame(GameInfo(game_name.text.toString(), number_picker.value))
         }
         button_join_game.setOnClickListener {
-            chooseGamePresenter.joinExistingGame(RootModel.instance.gameList[adapter.selectedRowIndex])
+            val gameList = chooseGamePresenter.getAvailableGamesList()
+            chooseGamePresenter.joinExistingGame(gameList[adapter.selectedRowIndex])
         }
 
         chooseGamePresenter.startPoller() // make sure we take care of this for logging out (if we log out)
@@ -56,11 +55,17 @@ class ChooseGameActivity : AppCompatActivity(), IChooseGameView {
         startActivity(Intent(this, LobbyActivity::class.java))
     }
 
-    override fun displayGameInList(gameInfo: GameInfo) {
-        adapter.notifyItemInserted(RootModel.instance.gameList.size)
+    override fun displayGameInList() {
+        val gameList = chooseGamePresenter.getAvailableGamesList()
+        adapter.notifyItemInserted(gameList.size)
     }
 
     override fun removeGameFromList(gameInfo: GameInfo?) {
-        adapter.notifyItemRemoved(RootModel.instance.gameList.indexOf(gameInfo))
+        val gameList = chooseGamePresenter.getAvailableGamesList()
+        adapter.notifyItemRemoved(gameList.indexOf(gameInfo))
+    }
+
+    override fun enableJoinGameButton(enable: Boolean) {
+        button_join_game.isEnabled = enable
     }
 }

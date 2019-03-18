@@ -1,12 +1,13 @@
 package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.RootModel
-import com.d.tickettoride.model.User
+import com.d.tickettoride.presenters.ipresenters.ILoginPresenter
 import com.d.tickettoride.service.LoginService
-import com.d.tickettoride.views.ILoginView
+import com.d.tickettoride.views.iviews.ILoginView
 
 class LoginPresenter(private val loginActivity: ILoginView,
-                     private val loginService: LoginService = LoginService.instance) : ILoginPresenter {
+                     private val loginService: LoginService = LoginService.instance) :
+    ILoginPresenter {
 
     init {
         RootModel.instance.onErrorMessageGiven = { _, message ->
@@ -18,7 +19,7 @@ class LoginPresenter(private val loginActivity: ILoginView,
         RootModel.instance.onLogIn = { _, loggedIn ->
             if (loggedIn) {
                 loginActivity.startChooseGameActivity()
-                loginActivity.displayErrorMessage("Username is ${RootModel.instance.user!!.userName}")
+                loginActivity.displayErrorMessage("Username is ${RootModel.instance.user!!.username}")
             } else {
                 loginActivity.enableLogIn(true)
             }

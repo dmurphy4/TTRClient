@@ -1,14 +1,18 @@
 package com.d.tickettoride.views
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.d.tickettoride.R
 import com.d.tickettoride.presenters.LobbyPresenter
+import com.d.tickettoride.presenters.ipresenters.ILobbyPresenter
+import com.d.tickettoride.views.iviews.ILobbyView
+import kotlinx.android.synthetic.main.activity_lobby.*
 
 class LobbyActivity : AppCompatActivity(), ILobbyView {
 
-    private val lobbyPresenter:LobbyPresenter = LobbyPresenter(this)
+    private val lobbyPresenter: ILobbyPresenter = LobbyPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +20,7 @@ class LobbyActivity : AppCompatActivity(), ILobbyView {
     }
 
     override fun startGame() {
-
+        startActivity(Intent(this, GameActivity::class.java))
     }
 
     override fun setGameName(name: String) {

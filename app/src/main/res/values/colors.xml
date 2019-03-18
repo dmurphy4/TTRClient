@@ -5,5 +5,14 @@
     <color name="colorPrimary">#79BD8F</color>
     <color name="colorPrimaryDark">#00A388</color>
     <color name="colorAccent">#FF6138</color>
+    <color name="cardBlack">#5E6168</color>
+    <color name="cardBlue">#48A3CF</color>
+    <color name="cardGreen">#93BC53</color>
+    <color name="cardOrange">#D49543</color>
+    <color name="cardPink">#CC88AB</color>
+    <color name="cardRed">#B82044</color>
+    <color name="cardWhite">#EDECEA</color>
+    <color name="cardYellow">#E6EE58</color>
+    <color name="black">#000000</color>
     <color name="white">#FFF</color>
 </resources>

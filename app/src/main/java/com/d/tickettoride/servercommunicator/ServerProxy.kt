@@ -1,6 +1,7 @@
 package com.d.tickettoride.servercommunicator
 
-import com.d.tickettoride.command.client.*
+import com.d.tickettoride.servercommunicator.command.server.ServerCommand
+import com.d.tickettoride.servercommunicator.response.*
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.MediaType
@@ -14,34 +15,34 @@ class ServerProxy {
         val client = OkHttpClient()
     }
 
-    private val url = "http://192.168.252.67:8000/command"
+    private val url = "http://192.168.253.14:8000/command"
+
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
-    fun command(type: CommandType, data: String) {
+    fun command(command: ServerCommand) {
+        val data = command.toJson()
         println("HERE'S THE DATA GOING TO SERVER:")
         println(data)
         doAsync {
             val body = RequestBody.create(JSON, data)
-            val request = Request.Builder().url(url).addHeader("type", type.toString()).post(body).build()
+            val request = Request.Builder().url(url).header("Accept-Encoding", "identity").addHeader("type", command.type().toString()).post(body).build()
             val response = client.newCall(request).execute()
-            println("RESPONSE OBJECT:")
-            println(response)
             val respBody = response.body()!!.string()
             uiThread {
-                val classType = when (type) {
-                    CommandType.S_LOGIN, CommandType.S_REGISTER -> CLoginRegisterCommand::class.java
-                    CommandType.S_CREATE_GAME -> CCreateGameCommand::class.java
-                    CommandType.S_JOIN_GAME -> CJoinGameCommand::class.java
-                    CommandType.S_POLL -> CPollerCommandList::class.java
-                    else -> ICommand::class.java
+                val type = when(command) {
+                    is ServerCommand.ChooseDestinationCard -> FirstDestinationHandResponse::class.java
+                    is ServerCommand.JoinGame -> JoinGameResponse::class.java
+                    is ServerCommand.Login, is ServerCommand.Register -> LoginRegisterResponse::class.java
+                    is ServerCommand.Poll -> CommandListResponse::class.java
+                    is ServerCommand.DrawDestinationCards -> DrawDestinationCardResponse::class.java
+                    else -> GenericResponse::class.java
                 }
                 val gson = Gson()
-                println("HEYYYYYYYYYYYYYYYYYYYYYYY!!!!!!!!!!!!!!")
+                println("HERE'S THE RESPONSE FROM THE SERVER:")
                 println(respBody)
-                val command = gson.fromJson(respBody, classType)
-                command.execute()
+                val clientResponse = gson.fromJson(respBody, type)
+                clientResponse.execute()
             }
         }
     }
-
 }

@@ -4,14 +4,13 @@ import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.d.tickettoride.R
 import com.d.tickettoride.model.GameInfo
-import com.d.tickettoride.presenters.ChooseGamePresenter
+import com.d.tickettoride.views.iviews.IChooseGameView
 import kotlinx.android.synthetic.main.row_game_list.view.*
 
 class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,
-                      private val chooseGamePresenter: ChooseGamePresenter,
+                      private val chooseGameActivity: IChooseGameView,
                       var selectedRowIndex: Int = -1) :
       RecyclerView.Adapter<GameInfoAdapter.MyViewHolder>() {
 
@@ -27,7 +26,7 @@ class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,
         holder.bind(gameInfo)
         holder.view.setOnClickListener {
             selectedRowIndex = position
-            chooseGamePresenter.setSelectedGameInfo(gameList[position])
+            chooseGameActivity.enableJoinGameButton(true)
             notifyDataSetChanged()
         }
 
@@ -41,7 +40,6 @@ class GameInfoAdapter(private val gameList: ArrayList<GameInfo>,
     }
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-
         fun bind(gameInfo: GameInfo) {
             view.row_game_name.text = gameInfo.gameName
             view.row_num_players.text = gameInfo.numPlayers.toString()

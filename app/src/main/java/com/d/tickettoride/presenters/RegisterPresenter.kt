@@ -1,11 +1,13 @@
 package com.d.tickettoride.presenters
 
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.presenters.ipresenters.IRegisterPresenter
 import com.d.tickettoride.service.LoginService
-import com.d.tickettoride.views.IRegisterView
+import com.d.tickettoride.views.iviews.IRegisterView
 
 class RegisterPresenter(private val registerActivity: IRegisterView,
-                        private val loginService: LoginService = LoginService.instance) : IRegisterPresenter {
+                        private val loginService: LoginService = LoginService.instance) :
+    IRegisterPresenter {
 
     init {
         RootModel.instance.onErrorMessageGiven = { _, message ->

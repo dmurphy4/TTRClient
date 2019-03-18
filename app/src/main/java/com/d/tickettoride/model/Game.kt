@@ -1,3 +1,38 @@
 package com.d.tickettoride.model
 
-data class Game(val info: GameInfo, var players:ArrayList<PlayerInfo>)
+import com.d.tickettoride.model.gameplay.Board
+import com.d.tickettoride.model.gameplay.Event
+import kotlin.properties.Delegates.observable
+
+class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var board: Board,
+           var turnOrder:List<String>, val eventHistory:ArrayList<Event> = ArrayList()) {
+
+    var onEventAdded: ((Int, Int) -> Unit)? = null
+
+    var turn: Int by observable(0) { _, old, new ->
+        onTurnChanged?.invoke(old, new)
+    }
+
+    var onTurnChanged: ((Int, Int) -> Unit)? = null
+
+    var statsChanged:Boolean by observable(false) { _, old, new ->
+        onStatsChanged?.invoke(old, new)
+    }
+
+    var onStatsChanged: ((Boolean, Boolean) -> Unit)? = null
+
+    fun addEvent(event:Event) {
+        eventHistory.add(event)
+        onEventAdded?.invoke(0, eventHistory.size)
+    }
+
+    fun prepareCards() {
+        board.prepFaceUpCards()
+    }
+
+    fun updateTurn() {
+        playerStats[turn].yourTurn = false
+        turn = (turn + 1) % turnOrder.size
+        playerStats[turn].yourTurn = true
+    }
+}

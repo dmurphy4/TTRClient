@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import com.d.tickettoride.R
 import com.d.tickettoride.presenters.LoginPresenter
+import com.d.tickettoride.presenters.ipresenters.ILoginPresenter
 import com.d.tickettoride.util.afterTextChanged
+import com.d.tickettoride.views.iviews.ILoginView
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), ILoginView {
 
-    private val loginPresenter = LoginPresenter(this)
+    private val loginPresenter: ILoginPresenter = LoginPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
