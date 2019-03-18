@@ -30,11 +30,12 @@ class ServerProxy {
             val respBody = response.body()!!.string()
             uiThread {
                 val type = when(command) {
-                    is ServerCommand.ChooseDestinationCard -> FirstDestinationHandResponse::class.java
+                    is ServerCommand.ChooseFirstDestinationHand -> FirstDestinationHandResponse::class.java
                     is ServerCommand.JoinGame -> JoinGameResponse::class.java
                     is ServerCommand.Login, is ServerCommand.Register -> LoginRegisterResponse::class.java
                     is ServerCommand.Poll -> CommandListResponse::class.java
                     is ServerCommand.DrawDestinationCards -> DrawDestinationCardResponse::class.java
+                    is ServerCommand.ChooseDestinationCard -> ReceiveMoreDestinationsResponse::class.java
                     else -> GenericResponse::class.java
                 }
                 val gson = Gson()

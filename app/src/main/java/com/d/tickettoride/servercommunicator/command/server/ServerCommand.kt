@@ -9,6 +9,10 @@ sealed class ServerCommand {
         override fun type() = CommandType.S_ASSIGN_DEST
     }
 
+    data class ChooseFirstDestinationHand(var player:String, var chosen:ArrayList<Int>, var notChosen:ArrayList<Int>): ServerCommand() {
+        override fun type() = CommandType.S_ASSIGN_FIRST_DEST
+    }
+
     data class CreateGame(val gameName:String, val numPlayers:Int, val username:String): ServerCommand() {
         override fun type() = CommandType.S_CREATE_GAME
     }

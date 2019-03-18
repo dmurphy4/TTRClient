@@ -5,6 +5,7 @@ import com.d.tickettoride.model.gameplay.*
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.presenters.ipresenters.ITrainCardsPresenter
 import com.d.tickettoride.presenters.states.NotYourTurnState
+import com.d.tickettoride.presenters.states.PreGameState
 import com.d.tickettoride.presenters.states.Statelike
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.views.iviews.IGameView
@@ -41,6 +42,7 @@ class GamePresenter(private val gameActivity: IGameView,
                 hand.cardMap[TrainCarCardType.YELLOW]!!,
                 hand.cardMap[TrainCarCardType.LOCOMOTIVE]!!
             )
+            currentState.beginPlay(this)
         }
 
         rootModel.game!!.playerStats[0].yourTurn = true
@@ -69,7 +71,7 @@ class GamePresenter(private val gameActivity: IGameView,
             }
         }
 
-        currentState = NotYourTurnState()
+        currentState = PreGameState()
     }
 
     override fun getBoard(): Board {

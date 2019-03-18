@@ -24,6 +24,7 @@ enum class CommandType {
     @SerializedName("S_LOGIN") S_LOGIN,
     @SerializedName("S_REGISTER") S_REGISTER,
     @SerializedName("S_POLL") S_POLL,
+    @SerializedName("S_ASSIGN_FIRST_DEST") S_ASSIGN_FIRST_DEST,
     @SerializedName("S_ASSIGN_DEST") S_ASSIGN_DEST,
     @SerializedName("S_SEND_MESSAGE") S_SEND_MESSAGE,
     @SerializedName("S_DRAW_THREE_DESTINATION_CARDS_FROM_DRAW_PILE") S_DRAW_THREE_DESTINATION_CARDS_FROM_DRAW_PILE,

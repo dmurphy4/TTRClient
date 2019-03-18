@@ -20,8 +20,8 @@ class DestCardService {
         RootModel.instance.game!!.onTurnChanged?.invoke(0, 0)
     }
 
-    fun claimDestCards() {
-
+    fun addMoreDestinationCards(cards:ArrayList<DestinationCard>) {
+        RootModel.instance.user!!.destinationHand!!.extend(cards)
     }
 
     fun sendKeptDestCards() {
