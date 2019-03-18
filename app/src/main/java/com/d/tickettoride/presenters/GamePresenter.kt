@@ -18,7 +18,7 @@ class GamePresenter(private val gameActivity: IGameView,
 
     private var phase2Iteration = 0
 
-    lateinit var currentState: Statelike
+    private var currentState: Statelike = PreGameState()
 
     init {
         val rootModel = RootModel.instance
@@ -70,8 +70,6 @@ class GamePresenter(private val gameActivity: IGameView,
                 currentState.beginTurn(this)
             }
         }
-
-        currentState = PreGameState()
     }
 
     override fun getBoard(): Board {
