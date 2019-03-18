@@ -263,14 +263,16 @@ class GameActivity : AppCompatActivity(), IGameView {
      */
     private fun submitDestinationCards() {
         val indexes = ArrayList<Int>()
-        if (checkBox1.isChecked) indexes.add(0)
-        if (checkBox2.isChecked) indexes.add(1)
-        if (checkBox3.isChecked) indexes.add(2)
+        val notChosen = ArrayList<Int>()
+        if (checkBox1.isChecked) indexes.add(0) else notChosen.add(0)
+        if (checkBox2.isChecked) indexes.add(1) else notChosen.add(1)
+        if (checkBox3.isChecked) indexes.add(2) else notChosen.add(2)
+
 
         if (indexes.size < 2) {
             displayErrorMessage(resources.getString(R.string.error_destinations_not_checked))
         } else {
-            gamePresenter.chooseDestinationCards(indexes)
+            gamePresenter.chooseDestinationCards(indexes, notChosen)
 
             checkBox1.isChecked = false
             checkBox2.isChecked = false

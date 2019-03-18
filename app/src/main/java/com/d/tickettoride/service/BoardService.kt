@@ -25,13 +25,17 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         proxy.command(ServerCommand.DrawDestinationCards(username))
     }
 
-    fun chooseDestinationCards(indexes: ArrayList<Int>) {
+    fun chooseDestinationCards(indexes: ArrayList<Int>, notChosen: ArrayList<Int>) {
         val username = RootModel.instance.user!!.username
         val destinationIDs = ArrayList<Int>()
+        val notChosenDestIDs = ArrayList<Int>()
         for (idx in indexes) {
             destinationIDs.add(RootModel.instance.destinationCardsToChoose!![idx].id)
         }
-        proxy.command(ServerCommand.ChooseDestinationCard(username, destinationIDs))
+        for (idx in notChosen) {
+            notChosenDestIDs.add(RootModel.instance.destinationCardsToChoose!![idx].id)
+        }
+        proxy.command(ServerCommand.ChooseDestinationCard(username, destinationIDs, notChosenDestIDs))
     }
 
     fun getFormattedDestinations(): ArrayList<String> {

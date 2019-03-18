@@ -5,7 +5,7 @@ import com.d.tickettoride.servercommunicator.command.CommandType
 import com.google.gson.Gson
 
 sealed class ServerCommand {
-    data class ChooseDestinationCard(var player:String, var ids:ArrayList<Int>): ServerCommand() {
+    data class ChooseDestinationCard(var player:String, var chosen:ArrayList<Int>, var notChosen:ArrayList<Int>): ServerCommand() {
         override fun type() = CommandType.S_ASSIGN_DEST
     }
 

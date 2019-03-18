@@ -15,7 +15,6 @@ class NewTurnState : Statelike() {
     override fun claimRoute(gamePresenter: IGamePresenter, id:Int) {
         BoardService.instance.claimRoute(id)
 
-
         TurnService.instance.endTurn()
         gamePresenter.setState(NotYourTurnState())
     }

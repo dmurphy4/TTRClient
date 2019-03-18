@@ -89,8 +89,8 @@ class GamePresenter(private val gameActivity: IGameView,
         currentState.drawDestinations(this)
     }
 
-    override fun chooseDestinationCards(indexes: ArrayList<Int>) {
-        currentState.returnDestinations(this, indexes)
+    override fun chooseDestinationCards(indexes: ArrayList<Int>, notChosen: ArrayList<Int>) {
+        currentState.returnDestinations(this, indexes, notChosen)
     }
 
     override fun postErrorMessage(message:String) {

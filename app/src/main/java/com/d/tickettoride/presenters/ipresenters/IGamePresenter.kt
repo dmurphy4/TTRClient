@@ -11,7 +11,7 @@ interface IGamePresenter {
     fun drawDestinationCards()
     fun testPhase2()
     fun setState(state:Statelike)
-    fun chooseDestinationCards(indexes: ArrayList<Int>)
+    fun chooseDestinationCards(indexes: ArrayList<Int>, notChosen: ArrayList<Int>)
     fun getDestCards(): String
     fun getNumDestCards(): Int
     fun postErrorMessage(message:String)

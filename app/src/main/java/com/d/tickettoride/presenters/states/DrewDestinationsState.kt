@@ -6,8 +6,8 @@ import com.d.tickettoride.service.TurnService
 
 class DrewDestinationsState : Statelike() {
 
-    override fun returnDestinations(gamePresenter: IGamePresenter, indexes: ArrayList<Int>) {
-        BoardService.instance.chooseDestinationCards(indexes)
+    override fun returnDestinations(gamePresenter: IGamePresenter, indexes: ArrayList<Int>, notChosen: ArrayList<Int>) {
+        BoardService.instance.chooseDestinationCards(indexes, notChosen)
 
         TurnService.instance.endTurn()
         gamePresenter.setState(NotYourTurnState())
