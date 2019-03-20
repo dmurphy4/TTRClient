@@ -20,6 +20,10 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         return RootModel.instance.game!!.turnOrder[id]
     }
 
+    fun getUserColor(): String {
+        return RootModel.instance.user!!.playerInfo!!.color.toString()
+    }
+
     fun drawDestinationCards() {
         val username = RootModel.instance.user!!.username
         proxy.command(ServerCommand.DrawDestinationCards(username))

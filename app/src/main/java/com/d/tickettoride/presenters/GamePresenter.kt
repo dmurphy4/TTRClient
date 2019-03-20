@@ -13,8 +13,7 @@ import java.lang.StringBuilder
 
 class GamePresenter(private val gameActivity: IGameView,
                     private val boardService: BoardService = BoardService.instance,
-                    private val trainCardsPresenter: ITrainCardsPresenter
-): IGamePresenter {
+                    private val trainCardsPresenter: ITrainCardsPresenter): IGamePresenter {
 
     private var phase2Iteration = 0
 
@@ -101,6 +100,8 @@ class GamePresenter(private val gameActivity: IGameView,
         currentState = state
     }
 
+
+
     override fun getDestCards(): String{
         val sb = StringBuilder()
 
@@ -119,13 +120,15 @@ class GamePresenter(private val gameActivity: IGameView,
             sb.append(" points\n")
         }
         return sb.toString()
-
-
     }
 
     override fun getNumDestCards(): Int {
         val cards = RootModel.instance.game!!.board.destinationDeck!!.cards
         return cards.size
+    }
+
+    override fun getUserColor(): String {
+        return boardService.getUserColor()
     }
 
     override fun testPhase2() {

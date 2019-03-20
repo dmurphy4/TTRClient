@@ -7,7 +7,7 @@ import com.d.tickettoride.service.TrainCardService
 import com.d.tickettoride.views.iviews.ITrainCardsView
 
 class TrainCardsPresenter(private val trainCardsFragment: ITrainCardsView): ITrainCardsPresenter {
-    // Hey
+
     private val trainCardService: TrainCardService = TrainCardService.instance
 
     override fun replaceFaceUpCard(idx: Int) {
