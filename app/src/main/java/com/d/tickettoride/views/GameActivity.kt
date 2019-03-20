@@ -208,7 +208,6 @@ class GameActivity : AppCompatActivity(), IGameView {
      */
     override fun drawRoute(id: Int, color: String) {
         game_board.changeRoutePaintToClaimed(id, color)
-        game_board.invalidate()
     }
 
     /*
@@ -249,6 +248,9 @@ class GameActivity : AppCompatActivity(), IGameView {
         val board = gamePresenter.getBoard()
         game_board.cities = board.cities
         game_board.setRouteData(board.routes)
+        game_board.onRouteClicked = {id ->
+            game_board.highlightRoute(id)
+        }
         game_board.invalidate()
     }
 
