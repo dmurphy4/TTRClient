@@ -43,15 +43,15 @@ class RouteView(val id: Int,
     }
 
     private fun isTouchInHorizontalBox(touchX: Float, touchY: Float): Boolean {
-        return isTouchWithinY(touchY) &&
-                ((min(city1.first, city2.first) - 15) <= touchX) &&
-                (touchX <= (max(city1.first, city2.first) + 15))
-    }
-
-    private fun isTouchInVerticalBox(touchX: Float, touchY: Float): Boolean {
         return isTouchWithinX(touchX) &&
                 ((min(city1.second, city2.second) - 15) <= touchY) &&
                 (touchY <= (max(city1.second, city2.second) + 15))
+    }
+
+    private fun isTouchInVerticalBox(touchX: Float, touchY: Float): Boolean {
+        return isTouchWithinY(touchY) &&
+                ((min(city1.first, city2.first) - 15) <= touchX) &&
+                (touchX <= (max(city1.first, city2.first) + 15))
     }
 
     private fun isTouchWithinX(touchX: Float): Boolean {
