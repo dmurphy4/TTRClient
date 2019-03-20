@@ -100,6 +100,8 @@ class GamePresenter(private val gameActivity: IGameView,
         currentState = state
     }
 
+
+
     override fun getDestCards(): String{
         val sb = StringBuilder()
 
@@ -123,6 +125,10 @@ class GamePresenter(private val gameActivity: IGameView,
     override fun getNumDestCards(): Int {
         val cards = RootModel.instance.game!!.board.destinationDeck!!.cards
         return cards.size
+    }
+
+    override fun getUserColor(): String {
+        return boardService.getUserColor()
     }
 
     override fun testPhase2() {

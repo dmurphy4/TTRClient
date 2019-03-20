@@ -247,9 +247,12 @@ class GameActivity : AppCompatActivity(), IGameView {
     private fun drawBoard() {
         val board = gamePresenter.getBoard()
         game_board.cities = board.cities
-        game_board.setRouteData(board.routes)
+        game_board.setRouteData(board.routes, gamePresenter.getUserColor())
         game_board.onRouteClicked = {id ->
             game_board.highlightRoute(id)
+
+            // DALLIN ADD FUNCTIONALITY HERE
+
         }
         game_board.invalidate()
     }

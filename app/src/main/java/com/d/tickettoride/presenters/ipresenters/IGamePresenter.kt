@@ -14,5 +14,6 @@ interface IGamePresenter {
     fun chooseDestinationCards(indexes: ArrayList<Int>, notChosen: ArrayList<Int>)
     fun getDestCards(): String
     fun getNumDestCards(): Int
+    fun getUserColor(): String
     fun postErrorMessage(message:String)
 }

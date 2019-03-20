@@ -2,6 +2,8 @@ package com.d.tickettoride.service
 
 import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 import com.d.tickettoride.model.GameInfo
+import com.d.tickettoride.model.PlayerColor
+import com.d.tickettoride.model.PlayerInfo
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.servercommunicator.Poller
 import com.d.tickettoride.servercommunicator.ServerProxy
@@ -33,8 +35,10 @@ class ChooseGameService(private val proxy: ServerProxy = ServerProxy()) {
         proxy.command(ServerCommand.JoinGame(gameName, RootModel.instance.user!!.username))
     }
 
-    fun setJoinedGame(joined: Boolean) {
+    fun setJoinedGame(joined: Boolean, color: String) {
         RootModel.instance.waitingForGame = joined
+        val username = RootModel.instance.user!!.username
+        RootModel.instance.user!!.playerInfo = PlayerInfo(username, PlayerColor.valueOf(color))
     }
 
     fun startPoller() {

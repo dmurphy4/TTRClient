@@ -22,11 +22,14 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         style = Paint.Style.FILL
     }
 
-    private var mapDrawable: Drawable? = context.getDrawable(R.drawable.usterrain)
     var cities: Map<Int, City> = HashMap()
+
     private val routeWidth = 30f
+
     private var routePaths: MutableMap<Int, RouteView> = HashMap()
     private var previousClickId: Int = 0
+    private var mapDrawable: Drawable? = context.getDrawable(R.drawable.usterrain)
+
 
     var onRouteClicked: ((id: Int) -> Unit)? = null
 
@@ -66,7 +69,7 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         }
     }
 
-    fun setRouteData(routes: Map<Int, Route>) {
+    fun setRouteData(routes: Map<Int, Route>, userColor: String) {
         routePaths.clear()
         routes.let {
             for ((_, route) in it) {
@@ -86,9 +89,10 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
                     }
                 }
                 val solidPaint = Paint(ANTI_ALIAS_FLAG).apply {
-                    color = Color.parseColor(route.color.toString())
+                    color = Color.parseColor(userColor)
                     style = Paint.Style.STROKE
                     strokeWidth = 30f
+                    pathEffect = DashPathEffect(floatArrayOf(dashLength, 10f), 0f)
                 }
                 routePaths[route.id] = RouteView(route.id, Pair(city1.longitude, city1.latitude),
                     Pair(city2.longitude, city2.latitude), linePath, dottedPaint, solidPaint)

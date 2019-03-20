@@ -65,12 +65,12 @@ class RouteView(val id: Int,
     fun isTouchInRoute(touchX: Float, touchY: Float): Boolean {
         if (isHorizontal) return isTouchInHorizontalBox(touchX, touchY)
         if (isVertical) return isTouchInVerticalBox(touchX, touchY)
-        
+
         // only calculate slope and distance if necessary
         val distance: Float
         if (isTouchWithinX(touchX) && isTouchWithinY(touchY)) {
             val slope = (city2.second - city1.second) / (city2.first - city1.first)
-            distance = abs((-slope)*touchX + touchY + slope*city1.first - city1.second) / sqrt(1 + slope*slope)
+            distance = abs(touchY - slope*touchX + slope*city1.first - city1.second) / sqrt(1 + slope*slope)
         } else {
             return false
         }
