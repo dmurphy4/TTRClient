@@ -1,11 +1,67 @@
 package com.d.tickettoride.model.gameplay
 
-import kotlin.properties.Delegates.observable
-
-
 class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
 
-    lateinit var cardMap:HashMap<TrainCarCardType, Int>
+    private val cardMap: HashMap<TrainCarCardType, Int> = hashMapOf(
+        TrainCarCardType.RED to 0,
+        TrainCarCardType.BLACK to 0,
+        TrainCarCardType.BLUE to 0,
+        TrainCarCardType.GREEN to 0,
+        TrainCarCardType.YELLOW to 0,
+        TrainCarCardType.ORANGE to 0,
+        TrainCarCardType.WHITE to 0,
+        TrainCarCardType.PURPLE to 0,
+        TrainCarCardType.LOCOMOTIVE to 0
+    )
+
+    var onHandChanged: ((TrainCarCardHand) -> Unit)? = null
+
+    init {
+        for(card in cards) {
+            cardMap[card.type]?.inc()
+        }
+    }
+
+    fun changeCardCount(type: TrainCarCardType, amount: Int) {
+        cardMap[type]!!.plus(amount)
+        onHandChanged?.invoke(this)
+    }
+
+    fun getRed(): Int {
+        return cardMap[TrainCarCardType.RED]!!
+    }
+
+    fun getBlack(): Int {
+        return cardMap[TrainCarCardType.BLACK]!!
+    }
+
+    fun getBlue(): Int {
+        return cardMap[TrainCarCardType.BLUE]!!
+    }
+
+    fun getGreen(): Int {
+        return cardMap[TrainCarCardType.GREEN]!!
+    }
+
+    fun getYellow(): Int {
+        return cardMap[TrainCarCardType.YELLOW]!!
+    }
+
+    fun getOrange(): Int {
+        return cardMap[TrainCarCardType.ORANGE]!!
+    }
+
+    fun getWhite(): Int {
+        return cardMap[TrainCarCardType.WHITE]!!
+    }
+
+    fun getPurple(): Int {
+        return cardMap[TrainCarCardType.PURPLE]!!
+    }
+
+    fun getLocomotive(): Int {
+        return cardMap[TrainCarCardType.LOCOMOTIVE]!!
+    }
 
     override fun draw(cardsDrawn: List<ICard>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -15,20 +71,5 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun setUpMap() {
-        cardMap = HashMap()
-        cardMap[TrainCarCardType.RED] = 0
-        cardMap[TrainCarCardType.BLACK] = 0
-        cardMap[TrainCarCardType.BLUE] = 0
-        cardMap[TrainCarCardType.GREEN] = 0
-        cardMap[TrainCarCardType.YELLOW] = 0
-        cardMap[TrainCarCardType.ORANGE] = 0
-        cardMap[TrainCarCardType.WHITE] = 0
-        cardMap[TrainCarCardType.PURPLE] = 0
-        cardMap[TrainCarCardType.LOCOMOTIVE] = 0
 
-        for (card in cards) {
-            cardMap[card.type] = cardMap[card.type]!! + 1
-        }
-    }
 }

@@ -1,14 +1,17 @@
 package com.d.tickettoride.presenters.states
 
+import com.d.tickettoride.model.gameplay.TrainCarCardType
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
+import com.d.tickettoride.service.TrainCardService
 import com.d.tickettoride.service.TurnService
 
 class NewTurnState : Statelike() {
 
+    private val trainCardService = TrainCardService.instance
+
     override fun drawDestinations(gamePresenter: IGamePresenter) {
         BoardService.instance.drawDestinationCards()
-
         gamePresenter.setState(DrewDestinationsState())
     }
 
@@ -20,22 +23,17 @@ class NewTurnState : Statelike() {
     }
 
     override fun drawFromDrawpile(gamePresenter: IGamePresenter) {
-
-
-
-
-
+        trainCardService.drawFromDeck()
         gamePresenter.setState(DrewTrainCardState())
     }
 
-    override fun drawFaceUp(gamePresenter: IGamePresenter) {
-
-
-        // we need to know the type of card so that we can either end the turn or send it to the drew card state
-
-
-
-
-        gamePresenter.setState(DrewTrainCardState())
+    override fun drawFaceUp(idx: Int, gamePresenter: IGamePresenter) {
+        val previousType = trainCardService.getFaceUpCardType(idx)
+        trainCardService.takeFaceUpCard(idx)
+        if (previousType == TrainCarCardType.LOCOMOTIVE) {
+            gamePresenter.setState(NotYourTurnState())
+        } else {
+            gamePresenter.setState(DrewTrainCardState())
+        }
     }
 }

@@ -4,7 +4,7 @@ import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 
 open class Statelike {
 
-    open fun drawFaceUp(gamePresenter: IGamePresenter) {
+    open fun drawFaceUp(idx: Int, gamePresenter: IGamePresenter) {
         gamePresenter.postErrorMessage("Sorry, you can't draw a face up card right now.")
     }
 

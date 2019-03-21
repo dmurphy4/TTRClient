@@ -4,6 +4,7 @@ import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.model.gameplay.City
 import com.d.tickettoride.model.gameplay.Route
+import com.d.tickettoride.model.gameplay.TrainCarCardHand
 import com.d.tickettoride.servercommunicator.ServerProxy
 import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 import com.google.gson.Gson
@@ -83,5 +84,13 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
 
     fun claimRoute(id:Int) {
 
+    }
+
+    fun setTrainCardHandChangedListener(callback: ((TrainCarCardHand) -> Unit)) {
+        RootModel.instance.user!!.trainCardHand.onHandChanged = callback
+    }
+
+    fun setTrainCardHandCreatedListener(callback: ((TrainCarCardHand) -> Unit)) {
+        RootModel.instance.user!!.onTrainCardHandCreated = callback
     }
 }

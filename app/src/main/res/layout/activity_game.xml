@@ -180,15 +180,11 @@
 
     <FrameLayout android:layout_width="215dp"
                  android:layout_height="match_parent"
-                 android:id="@+id/train_cards_container"
+                 android:id="@+id/train_cards_frame"
                  android:background="@color/white"
                  android:orientation="vertical"
                  android:layout_gravity="start"
                  android:layout_margin="0dp">
-        
-        <fragment android:name="com.d.tickettoride.views.TrainCardsFragment"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent" />
 
     </FrameLayout>
 

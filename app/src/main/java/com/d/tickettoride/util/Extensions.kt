@@ -1,6 +1,8 @@
 package com.d.tickettoride.util
 
+import android.os.Bundle
 import android.support.annotation.LayoutRes
+import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -25,3 +27,5 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         }
     })
 }
+
+inline fun <FRAGMENT : Fragment> FRAGMENT.putArgs(argsBuilder: Bundle.() -> Unit): FRAGMENT = this.apply { arguments = Bundle().apply(argsBuilder) }

@@ -14,11 +14,11 @@ class User(var username:String, var playerInfo:PlayerInfo?,
 
     var onCardAmountsChanged: ((Boolean, Boolean) -> Unit)? = null
 
-    var trainCardHand by observable<TrainCarCardHand?>(null) { _, old, new ->
-        onHandObjectCreated?.invoke(old, new)
+    var trainCardHand: TrainCarCardHand by observable(TrainCarCardHand(listOf())) { _, old, new ->
+        onTrainCardHandCreated?.invoke(new)
     }
 
-    var onHandObjectCreated: ((TrainCarCardHand?, TrainCarCardHand?) -> Unit)? = null
+    var onTrainCardHandCreated: ((TrainCarCardHand) -> Unit)? = null
 
     var yourTurn: Boolean by observable(false) {
         _, old, new -> onYourTurn?.invoke(old, new)

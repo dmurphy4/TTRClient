@@ -1,10 +1,13 @@
 package com.d.tickettoride.service
 
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.gameplay.TrainCarCard
 import com.d.tickettoride.model.gameplay.TrainCarCardHand
 import com.d.tickettoride.model.gameplay.TrainCarCardType
+import com.d.tickettoride.servercommunicator.ServerProxy
+import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 
-class TrainCardService {
+class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
 
     companion object {
         val instance = TrainCardService()
@@ -29,8 +32,20 @@ class TrainCardService {
         return RootModel.instance.game!!.board.trainDeck.drawPile.size
     }
 
+    fun getFaceUpCardType(idx: Int): TrainCarCardType {
+        return RootModel.instance.game!!.board.trainDeck.getFaceUpCardType(idx)
+    }
+
     fun takeFaceUpCard(idx: Int) {
-        RootModel.instance.game!!.board.trainDeck.replaceFaceUpCard(idx)
+        proxy.command(ServerCommand.DrawFaceUp(idx, RootModel.instance.user!!.username))
+    }
+
+    fun addCardToUserHand(card: TrainCarCard) {
+        RootModel.instance.user!!.trainCardHand.changeCardCount(card.type, 1)
+    }
+
+    fun removeCardFromUserHand(card: TrainCarCard) {
+        RootModel.instance.user!!.trainCardHand.changeCardCount(card.type, -1)
     }
 
     fun setFaceUpChangedListener(callback: ((index: Int, type: TrainCarCardType) -> Unit)) {

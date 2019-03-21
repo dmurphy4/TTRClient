@@ -21,8 +21,7 @@ class ServerProxy {
 
     fun command(command: ServerCommand) {
         val data = command.toJson()
-        println("HERE'S THE DATA GOING TO SERVER:")
-        println(data)
+        println("OUT TO SERVER: $data")
         doAsync {
             val body = RequestBody.create(JSON, data)
             val request = Request.Builder().url(url).header("Accept-Encoding", "identity").addHeader("type", command.type().toString()).post(body).build()
@@ -36,11 +35,11 @@ class ServerProxy {
                     is ServerCommand.Poll -> CommandListResponse::class.java
                     is ServerCommand.DrawDestinationCards -> DrawDestinationCardResponse::class.java
                     is ServerCommand.ChooseDestinationCard -> ReceiveMoreDestinationsResponse::class.java
+                    is ServerCommand.DrawFaceUp -> DrawFaceUpResponse::class.java
                     else -> GenericResponse::class.java
                 }
                 val gson = Gson()
-                println("HERE'S THE RESPONSE FROM THE SERVER:")
-                println(respBody)
+                println("IN FROM SERVER: $respBody")
                 val clientResponse = gson.fromJson(respBody, type)
                 clientResponse.execute()
             }

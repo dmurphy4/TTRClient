@@ -36,8 +36,10 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     private val statsFragment = StatsFragment()
     private val chatFragment = ChatFragment()
-    private val trainCardsFragment = TrainCardsFragment()
-    private val gamePresenter: IGamePresenter = GamePresenter(this, trainCardsPresenter = TrainCardsPresenter(trainCardsFragment))
+    private val gamePresenter: IGamePresenter = GamePresenter(this)
+    private val trainCardsFragment = TrainCardsFragment().apply {
+        trainCardsPresenter.setGamePresenter(gamePresenter)
+    }
 
 
     // kotlinx imports can't be used for popup window, so store them here
@@ -70,6 +72,7 @@ class GameActivity : AppCompatActivity(), IGameView {
         setBoardData()
         drawBoard()
         replaceDrawerFragment(statsFragment)
+        setTrainCardsFragment(trainCardsFragment)
 
         button_stats.setOnClickListener { replaceDrawerFragment(statsFragment) }
         button_chat.setOnClickListener { replaceDrawerFragment(chatFragment) }
@@ -82,7 +85,6 @@ class GameActivity : AppCompatActivity(), IGameView {
             val num: Int = gamePresenter.getNumDestCards()
             Toast.makeText(this, num.toString(), Toast.LENGTH_LONG).show()
         }
-        button_phase_2.setOnClickListener { gamePresenter.testPhase2() }
     }
 
     /*
@@ -300,6 +302,13 @@ class GameActivity : AppCompatActivity(), IGameView {
     private fun replaceDrawerFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.content_frame, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun setTrainCardsFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.train_cards_frame, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

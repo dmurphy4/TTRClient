@@ -1,6 +1,5 @@
 package com.d.tickettoride.servercommunicator.command.client
 
-import com.d.tickettoride.model.Game
 import com.d.tickettoride.model.GameCreator
 import com.d.tickettoride.service.BeginPlayService
 import com.d.tickettoride.service.ChooseGameService

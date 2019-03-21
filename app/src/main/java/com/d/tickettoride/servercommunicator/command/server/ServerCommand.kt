@@ -17,15 +17,19 @@ sealed class ServerCommand {
         override fun type() = CommandType.S_CREATE_GAME
     }
 
-    data class JoinGame (val gameName:String, val username:String): ServerCommand() {
+    data class DrawFaceUp(val index: Int, val username: String): ServerCommand() {
+        override fun type(): CommandType = CommandType.S_DRAW_FACE_UP_TRAIN_CAR_CARD
+    }
+
+    data class JoinGame(val gameName:String, val username:String): ServerCommand() {
         override fun type() = CommandType.S_JOIN_GAME
     }
 
-    data class Login (val username:String, val password:String): ServerCommand() {
+    data class Login(val username:String, val password:String): ServerCommand() {
         override fun type() = CommandType.S_LOGIN
     }
 
-    data class Poll(private val username:String): ServerCommand() {
+    data class Poll(val username:String): ServerCommand() {
         override fun type() = CommandType.S_POLL
     }
 
