@@ -1,5 +1,6 @@
 package com.d.tickettoride.presenters.states
 
+import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 
@@ -14,6 +15,11 @@ class PreGameState : Statelike() {
     }
 
     override fun beginPlay(gamePresenter: IGamePresenter) {
-        gamePresenter.setState(NotYourTurnState())
+        if (RootModel.instance.game!!.playerStats[0].username == RootModel.instance.user!!.username) {
+            gamePresenter.setState(NewTurnState())
+        }
+        else {
+            gamePresenter.setState(NotYourTurnState())
+        }
     }
 }
