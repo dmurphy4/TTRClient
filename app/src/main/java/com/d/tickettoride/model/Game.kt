@@ -2,32 +2,33 @@ package com.d.tickettoride.model
 
 import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.model.gameplay.Event
+import com.d.tickettoride.model.gameplay.TrainCarDeck
 import kotlin.properties.Delegates.observable
 
-class Game(val gameInfo: GameInfo, var playerStats:ArrayList<PlayerInfo>, var board: Board,
-           var turnOrder:List<String>, val eventHistory:ArrayList<Event> = ArrayList()) {
-
-    var onEventAdded: ((Int, Int) -> Unit)? = null
-
+class Game(
+    val gameInfo: GameInfo,
+    var playerStats:ArrayList<PlayerInfo>,
+    var turnOrder:List<String>,
+    var trainCarDeck: TrainCarDeck,
+    var destinationDeckSize: Int,
+    val eventHistory:ArrayList<Event> = ArrayList()
+) {
     var turn: Int by observable(-1) { _, old, new ->
         onTurnChanged?.invoke(old, new)
     }
-
-    var onTurnChanged: ((Int, Int) -> Unit)? = null
-
     var statsChanged:Boolean by observable(false) { _, old, new ->
         onStatsChanged?.invoke(old, new)
     }
 
+    var onEventAdded: ((Int, Int) -> Unit)? = null
     var onStatsChanged: ((Boolean, Boolean) -> Unit)? = null
+    var onTurnChanged: ((Int, Int) -> Unit)? = null
+
+    lateinit var board: Board
 
     fun addEvent(event:Event) {
         eventHistory.add(event)
         onEventAdded?.invoke(0, eventHistory.size)
-    }
-
-    fun prepareCards() {
-        board.prepFaceUpCards()
     }
 
     fun getPlayerByUsername(username: String) : PlayerInfo? {

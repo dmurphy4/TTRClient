@@ -104,8 +104,7 @@ class GamePresenter(private val gameActivity: IGameView,
     }
 
     override fun getNumDestCards(): Int {
-        val cards = RootModel.instance.game!!.board.destinationDeck.cards
-        return cards.size
+        return RootModel.instance.game!!.destinationDeckSize
     }
 
     override fun getUserColor(): String {

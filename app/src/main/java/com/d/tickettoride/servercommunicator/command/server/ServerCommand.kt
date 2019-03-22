@@ -21,6 +21,10 @@ sealed class ServerCommand {
         override fun type(): CommandType = CommandType.S_DRAW_FACE_UP_TRAIN_CAR_CARD
     }
 
+    data class DrawTrainCarCard(val username: String): ServerCommand() {
+        override fun type(): CommandType = CommandType.S_DRAW_FROM_TRAIN_PILE
+    }
+
     data class JoinGame(val gameName:String, val username:String): ServerCommand() {
         override fun type() = CommandType.S_JOIN_GAME
     }

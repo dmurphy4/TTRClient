@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import com.d.tickettoride.R
 import com.d.tickettoride.presenters.TrainCardsPresenter
 import com.d.tickettoride.presenters.ipresenters.ITrainCardsPresenter
-import com.d.tickettoride.presenters.states.Statelike
-import com.d.tickettoride.util.putArgs
 import com.d.tickettoride.views.iviews.ITrainCardsView
 import kotlinx.android.synthetic.main.fragment_train_cards.*
 
@@ -19,8 +17,7 @@ class TrainCardsFragment : Fragment(), ITrainCardsView {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_train_cards, container, false)
 

@@ -35,7 +35,7 @@ class ServerProxy {
                     is ServerCommand.Poll -> CommandListResponse::class.java
                     is ServerCommand.DrawDestinationCards -> DrawDestinationCardResponse::class.java
                     is ServerCommand.ChooseDestinationCard -> ReceiveMoreDestinationsResponse::class.java
-                    is ServerCommand.DrawFaceUp -> DrawFaceUpResponse::class.java
+                    is ServerCommand.DrawFaceUp, is ServerCommand.DrawTrainCarCard -> DrawTrainCarCardResponse::class.java
                     else -> GenericResponse::class.java
                 }
                 val gson = Gson()

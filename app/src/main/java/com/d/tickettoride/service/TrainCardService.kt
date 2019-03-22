@@ -25,15 +25,15 @@ class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun drawFromDeck() {
-        RootModel.instance.game!!.board.trainDeck.draw()
+        proxy.command(ServerCommand.DrawTrainCarCard(RootModel.instance.user!!.username))
     }
 
     fun drawPileSize(): Int {
-        return RootModel.instance.game!!.board.trainDeck.drawPile.size
+        return RootModel.instance.game!!.trainCarDeck.deckSize
     }
 
     fun getFaceUpCardType(idx: Int): TrainCarCardType {
-        return RootModel.instance.game!!.board.trainDeck.getFaceUpCardType(idx)
+        return RootModel.instance.game!!.trainCarDeck.getFaceUpCardType(idx)
     }
 
     fun takeFaceUpCard(idx: Int) {
@@ -49,6 +49,6 @@ class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun setFaceUpChangedListener(callback: ((index: Int, type: TrainCarCardType) -> Unit)) {
-        RootModel.instance.game!!.board.trainDeck.onFaceUpChanged = callback
+        RootModel.instance.game!!.trainCarDeck.onFaceUpChanged = callback
     }
 }
