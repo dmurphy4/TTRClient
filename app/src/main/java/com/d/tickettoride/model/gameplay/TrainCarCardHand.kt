@@ -2,8 +2,10 @@ package com.d.tickettoride.model.gameplay
 
 class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
 
-    private val cardMap: HashMap<TrainCarCardType, Int> = hashMapOf(
-        TrainCarCardType.RED to 0,
+    private lateinit var cardMap: HashMap<TrainCarCardType, Int>
+
+    fun setUpMap() {
+        cardMap = hashMapOf(TrainCarCardType.RED to 0,
         TrainCarCardType.BLACK to 0,
         TrainCarCardType.BLUE to 0,
         TrainCarCardType.GREEN to 0,
@@ -12,7 +14,8 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
         TrainCarCardType.WHITE to 0,
         TrainCarCardType.PURPLE to 0,
         TrainCarCardType.LOCOMOTIVE to 0
-    )
+        )
+    }
 
     var onHandChanged: ((TrainCarCardHand) -> Unit)? = null
 

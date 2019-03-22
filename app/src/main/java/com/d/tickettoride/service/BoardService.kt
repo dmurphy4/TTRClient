@@ -84,6 +84,10 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         proxy.command(ServerCommand.ClaimRoute(id, RootModel.instance.user!!.username))
     }
 
+    fun setUpTrainCardMap() {
+        RootModel.instance.user!!.trainCardHand.setUpMap()
+    }
+
     fun markRoute(id:Int, username:String) {
         RootModel.instance.game!!.board.markRoute(id, username, RootModel.instance.game!!.getPlayerByUsername(username)!!.color!!.toString())
     }
