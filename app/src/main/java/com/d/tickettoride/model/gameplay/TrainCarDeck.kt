@@ -3,6 +3,7 @@ package com.d.tickettoride.model.gameplay
 class TrainCarDeck(var faceUpCards: ArrayList<TrainCarCard>, var deckSize: Int) {
 
     var onFaceUpChanged: ((Int, TrainCarCardType) -> Unit)? = null
+    var onDeckSizeChanged: ((Int) -> Unit)? = null
 
     fun getFaceUpCardType(idx: Int): TrainCarCardType {
         return faceUpCards[idx].type
@@ -11,6 +12,11 @@ class TrainCarDeck(var faceUpCards: ArrayList<TrainCarCard>, var deckSize: Int) 
     fun replaceFaceUpCard(idx: Int, card: TrainCarCard) {
         faceUpCards[idx] = card
         onFaceUpChanged?.invoke(idx, faceUpCards[idx].type)
+    }
+
+    fun changeDeckSize(size: Int) {
+        deckSize = size
+        onDeckSizeChanged?.invoke(deckSize)
     }
 }
 

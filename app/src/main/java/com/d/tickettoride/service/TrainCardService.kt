@@ -40,6 +40,14 @@ class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
         proxy.command(ServerCommand.DrawFaceUp(idx, RootModel.instance.user!!.username))
     }
 
+    fun replaceFaceUpCard(idx: Int, card: TrainCarCard) {
+        RootModel.instance.game!!.trainCarDeck.replaceFaceUpCard(idx, card)
+    }
+
+    fun changeDeckSize(deckSize: Int) {
+        RootModel.instance.game!!.trainCarDeck.changeDeckSize(deckSize)
+    }
+
     fun addCardToUserHand(card: TrainCarCard) {
         RootModel.instance.user!!.trainCardHand.changeCardCount(card.type, 1)
     }
@@ -50,5 +58,9 @@ class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
 
     fun setFaceUpChangedListener(callback: ((index: Int, type: TrainCarCardType) -> Unit)) {
         RootModel.instance.game!!.trainCarDeck.onFaceUpChanged = callback
+    }
+
+    fun setDeckSizeChangedListener(callback: ((size: Int) -> Unit)) {
+        RootModel.instance.game!!.trainCarDeck.onDeckSizeChanged = callback
     }
 }

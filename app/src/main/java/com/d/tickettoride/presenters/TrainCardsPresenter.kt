@@ -14,17 +14,21 @@ class TrainCardsPresenter(private val trainCardsFragment: ITrainCardsView): ITra
 
     private lateinit var gamePresenter: IGamePresenter
 
-    override fun replaceFaceUpCard(idx: Int) {
+    init {
         trainCardService.setFaceUpChangedListener { index, type ->
             trainCardsFragment.updateCardAt(index, getDrawable(type))
-            trainCardsFragment.updateDeckSize(trainCardService.drawPileSize())
         }
+        trainCardService.setDeckSizeChangedListener { size ->
+            trainCardsFragment.updateDeckSize(size)
+        }
+    }
+
+    override fun replaceFaceUpCard(idx: Int) {
         gamePresenter.getState().drawFaceUp(idx, gamePresenter)
     }
 
     override fun drawFromDeck() {
         gamePresenter.getState().drawFromDrawpile(gamePresenter)
-        trainCardsFragment.updateDeckSize(trainCardService.drawPileSize())
     }
 
     override fun setGamePresenter(presenter: IGamePresenter) {

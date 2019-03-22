@@ -20,6 +20,7 @@ class DrewTrainCardState : Statelike() {
     }
 
     override fun drawFromDrawpile(gamePresenter: IGamePresenter) {
+        trainCardService.drawFromDeck()
         TurnService.instance.endTurn()
         gamePresenter.setState(NotYourTurnState())
     }
