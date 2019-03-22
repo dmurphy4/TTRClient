@@ -1,6 +1,7 @@
 package com.d.tickettoride.service
 
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.gameplay.RouteColor
 import com.d.tickettoride.model.gameplay.TrainCarCardHand
 import com.d.tickettoride.model.gameplay.TrainCarCardType
 
@@ -35,5 +36,13 @@ class TrainCardService {
 
     fun setFaceUpChangedListener(callback: ((index: Int, type: TrainCarCardType) -> Unit)) {
         RootModel.instance.game!!.board.trainDeck.onFaceUpChanged = callback
+    }
+
+    fun postClaimDecrease(id: Int) {
+        val route = RootModel.instance.game!!.board.routes.getValue(id)
+        val color = route.color
+        val numCardsToDecrease = route.numTracks
+
+        val cardColor = RouteColor.getCardColor(color)
     }
 }

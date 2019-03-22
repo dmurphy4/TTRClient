@@ -1,8 +1,6 @@
 package com.d.tickettoride.model
 
-import com.d.tickettoride.model.gameplay.DestinationCardHand
-import com.d.tickettoride.model.gameplay.TrainCarCard
-import com.d.tickettoride.model.gameplay.TrainCarCardHand
+import com.d.tickettoride.model.gameplay.*
 import kotlin.properties.Delegates.observable
 
 class User(var username:String, var playerInfo:PlayerInfo?,
@@ -25,4 +23,10 @@ class User(var username:String, var playerInfo:PlayerInfo?,
     }
 
     var onYourTurn: ((Boolean, Boolean) -> Unit)? = null
+
+    fun canClaimRoute(route: Route) : Boolean{
+        val routeLength = route.numTracks
+        return routeLength < (trainCardHand!!.cardMap[RouteColor.getCardColor(route.color)]!! + trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE]!!)
+    }
+
 }

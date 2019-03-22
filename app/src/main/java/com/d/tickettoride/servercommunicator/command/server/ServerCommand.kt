@@ -45,6 +45,10 @@ sealed class ServerCommand {
         override fun type() = CommandType.S_END_TURN
     }
 
+    data class ClaimRoute(val id:Int, val username:String): ServerCommand() {
+        override fun type() = CommandType.S_CLAIM_ROUTE
+    }
+
     abstract fun type(): CommandType
 
     fun toJson(): String {

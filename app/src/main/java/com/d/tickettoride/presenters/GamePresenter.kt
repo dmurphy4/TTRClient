@@ -131,6 +131,10 @@ class GamePresenter(private val gameActivity: IGameView,
         return boardService.getUserColor()
     }
 
+    override fun claimRoute(id: Int) {
+        currentState.claimRoute(this, id)
+    }
+
     override fun testPhase2() {
         when(phase2Iteration) {
             0 -> {

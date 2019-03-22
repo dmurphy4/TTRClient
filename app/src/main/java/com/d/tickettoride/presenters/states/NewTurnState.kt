@@ -1,5 +1,7 @@
 package com.d.tickettoride.presenters.states
 
+import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.gameplay.Route
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.service.TurnService
@@ -13,10 +15,16 @@ class NewTurnState : Statelike() {
     }
 
     override fun claimRoute(gamePresenter: IGamePresenter, id:Int) {
-        BoardService.instance.claimRoute(id)
+        val route: Route = RootModel.instance.game!!.board.routes.getValue(id)
 
-        TurnService.instance.endTurn()
-        gamePresenter.setState(NotYourTurnState())
+        if (RootModel.instance.user!!.canClaimRoute(route)) {
+            BoardService.instance.claimRoute(id)
+            TurnService.instance.endTurn()
+            gamePresenter.setState(NotYourTurnState())
+        }
+        else {
+            gamePresenter.postErrorMessage("Sorry, you don't have the cards to claim this route.")
+        }
     }
 
     override fun drawFromDrawpile(gamePresenter: IGamePresenter) {

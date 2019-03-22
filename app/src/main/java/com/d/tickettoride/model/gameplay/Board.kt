@@ -6,4 +6,8 @@ class Board (var routes:Map<Int, Route>, var cities:Map<Int, City>,
     fun prepFaceUpCards() {
         trainDeck.faceUpCardsReady()
     }
+
+    fun markRoute(id:Int, username:String) {
+        routes.getValue(id).owner = username
+    }
 }
