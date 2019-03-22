@@ -5,15 +5,16 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
     private lateinit var cardMap: HashMap<TrainCarCardType, Int>
 
     fun setUpMap() {
-        cardMap = hashMapOf(TrainCarCardType.RED to 0,
-        TrainCarCardType.BLACK to 0,
-        TrainCarCardType.BLUE to 0,
-        TrainCarCardType.GREEN to 0,
-        TrainCarCardType.YELLOW to 0,
-        TrainCarCardType.ORANGE to 0,
-        TrainCarCardType.WHITE to 0,
-        TrainCarCardType.PURPLE to 0,
-        TrainCarCardType.LOCOMOTIVE to 0
+        cardMap = hashMapOf(
+            TrainCarCardType.RED to 0,
+            TrainCarCardType.BLACK to 0,
+            TrainCarCardType.BLUE to 0,
+            TrainCarCardType.GREEN to 0,
+            TrainCarCardType.YELLOW to 0,
+            TrainCarCardType.ORANGE to 0,
+            TrainCarCardType.WHITE to 0,
+            TrainCarCardType.PURPLE to 0,
+            TrainCarCardType.LOCOMOTIVE to 0
         )
 
         for(card in cards) {
@@ -22,10 +23,6 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
     }
 
     var onHandChanged: ((TrainCarCardHand) -> Unit)? = null
-
-    init {
-
-    }
 
     fun changeCardCount(type: TrainCarCardType, amount: Int) {
         cardMap[type]!!.plus(amount)
