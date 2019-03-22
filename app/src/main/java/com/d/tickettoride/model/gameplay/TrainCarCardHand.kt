@@ -18,7 +18,7 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
         )
 
         for(card in cards) {
-            cardMap[card.type]?.inc()
+            cardMap[card.type] = cardMap[card.type]!! + 1
         }
     }
 
