@@ -1,7 +1,5 @@
 package com.d.tickettoride.views.iviews
 
-import com.d.tickettoride.model.PlayerColor
-
 interface IGameView {
     fun enableClaimButton(enable: Boolean)
     fun enableChooseDestButton(enable: Boolean)
