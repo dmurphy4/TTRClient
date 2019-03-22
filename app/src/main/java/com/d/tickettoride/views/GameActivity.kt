@@ -95,7 +95,6 @@ class GameActivity : AppCompatActivity(), IGameView {
                 displayErrorMessage("No route chosen to claim.")
             }
         }
-        button_phase_2.setOnClickListener { gamePresenter.testPhase2() }
     }
 
     /*
@@ -271,6 +270,10 @@ class GameActivity : AppCompatActivity(), IGameView {
     override fun setRoutesAsUnHighlighted() {
         game_board.unHighlightAll()
         chosenRouteId = -1
+    }
+
+    override fun setRouteToClaimed(id: Int, playerColor: String) {
+        game_board.changeRoutePaintToClaimed(id, playerColor)
     }
 
     /*

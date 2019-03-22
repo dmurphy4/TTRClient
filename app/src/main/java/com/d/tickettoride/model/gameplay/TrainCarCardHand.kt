@@ -27,6 +27,21 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
         onHandChanged?.invoke(this)
     }
 
+    fun getAmountOfType(type: TrainCarCardType): Int {
+        return when (type) {
+            TrainCarCardType.RED -> getRed()
+            TrainCarCardType.BLACK -> getBlack()
+            TrainCarCardType.BLUE -> getBlue()
+            TrainCarCardType.GREEN -> getGreen()
+            TrainCarCardType.YELLOW -> getYellow()
+            TrainCarCardType.ORANGE -> getOrange()
+            TrainCarCardType.WHITE -> getWhite()
+            TrainCarCardType.PURPLE -> getPurple()
+            TrainCarCardType.LOCOMOTIVE -> getLocomotive()
+            else -> -1
+        }
+    }
+
     fun getRed(): Int {
         return cardMap[TrainCarCardType.RED]!!
     }

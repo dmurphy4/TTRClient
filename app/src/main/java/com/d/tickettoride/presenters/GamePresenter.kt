@@ -49,6 +49,9 @@ class GamePresenter(private val gameActivity: IGameView,
                 hand.getLocomotive()
             )
         }
+        boardService.setRouteAsClaimedListener { id, color ->
+            gameActivity.setRouteToClaimed(id, color)
+        }
         rootModel.game!!.playerStats[0].yourTurn = true
 
         rootModel.user!!.onYourTurn = { _, new ->

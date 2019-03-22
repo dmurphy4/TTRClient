@@ -1,5 +1,7 @@
 package com.d.tickettoride.views.iviews
 
+import com.d.tickettoride.model.PlayerColor
+
 interface IGameView {
     fun enableClaimButton(enable: Boolean)
     fun enableChooseDestButton(enable: Boolean)
@@ -10,4 +12,5 @@ interface IGameView {
     fun displayErrorMessage(message: String)
     fun drawRoute(id: Int, color: String)
     fun displayDestPickPopup(cards: ArrayList<String>)
+    fun setRouteToClaimed(id: Int, playerColor: String)
 }

@@ -26,7 +26,7 @@ class User(var username:String, var playerInfo:PlayerInfo?,
 
     fun canClaimRoute(route: Route) : Boolean{
         val routeLength = route.numTracks
-        return routeLength < (trainCardHand!!.cardMap[RouteColor.getCardColor(route.color)]!! + trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE]!!)
+        return routeLength < (trainCardHand!!.getAmountOfType(RouteColor.getCardColor(route.color)) + trainCardHand!!.getAmountOfType(TrainCarCardType.LOCOMOTIVE))
     }
 
 }

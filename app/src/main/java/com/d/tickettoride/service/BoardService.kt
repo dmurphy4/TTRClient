@@ -85,7 +85,11 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun markRoute(id:Int, username:String) {
+        RootModel.instance.game!!.board.markRoute(id, username, RootModel.instance.game!!.getPlayerByUsername(username)!!.color!!.toString())
+    }
 
+    fun setRouteAsClaimedListener(callback: ((Int, String) -> Unit)) {
+        RootModel.instance.game!!.board.onOwnerChanged = callback
     }
 
     fun setTrainCardHandChangedListener(callback: ((TrainCarCardHand) -> Unit)) {
