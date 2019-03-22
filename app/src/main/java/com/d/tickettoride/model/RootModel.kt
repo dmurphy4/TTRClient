@@ -10,7 +10,7 @@ class RootModel {
         val instance = RootModel()
     }
 
-    var poller:Poller? = null
+    var poller: Poller? = null
 
     var user: User? = null
 
@@ -20,39 +20,39 @@ class RootModel {
 
     var onLogIn: ((Boolean, Boolean) -> Unit)? = null
 
-    var waitingForGame:Boolean by observable(false) {
+    var waitingForGame: Boolean by observable(false) {
         _, old, new -> onGameJoined?.invoke(old, new)
     }
 
     var onGameJoined: ((Boolean, Boolean) -> Unit)? = null
 
-    var game:Game? = null
+    var game: Game? = null
 
-    var gameStarted:Boolean by observable(false) {
+    var gameStarted: Boolean by observable(false) {
         _, old, new -> onGameBoolTrue?.invoke(old, new)
     }
 
     var onGameBoolTrue: ((Boolean, Boolean) -> Unit)? = null
 
-    var gameList:ArrayList<GameInfo> = ArrayList()
+    var gameList: ArrayList<GameInfo> = ArrayList()
 
-    var gameToRemoveFromList:GameInfo? = null
+    var gameToRemoveFromList: GameInfo? = null
 
-    var gameListLength:Int by observable(0) {
+    var gameListLength: Int by observable(0) {
         _, old, new -> onGameListChanged?.invoke(old, new)
     }
 
     var onGameListChanged: ((Int, Int) -> Unit)? = null
 
-    var destinationCardsToChoose:ArrayList<DestinationCard>? = null
+    var destinationCardsToChoose: ArrayList<DestinationCard>? = null
 
-    var destCardsGiven:Boolean by observable(false) {
+    var destCardsGiven: Boolean by observable(false) {
             _, old, new -> onDestinationCardsGiven?.invoke(old, new)
     }
 
-    var onDestinationCardsGiven:((Boolean, Boolean) -> Unit)? = null
+    var onDestinationCardsGiven: ((Boolean, Boolean) -> Unit)? = null
 
-    var errorMessage:String? by observable<String?>(null) {
+    var errorMessage: String? by observable<String?>(null) {
         _,old,new -> onErrorMessageGiven?.invoke(old, new)
     }
     var onErrorMessageGiven: ((String?, String?) -> Unit)? = null
