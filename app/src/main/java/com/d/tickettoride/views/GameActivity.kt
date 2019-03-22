@@ -52,6 +52,8 @@ class GameActivity : AppCompatActivity(), IGameView {
     private lateinit var checkBox3: CheckBox
     private lateinit var popupWindow: PopupWindow
 
+    var chosenRouteId = -1
+
     /*
      * Creates the game activity.
      *
@@ -85,6 +87,15 @@ class GameActivity : AppCompatActivity(), IGameView {
             val num: Int = gamePresenter.getNumDestCards()
             Toast.makeText(this, num.toString(), Toast.LENGTH_LONG).show()
         }
+        button_claim_route.setOnClickListener {
+            if (chosenRouteId != -1) {
+                gamePresenter.claimRoute(chosenRouteId)
+            }
+            else {
+                displayErrorMessage("No route chosen to claim.")
+            }
+        }
+        button_phase_2.setOnClickListener { gamePresenter.testPhase2() }
     }
 
     /*
@@ -252,11 +263,14 @@ class GameActivity : AppCompatActivity(), IGameView {
         game_board.setRouteData(board.routes, gamePresenter.getUserColor())
         game_board.onRouteClicked = {id ->
             game_board.highlightRoute(id)
-
-            // DALLIN ADD FUNCTIONALITY HERE
-
+            chosenRouteId = id
         }
         game_board.invalidate()
+    }
+
+    override fun setRoutesAsUnHighlighted() {
+        game_board.unHighlightAll()
+        chosenRouteId = -1
     }
 
     /*

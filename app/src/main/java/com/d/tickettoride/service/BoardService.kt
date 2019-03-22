@@ -81,6 +81,10 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun claimRoute(id:Int) {
+        proxy.command(ServerCommand.ClaimRoute(id, RootModel.instance.user!!.username))
+    }
+
+    fun markRoute(id:Int, username:String) {
 
     }
 

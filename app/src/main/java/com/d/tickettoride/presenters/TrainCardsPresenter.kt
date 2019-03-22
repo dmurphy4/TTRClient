@@ -54,6 +54,7 @@ class TrainCardsPresenter(private val trainCardsFragment: ITrainCardsView): ITra
             TrainCarCardType.WHITE -> R.drawable.cardwhite
             TrainCarCardType.BLUE -> R.drawable.cardblue
             TrainCarCardType.LOCOMOTIVE -> R.drawable.cardlocomotive
+            else -> R.drawable.cardblack
         }
     }
 }

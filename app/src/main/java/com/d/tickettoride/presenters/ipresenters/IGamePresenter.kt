@@ -9,11 +9,12 @@ interface IGamePresenter {
     fun setBoard(cities: String, routes: String)
     fun getCityFromGame(id:Int) : City
     fun drawDestinationCards()
+    fun claimRoute(id: Int)
+    fun setState(state:Statelike)
     fun chooseDestinationCards(indexes: ArrayList<Int>, notChosen: ArrayList<Int>)
     fun getDestCards(): String
     fun getNumDestCards(): Int
     fun getUserColor(): String
     fun postErrorMessage(message:String)
-    fun setState(state: Statelike)
     fun getState(): Statelike
 }

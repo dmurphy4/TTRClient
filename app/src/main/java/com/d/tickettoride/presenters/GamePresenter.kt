@@ -114,6 +114,9 @@ class GamePresenter(private val gameActivity: IGameView,
     override fun setState(state: Statelike) {
         currentState = state
     }
+    override fun claimRoute(id: Int) {
+        currentState.claimRoute(this, id)
+    }
 
     override fun getState(): Statelike {
         return currentState

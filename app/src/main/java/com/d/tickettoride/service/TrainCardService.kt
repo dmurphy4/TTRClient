@@ -1,11 +1,12 @@
 package com.d.tickettoride.service
 
 import com.d.tickettoride.model.RootModel
+import com.d.tickettoride.model.gameplay.RouteColor
 import com.d.tickettoride.model.gameplay.TrainCarCard
-import com.d.tickettoride.model.gameplay.TrainCarCardHand
 import com.d.tickettoride.model.gameplay.TrainCarCardType
-import com.d.tickettoride.servercommunicator.ServerProxy
 import com.d.tickettoride.servercommunicator.command.server.ServerCommand
+import com.d.tickettoride.model.gameplay.TrainCarCardHand
+import com.d.tickettoride.servercommunicator.ServerProxy
 
 class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
 
@@ -62,5 +63,13 @@ class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
 
     fun setDeckSizeChangedListener(callback: ((size: Int) -> Unit)) {
         RootModel.instance.game!!.trainCarDeck.onDeckSizeChanged = callback
+    }
+
+    fun postClaimDecrease(id: Int) {
+        val route = RootModel.instance.game!!.board.routes.getValue(id)
+        val color = route.color
+        val numCardsToDecrease = route.numTracks
+
+        val cardColor = RouteColor.getCardColor(color)
     }
 }

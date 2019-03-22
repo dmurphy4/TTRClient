@@ -11,5 +11,6 @@ enum class TrainCarCardType {
     @SerializedName ("ORANGE") ORANGE,
     @SerializedName ("WHITE") WHITE,
     @SerializedName ("BLUE") BLUE,
-    @SerializedName ("LOCOMOTIVE") LOCOMOTIVE
+    @SerializedName ("LOCOMOTIVE") LOCOMOTIVE,
+    @SerializedName ("NONE") NONE
 }

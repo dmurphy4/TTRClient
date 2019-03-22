@@ -27,7 +27,7 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val routeWidth = 30f
 
     private var routePaths: MutableMap<Int, RouteView> = HashMap()
-    private var previousClickId: Int = 0
+    var previousClickId: Int = 0
     private var mapDrawable: Drawable? = context.getDrawable(R.drawable.usterrain)
 
 
@@ -47,6 +47,11 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         routePaths[previousClickId]?.paintType = RouteView.RoutePaintType.DOTTED
         routePaths[id]?.paintType = RouteView.RoutePaintType.SOLID
         previousClickId = id
+        invalidate()
+    }
+
+    fun unHighlightAll() {
+        routePaths[previousClickId]?.paintType = RouteView.RoutePaintType.DOTTED
         invalidate()
     }
 
