@@ -15,14 +15,16 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
         TrainCarCardType.PURPLE to 0,
         TrainCarCardType.LOCOMOTIVE to 0
         )
+
+        for(card in cards) {
+            cardMap[card.type] = cardMap[card.type]!! + 1
+        }
     }
 
     var onHandChanged: ((TrainCarCardHand) -> Unit)? = null
 
     init {
-        for(card in cards) {
-            cardMap[card.type]?.inc()
-        }
+
     }
 
     fun changeCardCount(type: TrainCarCardType, amount: Int) {

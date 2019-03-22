@@ -23,7 +23,7 @@ class GamePresenter(private val gameActivity: IGameView,
             }
         }
         boardService.setTrainCardHandCreatedListener { hand ->
-            boardService.setUpTrainCardMap()
+            hand.setUpMap()
             gameActivity.updateTrainCards(
                 hand.getBlack(),
                 hand.getBlue(),
