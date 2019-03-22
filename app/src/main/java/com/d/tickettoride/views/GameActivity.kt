@@ -72,6 +72,7 @@ class GameActivity : AppCompatActivity(), IGameView {
         setContentView(R.layout.activity_game)
 
         setBoardData()
+        gamePresenter.setRouteClaimedListener()
         drawBoard()
         replaceDrawerFragment(statsFragment)
         setTrainCardsFragment(trainCardsFragment)

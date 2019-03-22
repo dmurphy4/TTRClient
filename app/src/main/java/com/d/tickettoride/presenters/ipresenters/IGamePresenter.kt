@@ -17,4 +17,5 @@ interface IGamePresenter {
     fun getUserColor(): String
     fun postErrorMessage(message:String)
     fun getState(): Statelike
+    fun setRouteClaimedListener()
 }

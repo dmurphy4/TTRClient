@@ -49,9 +49,6 @@ class GamePresenter(private val gameActivity: IGameView,
                 hand.getLocomotive()
             )
         }
-        boardService.setRouteAsClaimedListener { id, color ->
-            gameActivity.setRouteToClaimed(id, color)
-        }
         rootModel.game!!.playerStats[0].yourTurn = true
 
         rootModel.user!!.onYourTurn = { _, new ->
@@ -84,6 +81,12 @@ class GamePresenter(private val gameActivity: IGameView,
 
     override fun postErrorMessage(message:String) {
         gameActivity.displayErrorMessage(message)
+    }
+
+    override fun setRouteClaimedListener() {
+        boardService.setRouteAsClaimedListener { id, color ->
+            gameActivity.setRouteToClaimed(id, color)
+        }
     }
 
     override fun getDestCards(): String{
