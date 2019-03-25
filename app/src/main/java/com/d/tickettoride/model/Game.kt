@@ -13,7 +13,7 @@ class Game(
     var destinationDeckSize: Int,
     val eventHistory:ArrayList<Event> = ArrayList()
 ) {
-    var turn: Int by observable(-1) { _, old, new ->
+    var turn: Int by observable(0) { _, old, new ->
         onTurnChanged?.invoke(old, new)
     }
     var statsChanged:Boolean by observable(false) { _, old, new ->
