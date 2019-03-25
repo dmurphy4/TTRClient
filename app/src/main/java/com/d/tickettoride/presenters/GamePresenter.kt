@@ -35,20 +35,8 @@ class GamePresenter(private val gameActivity: IGameView,
                 hand.getYellow(),
                 hand.getLocomotive()
             )
+            setHandChangedListener()
             currentState.beginPlay(this)
-        }
-        boardService.setTrainCardHandChangedListener { hand ->
-            gameActivity.updateTrainCards(
-                hand.getBlack(),
-                hand.getBlue(),
-                hand.getGreen(),
-                hand.getOrange(),
-                hand.getPurple(),
-                hand.getRed(),
-                hand.getWhite(),
-                hand.getYellow(),
-                hand.getLocomotive()
-            )
         }
         rootModel.game!!.playerStats[0].yourTurn = true
 
@@ -127,6 +115,22 @@ class GamePresenter(private val gameActivity: IGameView,
 
     override fun getState(): Statelike {
         return currentState
+    }
+
+    private fun setHandChangedListener() {
+        boardService.setTrainCardHandChangedListener { hand ->
+            gameActivity.updateTrainCards(
+                hand.getBlack(),
+                hand.getBlue(),
+                hand.getGreen(),
+                hand.getOrange(),
+                hand.getPurple(),
+                hand.getRed(),
+                hand.getWhite(),
+                hand.getYellow(),
+                hand.getLocomotive()
+            )
+        }
     }
 
 //    override fun testPhase2() {
