@@ -61,18 +61,6 @@
                 android:layout_marginBottom="5dp"
                 android:text="Number of Destination Cards"/>
 
-        <Button
-                android:id="@+id/button_phase_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|start"
-                android:background="@color/colorAccent"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:padding="12dp"
-                android:layout_marginBottom="5dp"
-                android:text="Test Phase 2"/>
-
         <TextView android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
                   android:id="@+id/turn_indicator"
