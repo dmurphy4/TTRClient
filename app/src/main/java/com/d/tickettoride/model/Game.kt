@@ -16,6 +16,7 @@ class Game(
     var turn: Int by observable(0) { _, old, new ->
         onTurnChanged?.invoke(old, new)
     }
+
     var statsChanged:Boolean by observable(false) { _, old, new ->
         onStatsChanged?.invoke(old, new)
     }
