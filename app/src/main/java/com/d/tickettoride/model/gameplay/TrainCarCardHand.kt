@@ -25,7 +25,7 @@ class TrainCarCardHand(val cards:List<TrainCarCard>) : IHand {
     var onHandChanged: ((TrainCarCardHand) -> Unit)? = null
 
     fun changeCardCount(type: TrainCarCardType, amount: Int) {
-        cardMap[type]!!.plus(amount)
+        cardMap[type] = cardMap[type]!! + amount
         onHandChanged?.invoke(this)
     }
 
