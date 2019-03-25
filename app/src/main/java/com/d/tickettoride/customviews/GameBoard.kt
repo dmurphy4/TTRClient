@@ -31,7 +31,7 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var mapDrawable: Drawable? = context.getDrawable(R.drawable.usterrain)
 
 
-    var onRouteClicked: ((id: Int) -> Unit)? = null
+    var onRouteClicked: ((id: Int, type: RouteView.RoutePaintType) -> Unit)? = null
 
     fun changeRoutePaintToClaimed(id: Int, playerColor: String) {
         routePaths[id]?.claimedPaint = Paint(ANTI_ALIAS_FLAG).apply {
@@ -113,7 +113,7 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
             MotionEvent.ACTION_DOWN -> {
                 for ((id, route) in routePaths) {
                     if (route.isTouchInRoute(x, y)) {
-                        onRouteClicked?.invoke(id)
+                        onRouteClicked?.invoke(id, route.paintType)
                         return true
                     }
                 }

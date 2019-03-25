@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.*
 import com.d.tickettoride.R
+import com.d.tickettoride.customviews.RouteView
 import com.d.tickettoride.presenters.GamePresenter
 import com.d.tickettoride.presenters.TrainCardsPresenter
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
@@ -261,21 +262,19 @@ class GameActivity : AppCompatActivity(), IGameView {
         val board = gamePresenter.getBoard()
         game_board.cities = board.cities
         game_board.setRouteData(board.routes, gamePresenter.getUserColor())
-        game_board.onRouteClicked = {id ->
-            game_board.highlightRoute(id)
-            chosenRouteId = id
+        game_board.onRouteClicked = {id, type ->
+            if (type != RouteView.RoutePaintType.CLAIMED) {
+                game_board.highlightRoute(id)
+                chosenRouteId = id
+            } else {
+                displayErrorMessage("That route is already claimed.")
+            }
         }
         game_board.invalidate()
     }
 
-    override fun setRoutesAsUnHighlighted() {
-        game_board.unHighlightAll()
-        chosenRouteId = -1
-    }
-
     override fun setRouteToClaimed(id: Int, playerColor: String) {
         game_board.changeRoutePaintToClaimed(id, playerColor)
-        setRoutesAsUnHighlighted()
     }
 
     /*
