@@ -24,6 +24,8 @@ class User(var username:String, var playerInfo:PlayerInfo?,
 
     var onYourTurn: ((Boolean, Boolean) -> Unit)? = null
 
+    var lastTurn: Boolean = false
+
     fun canClaimRoute(route: Route) : Boolean{
         val routeLength = route.numTracks
         val minTracks = (trainCardHand.getAmountOfType(RouteColor.getCardColor(route.color)) + trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE))

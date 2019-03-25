@@ -56,7 +56,7 @@ class GamePresenter(private val gameActivity: IGameView,
 
         rootModel.user!!.onYourTurn = { _, new ->
             if (new) {
-                currentState.beginTurn(this)
+                currentState.beginTurn(this, rootModel.user!!.lastTurn)
             }
         }
     }

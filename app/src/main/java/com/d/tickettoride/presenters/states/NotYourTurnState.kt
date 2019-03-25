@@ -9,8 +9,13 @@ class NotYourTurnState : Statelike() {
         TurnService.instance.endTurn()
     }
 
-    override fun beginTurn(gamePresenter: IGamePresenter) {
+    override fun beginTurn(gamePresenter: IGamePresenter, lastTurn:Boolean) {
         gamePresenter.postErrorMessage("Hurry! It's your turn!")
-        gamePresenter.setState(NewTurnState())
+        if (lastTurn) {
+            gamePresenter.setState(LastTurnState())
+        }
+        else {
+            gamePresenter.setState(NewTurnState())
+        }
     }
 }

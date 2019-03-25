@@ -24,7 +24,7 @@ open class Statelike {
         gamePresenter.postErrorMessage("Sorry, you can't claim a route right now.")
     }
 
-    open fun beginTurn(gamePresenter: IGamePresenter) {
+    open fun beginTurn(gamePresenter: IGamePresenter, lastTurn: Boolean) {
         gamePresenter.postErrorMessage("Sorry, you can't begin a turn right now.")
     }
 
