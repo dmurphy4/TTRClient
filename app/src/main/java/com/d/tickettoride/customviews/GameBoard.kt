@@ -27,12 +27,14 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val routeWidth = 30f
 
     private var routePaths: MutableMap<Int, RouteView> = HashMap()
-    var previousClickId: Int = 0
     private var mapDrawable: Drawable? = context.getDrawable(R.drawable.usterrain)
-
+    var previousClickId: Int = -1
 
     var onRouteClicked: ((id: Int, type: RouteView.RoutePaintType) -> Unit)? = null
 
+    /*
+     * Sets the paint of the given route to claimed and resets the previous click ID
+     */
     fun changeRoutePaintToClaimed(id: Int, playerColor: String) {
         routePaths[id]?.claimedPaint = Paint(ANTI_ALIAS_FLAG).apply {
             color = Color.parseColor(playerColor)
@@ -40,6 +42,7 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
             strokeWidth = 30f
         }
         routePaths[id]?.paintType = RouteView.RoutePaintType.CLAIMED
+        previousClickId = -1
         invalidate()
     }
 
@@ -47,11 +50,6 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         routePaths[previousClickId]?.paintType = RouteView.RoutePaintType.DOTTED
         routePaths[id]?.paintType = RouteView.RoutePaintType.SOLID
         previousClickId = id
-        invalidate()
-    }
-
-    fun unHighlightAll() {
-        routePaths[previousClickId]?.paintType = RouteView.RoutePaintType.DOTTED
         invalidate()
     }
 
