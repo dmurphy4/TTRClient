@@ -42,7 +42,9 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
             strokeWidth = 30f
         }
         routePaths[id]?.paintType = RouteView.RoutePaintType.CLAIMED
-        previousClickId = -1
+        if (id == previousClickId) {
+            previousClickId = -1
+        }
         invalidate()
     }
 
