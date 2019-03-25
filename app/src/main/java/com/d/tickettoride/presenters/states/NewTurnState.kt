@@ -6,6 +6,7 @@ import com.d.tickettoride.model.gameplay.Route
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.service.TrainCardService
+import com.d.tickettoride.service.TurnService
 
 class NewTurnState : Statelike() {
 
@@ -21,6 +22,7 @@ class NewTurnState : Statelike() {
 
         if (RootModel.instance.user!!.canClaimRoute(route)) {
             BoardService.instance.claimRoute(id)
+            TurnService.instance.endTurn()
             gamePresenter.setState(NotYourTurnState())
         }
         else {
@@ -37,6 +39,7 @@ class NewTurnState : Statelike() {
         val previousType = trainCardService.getFaceUpCardType(idx)
         trainCardService.takeFaceUpCard(idx)
         if (previousType == TrainCarCardType.LOCOMOTIVE) {
+            TurnService.instance.endTurn()
             gamePresenter.setState(NotYourTurnState())
         } else {
             gamePresenter.setState(DrewTrainCardState())
