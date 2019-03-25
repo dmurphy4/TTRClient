@@ -39,6 +39,7 @@ class NewTurnState : Statelike() {
         val previousType = trainCardService.getFaceUpCardType(idx)
         trainCardService.takeFaceUpCard(idx)
         if (previousType == TrainCarCardType.LOCOMOTIVE) {
+            TurnService.instance.endTurn()
             gamePresenter.setState(NotYourTurnState())
         } else {
             gamePresenter.setState(DrewTrainCardState())
