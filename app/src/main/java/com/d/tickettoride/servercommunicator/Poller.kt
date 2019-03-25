@@ -8,7 +8,7 @@ import java.util.TimerTask
 class Poller {
     private val timer = Timer()
     init {
-        timer.schedule(PollTask(), 0, 1 * 2000)
+        timer.schedule(PollTask(), 0, 1 * 1000)
     }
 
     class PollTask : TimerTask() {
