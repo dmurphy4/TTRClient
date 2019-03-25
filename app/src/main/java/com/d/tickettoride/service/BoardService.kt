@@ -1,10 +1,7 @@
 package com.d.tickettoride.service
 
 import com.d.tickettoride.model.RootModel
-import com.d.tickettoride.model.gameplay.Board
-import com.d.tickettoride.model.gameplay.City
-import com.d.tickettoride.model.gameplay.Route
-import com.d.tickettoride.model.gameplay.TrainCarCardHand
+import com.d.tickettoride.model.gameplay.*
 import com.d.tickettoride.servercommunicator.ServerProxy
 import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 import com.d.tickettoride.util.fromJson
@@ -90,6 +87,12 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
 
     fun markRoute(id:Int, username:String) {
         RootModel.instance.game!!.board.markRoute(id, username, RootModel.instance.game!!.getPlayerByUsername(username)!!.color!!.toString())
+    }
+
+    fun decreaseCardsPostClaim(id:Int) {
+        val route = RootModel.instance.game!!.board!!.routes.getValue(id)
+
+        RootModel.instance.user!!.decreaseCardsPostClaim(RouteColor.getCardColor(route.color), route.numTracks)
     }
 
     fun setRouteAsClaimedListener(callback: ((Int, String) -> Unit)) {
