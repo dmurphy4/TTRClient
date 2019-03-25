@@ -11,7 +11,12 @@ class PreGameState : Statelike() {
     }
 
     override fun returnDestinations(gamePresenter: IGamePresenter, indexes: ArrayList<Int>, notChosen: ArrayList<Int>) {
-        BoardService.instance.chooseFirstDestinationCards(indexes, notChosen)
+        if (indexes.size <= 2) {
+            gamePresenter.postErrorMessage("Sorry boss, you need to choose 2 or 3")
+        }
+        else {
+            BoardService.instance.chooseFirstDestinationCards(indexes, notChosen)
+        }
     }
 
     override fun beginPlay(gamePresenter: IGamePresenter) {
