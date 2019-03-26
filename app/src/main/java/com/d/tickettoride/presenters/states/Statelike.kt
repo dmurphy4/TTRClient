@@ -25,8 +25,16 @@ open class Statelike {
         gamePresenter.postErrorMessage("Sorry, you can't claim a route right now.")
     }
 
-    open fun claimGrayRoute(gamePresenter: IGamePresenter, id:Int, chosenColor:TrainCarCardType) {
+    open fun claimGrayRoute(gamePresenter: IGamePresenter) {
         gamePresenter.postErrorMessage("Sorry, you can't claim that gray route right now.")
+    }
+
+    open fun chooseColorForGrayRoute(gamePresenter: IGamePresenter, id:Int, chosenColor:TrainCarCardType) {
+        gamePresenter.postErrorMessage("Sorry, can't choose a color for a gray route right now.")
+    }
+
+    open fun chooseNotToClaimGrayRoute(gamePresenter: IGamePresenter) {
+        gamePresenter.postErrorMessage("Sorry, can't choose to not claim a gray route rn.")
     }
 
     open fun beginTurn(gamePresenter: IGamePresenter, lastTurn: Boolean) {
