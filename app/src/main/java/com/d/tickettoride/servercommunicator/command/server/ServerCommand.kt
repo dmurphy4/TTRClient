@@ -1,6 +1,7 @@
 package com.d.tickettoride.servercommunicator.command.server
 
 import com.d.tickettoride.model.gameplay.Event
+import com.d.tickettoride.model.gameplay.TrainCarCardType
 import com.d.tickettoride.servercommunicator.command.CommandType
 import com.google.gson.Gson
 
@@ -55,6 +56,10 @@ sealed class ServerCommand {
 
     data class ClaimRoute(val id:Int, val username:String): ServerCommand() {
         override fun type() = CommandType.S_CLAIM_ROUTE
+    }
+
+    data class ClaimGrayRoute(val id:Int, val username:String, val color:TrainCarCardType): ServerCommand() {
+        override fun type() = CommandType.S_CLAIM_GRAY
     }
 
     abstract fun type(): CommandType

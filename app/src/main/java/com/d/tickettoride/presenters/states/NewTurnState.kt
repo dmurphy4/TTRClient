@@ -19,13 +19,28 @@ class NewTurnState : Statelike() {
     override fun claimRoute(gamePresenter: IGamePresenter, id:Int) {
         val route: Route = RootModel.instance.game!!.board.routes.getValue(id)
 
-        if (RootModel.instance.user!!.canClaimRoute(route)) {
-            BoardService.instance.claimRoute(id)
-            gamePresenter.setState(NotYourTurnState())
+        if (route.companionId == -1) {
+            if (RootModel.instance.user!!.canClaimRoute(route)) {
+                BoardService.instance.claimRoute(id)
+                gamePresenter.setState(NotYourTurnState())
+            } else {
+                gamePresenter.postErrorMessage("Sorry, you don't have the cards to claim this route.")
+            }
         }
         else {
-            gamePresenter.postErrorMessage("Sorry, you don't have the cards to claim this route.")
+            if (RootModel.instance.game!!.board.routes[route.companionId]!!.owner != RootModel.instance.user!!.username &&
+                RootModel.instance.game!!.playerStats.size > 3) {
+                BoardService.instance.claimRoute(id)
+                gamePresenter.setState(NotYourTurnState())
+            }
+            else {
+                gamePresenter.postErrorMessage("Sorry, you can't claim this route.")
+            }
         }
+    }
+
+    override fun claimGrayRoute(gamePresenter: IGamePresenter, id:Int, chosenColor:TrainCarCardType) {
+
     }
 
     override fun drawFromDrawpile(gamePresenter: IGamePresenter) {
