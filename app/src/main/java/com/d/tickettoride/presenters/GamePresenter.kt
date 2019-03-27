@@ -118,7 +118,7 @@ class GamePresenter(private val gameActivity: IGameView,
 
             val typesToUse = RootModel.instance.user!!.canClaimGray(route)
 
-            if (typesToUse.size > 1) {
+            if (typesToUse.size > 0) {
                 //make pop-up come out so they can choose a color, then in the pop-up you can call the claimGrayRoute function below
 
                 currentState.claimGrayRoute(this)

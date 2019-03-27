@@ -77,12 +77,4 @@ class RouteView(val id: Int,
 
         return distance <= 15
     }
-
-    private fun norm(nums:ArrayList<Float>) : Float {
-        var final = 0f
-        for (x:Float in nums) {
-            final += x * x
-        }
-        return sqrt(final)
-    }
 }

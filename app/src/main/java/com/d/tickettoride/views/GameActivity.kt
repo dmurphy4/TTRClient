@@ -287,7 +287,7 @@ class GameActivity : AppCompatActivity(), IGameView {
     override fun setRouteToClaimed(id: Int, playerColor: String) {
         game_board.changeRoutePaintToClaimed(id, playerColor)
     }
- 
+
     /*
      * Submits the checked destination cards to the server.
      *
