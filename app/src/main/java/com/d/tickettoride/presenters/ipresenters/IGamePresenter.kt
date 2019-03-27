@@ -2,6 +2,7 @@ package com.d.tickettoride.presenters.ipresenters
 
 import com.d.tickettoride.model.gameplay.Board
 import com.d.tickettoride.model.gameplay.City
+import com.d.tickettoride.model.gameplay.TrainCarCardType
 import com.d.tickettoride.presenters.states.Statelike
 
 interface IGamePresenter {
@@ -10,6 +11,7 @@ interface IGamePresenter {
     fun getCityFromGame(id:Int) : City
     fun drawDestinationCards()
     fun claimRoute(id: Int)
+    fun claimGrayRoute(id: Int, color: TrainCarCardType)
     fun setState(state:Statelike)
     fun chooseDestinationCards(indexes: ArrayList<Int>, notChosen: ArrayList<Int>)
     fun getDestCards(): String

@@ -110,8 +110,32 @@ class GamePresenter(private val gameActivity: IGameView,
     override fun setState(state: Statelike) {
         currentState = state
     }
+
     override fun claimRoute(id: Int) {
-        currentState.claimRoute(this, id)
+        val route = RootModel.instance.game!!.board.routes.getValue(id)
+
+        if (route.color == RouteColor.GRAY) {
+
+            val typesToUse = RootModel.instance.user!!.canClaimGray(route)
+
+            if (typesToUse.size > 1) {
+                //make pop-up come out so they can choose a color, then in the pop-up you can call the claimGrayRoute function below
+
+                currentState.claimGrayRoute(this)
+            }
+            else {
+                postErrorMessage("Sorry, you don't have the cards to claim a gray route.")
+            }
+        }
+
+        else {
+            currentState.claimRoute(this, id)
+        }
+
+    }
+
+    override fun claimGrayRoute(id: Int, color: TrainCarCardType) {
+        currentState.chooseColorForGrayRoute(this, id, color)
     }
 
     override fun getState(): Statelike {

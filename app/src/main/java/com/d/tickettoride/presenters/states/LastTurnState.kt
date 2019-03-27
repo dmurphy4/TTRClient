@@ -2,6 +2,7 @@ package com.d.tickettoride.presenters.states
 
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.Route
+import com.d.tickettoride.model.gameplay.RouteColor
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 
@@ -10,7 +11,7 @@ class LastTurnState : Statelike() {
     override fun claimRoute(gamePresenter: IGamePresenter, id: Int) {
         val route: Route = RootModel.instance.game!!.board.routes.getValue(id)
 
-        if (RootModel.instance.user!!.canClaimRoute(route)) {
+        if (RootModel.instance.user!!.canClaimRoute(route.numTracks, RouteColor.getCardColor(route.color))) {
             BoardService.instance.claimRoute(id)
             gamePresenter.setState(NotYourTurnState())
         }

@@ -2,7 +2,6 @@ package com.d.tickettoride.presenters.states
 
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
-import com.d.tickettoride.service.TurnService
 
 class DrewDestinationsState : Statelike() {
 
@@ -12,7 +11,6 @@ class DrewDestinationsState : Statelike() {
         }
         else {
             BoardService.instance.chooseDestinationCards(indexes, notChosen)
-            TurnService.instance.endTurn()
             gamePresenter.setState(NotYourTurnState())
         }
     }

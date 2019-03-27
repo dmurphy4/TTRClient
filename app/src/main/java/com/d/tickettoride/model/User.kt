@@ -26,10 +26,29 @@ class User(var username:String, var playerInfo:PlayerInfo?,
 
     var lastTurn: Boolean = false
 
-    fun canClaimRoute(route: Route) : Boolean{
-        val routeLength = route.numTracks
-        val minTracks = (trainCardHand.getAmountOfType(RouteColor.getCardColor(route.color)) + trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE))
+    fun canClaimRoute(routeLength: Int, cardColor: TrainCarCardType) : Boolean {
+        var minTracks = 0
+        if (cardColor == TrainCarCardType.LOCOMOTIVE) {
+            minTracks = trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+        }
+        else {
+            minTracks =
+                trainCardHand.getAmountOfType(cardColor) + trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+        }
         return routeLength <= minTracks
+    }
+
+    fun canClaimGray(route: Route): ArrayList<TrainCarCardType> {
+        val numLocomotive = trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+        val numNeeded = route.numTracks - numLocomotive
+        val typesToUse = ArrayList<TrainCarCardType>()
+
+        for (type in TrainCarCardType.values()) {
+            if (trainCardHand.getAmountOfType(type) >= numNeeded) {
+                typesToUse.add(type)
+            }
+        }
+        return typesToUse
     }
 
     fun decreaseCardsPostClaim(color:TrainCarCardType, amount:Int) {

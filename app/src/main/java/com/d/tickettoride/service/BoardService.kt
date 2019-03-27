@@ -81,6 +81,10 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         proxy.command(ServerCommand.ClaimRoute(id, RootModel.instance.user!!.username))
     }
 
+    fun claimGrayRoute(id:Int, chosenColor:TrainCarCardType) {
+        proxy.command(ServerCommand.ClaimGrayRoute(id, RootModel.instance.user!!.username, chosenColor))
+    }
+
     fun setUpTrainCardMap() {
         RootModel.instance.user!!.trainCardHand.setUpMap()
     }
@@ -89,10 +93,15 @@ class BoardService(val proxy: ServerProxy = ServerProxy()) {
         RootModel.instance.game!!.board.markRoute(id, username, RootModel.instance.game!!.getPlayerByUsername(username)!!.color!!.toString())
     }
 
-    fun decreaseCardsPostClaim(id:Int) {
-        val route = RootModel.instance.game!!.board!!.routes.getValue(id)
+    fun decreaseCardsPostClaim(id:Int, colorIfGray: TrainCarCardType?) {
+        val route = RootModel.instance.game!!.board.routes.getValue(id)
 
-        RootModel.instance.user!!.decreaseCardsPostClaim(RouteColor.getCardColor(route.color), route.numTracks)
+        if (colorIfGray == null) {
+            RootModel.instance.user!!.decreaseCardsPostClaim(RouteColor.getCardColor(route.color), route.numTracks)
+        }
+        else {
+            RootModel.instance.user!!.decreaseCardsPostClaim(colorIfGray, route.numTracks)
+        }
     }
 
     fun setRouteAsClaimedListener(callback: ((Int, String) -> Unit)) {

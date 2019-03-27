@@ -31,5 +31,6 @@ enum class CommandType {
     @SerializedName("S_CLAIM_ROUTE") S_CLAIM_ROUTE,
     @SerializedName("S_DRAW_FACE_UP_TRAIN_CAR_CARD") S_DRAW_FACE_UP_TRAIN_CAR_CARD,
     @SerializedName("S_DRAW_FROM_TRAIN_PILE") S_DRAW_FROM_TRAIN_PILE,
-    @SerializedName("S_END_TURN") S_END_TURN
+    @SerializedName("S_END_TURN") S_END_TURN,
+    @SerializedName("S_CLAIM_GRAY") S_CLAIM_GRAY
 }

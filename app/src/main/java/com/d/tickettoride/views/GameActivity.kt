@@ -287,7 +287,7 @@ class GameActivity : AppCompatActivity(), IGameView {
     override fun setRouteToClaimed(id: Int, playerColor: String) {
         game_board.changeRoutePaintToClaimed(id, playerColor)
     }
-
+ 
     /*
      * Submits the checked destination cards to the server.
      *
@@ -304,19 +304,14 @@ class GameActivity : AppCompatActivity(), IGameView {
         if (checkBox2.isChecked) indexes.add(1) else notChosen.add(1)
         if (checkBox3.isChecked) indexes.add(2) else notChosen.add(2)
 
+        gamePresenter.chooseDestinationCards(indexes, notChosen)
 
-        if (indexes.size < 2) {
-            displayErrorMessage(resources.getString(R.string.error_destinations_not_checked))
-        } else {
-            gamePresenter.chooseDestinationCards(indexes, notChosen)
+        checkBox1.isChecked = false
+        checkBox2.isChecked = false
+        checkBox3.isChecked = false
 
-            checkBox1.isChecked = false
-            checkBox2.isChecked = false
-            checkBox3.isChecked = false
-
-            destinationPopup.dismiss()
-            enableClaimButton(true)
-        }
+        destinationPopup.dismiss()
+        enableClaimButton(true)
     }
 
     private fun claimRouteWithColor() {

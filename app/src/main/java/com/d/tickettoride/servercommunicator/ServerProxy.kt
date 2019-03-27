@@ -24,7 +24,8 @@ class ServerProxy {
         println("OUT TO SERVER: $data")
         doAsync {
             val body = RequestBody.create(JSON, data)
-            val request = Request.Builder().url(url).header("Accept-Encoding", "identity").addHeader("type", command.type().toString()).post(body).build()
+            val request = Request.Builder().url(url).header("Accept-Encoding", "identity")
+                .addHeader("type", command.type().toString()).post(body).build()
             val response = client.newCall(request).execute()
             val respBody = response.body()!!.string()
             uiThread {
@@ -37,6 +38,7 @@ class ServerProxy {
                     is ServerCommand.ChooseDestinationCard -> ReceiveMoreDestinationsResponse::class.java
                     is ServerCommand.DrawFaceUp, is ServerCommand.DrawTrainCarCard -> DrawTrainCarCardResponse::class.java
                     is ServerCommand.ClaimRoute -> ClaimRouteResponse::class.java
+                    is ServerCommand.ClaimGrayRoute -> ClaimGrayRouteResponse::class.java
                     else -> GenericResponse::class.java
                 }
                 val gson = Gson()
