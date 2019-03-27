@@ -16,6 +16,7 @@
     <string name="title_activity_game">Map</string>
     <string name="text_button_claim">Claim a Route</string>
     <string name="destination_pick_title">Choose 2 or 3 Destinations</string>
+    <string name="color_pick_title">Choose a Color to Claim With</string>
     <string name="choose_dest_button_text">Submit</string>
     <string name="title_fragment_stats">Players Stats</string>
     <string name="title_fragment_chat">Chat</string>

@@ -9,7 +9,6 @@ import android.widget.*
 import com.d.tickettoride.R
 import com.d.tickettoride.customviews.RouteView
 import com.d.tickettoride.presenters.GamePresenter
-import com.d.tickettoride.presenters.TrainCardsPresenter
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.views.iviews.IGameView
 import kotlinx.android.synthetic.main.activity_game.*
@@ -43,7 +42,7 @@ class GameActivity : AppCompatActivity(), IGameView {
     }
 
 
-    // kotlinx imports can't be used for popup window, so store them here
+    // kotlinx imports can't be used for popup windows, so store them here
     private lateinit var buttonChooseDest: Button
     private lateinit var destination1: TextView
     private lateinit var destination2: TextView
@@ -51,8 +50,13 @@ class GameActivity : AppCompatActivity(), IGameView {
     private lateinit var checkBox1: CheckBox
     private lateinit var checkBox2: CheckBox
     private lateinit var checkBox3: CheckBox
-    private lateinit var popupWindow: PopupWindow
+    private lateinit var destinationPopup: PopupWindow
 
+    private lateinit var buttonClaimRouteWithColor: Button
+    private lateinit var colorPicker: NumberPicker
+    private lateinit var colorPopup: PopupWindow
+
+    private val colors = arrayOf("Black", "Blue", "Green", "Orange", "Purple", "Red", "White", "Yellow", "Locomotive")
     var chosenRouteId = -1
 
     /*
@@ -108,8 +112,10 @@ class GameActivity : AppCompatActivity(), IGameView {
      */
     override fun onStart() {
         super.onStart()
-        setPopupWindowVariables()
+        setDestinationWindowVariables()
+        setColorWindowVariables()
         buttonChooseDest.setOnClickListener { submitDestinationCards() }
+        buttonClaimRouteWithColor.setOnClickListener { claimRouteWithColor() }
     }
 
     /*
@@ -122,7 +128,8 @@ class GameActivity : AppCompatActivity(), IGameView {
     override fun onDestroy() {
         super.onDestroy()
         // In case the back button is pressed, dismiss the popup window to avoid window leak error
-        popupWindow.dismiss()
+        destinationPopup.dismiss()
+        colorPopup.dismiss()
     }
 
     /*
@@ -138,7 +145,11 @@ class GameActivity : AppCompatActivity(), IGameView {
         destination1.text = cards[0]
         destination2.text = cards[1]
         destination3.text = cards[2]
-        popupWindow.showAtLocation(contentView, Gravity.CENTER, 0, 0)
+        destinationPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
+    }
+
+    override fun displayColorPickPopup() {
+        colorPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
 
     /*
@@ -149,7 +160,7 @@ class GameActivity : AppCompatActivity(), IGameView {
      * @post Destination pick popup window is not shown on the screen
      */
     override fun dismissDestPickPopup() {
-        popupWindow.dismiss()
+        destinationPopup.dismiss()
     }
 
     /*
@@ -303,9 +314,14 @@ class GameActivity : AppCompatActivity(), IGameView {
             checkBox2.isChecked = false
             checkBox3.isChecked = false
 
-            popupWindow.dismiss()
+            destinationPopup.dismiss()
             enableClaimButton(true)
         }
+    }
+
+    private fun claimRouteWithColor() {
+        val color = colors[colorPicker.value].toUpperCase()
+        colorPopup.dismiss()
     }
 
     /*
@@ -331,6 +347,25 @@ class GameActivity : AppCompatActivity(), IGameView {
         transaction.commit()
     }
 
+    private fun setColorWindowVariables() {
+        val popupView = LayoutInflater.from(baseContext).inflate(R.layout.popup_color_pick, null)
+        colorPicker = popupView.findViewById(R.id.color_picker)
+        colorPicker.minValue = 0
+        colorPicker.maxValue = 8
+        colorPicker.displayedValues = colors
+
+        buttonClaimRouteWithColor = popupView.findViewById(R.id.button_claim_with_color)
+
+        colorPopup = PopupWindow(
+            popupView,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            false
+        ).apply {
+            elevation = 20f
+        }
+    }
+
     /*
      * Sets data members involving the popup window.
      *
@@ -338,7 +373,7 @@ class GameActivity : AppCompatActivity(), IGameView {
      *
      * @post All views associated with the destination pick popup window are initialized
      */
-    private fun setPopupWindowVariables() {
+    private fun setDestinationWindowVariables() {
         val popupView = LayoutInflater.from(baseContext).inflate(R.layout.popup_destination_pick, null)
         destination1 = popupView.findViewById(R.id.text_dest_1)
         checkBox1 = popupView.findViewById(R.id.checkbox_dest_1)
@@ -348,7 +383,7 @@ class GameActivity : AppCompatActivity(), IGameView {
         checkBox3 = popupView.findViewById(R.id.checkbox_dest_3)
         buttonChooseDest = popupView.findViewById(R.id.button_choose_dest)
 
-        popupWindow = PopupWindow(
+        destinationPopup = PopupWindow(
             popupView,
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT,
