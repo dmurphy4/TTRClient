@@ -31,4 +31,12 @@ class LoginPresenter(private val loginActivity: ILoginView,
     override fun registerButtonClicked() {
         loginActivity.startRegisterActivity()
     }
+
+    override fun setHost(host: String) {
+        RootModel.instance.host = host
+    }
+
+    override fun setPort(port: String) {
+        RootModel.instance.port = port
+    }
 }

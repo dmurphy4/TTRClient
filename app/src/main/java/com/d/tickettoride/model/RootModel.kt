@@ -10,6 +10,9 @@ class RootModel {
         val instance = RootModel()
     }
 
+    var host: String? = null
+    var port: String? = null
+
     var poller: Poller? = null
 
     var user: User? = null

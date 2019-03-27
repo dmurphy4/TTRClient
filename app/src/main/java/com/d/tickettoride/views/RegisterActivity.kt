@@ -47,6 +47,12 @@ class RegisterActivity : AppCompatActivity(), IRegisterView {
         register_username.afterTextChanged {
             checkEnableRegister()
         }
+        register_server_host.afterTextChanged {
+            registerPresenter.setHost(it)
+        }
+        register_server_port.afterTextChanged {
+            registerPresenter.setPort(it)
+        }
     }
 
     override fun startChooseGameActivity() {

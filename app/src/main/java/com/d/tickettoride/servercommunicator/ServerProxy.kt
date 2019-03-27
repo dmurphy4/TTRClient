@@ -1,5 +1,6 @@
 package com.d.tickettoride.servercommunicator
 
+import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.servercommunicator.command.server.ServerCommand
 import com.d.tickettoride.servercommunicator.response.*
 import com.google.gson.Gson
@@ -15,11 +16,10 @@ class ServerProxy {
         val client = OkHttpClient()
     }
 
-    private val url = "http://192.168.255.41:8000/command"
-
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
     fun command(command: ServerCommand) {
+        val url = "http://${RootModel.instance.host}:${RootModel.instance.port}/command"
         val data = command.toJson()
         println("OUT TO SERVER: $data")
         doAsync {

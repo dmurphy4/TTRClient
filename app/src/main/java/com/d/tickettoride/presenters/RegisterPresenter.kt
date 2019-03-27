@@ -26,4 +26,12 @@ class RegisterPresenter(private val registerActivity: IRegisterView,
         registerActivity.enableRegister(false)
         loginService.register(username, password)
     }
+
+    override fun setHost(host: String) {
+        RootModel.instance.host = host
+    }
+
+    override fun setPort(port: String) {
+        RootModel.instance.port = port
+    }
 }

@@ -27,10 +27,16 @@ class LoginActivity : AppCompatActivity(), ILoginView {
             loginPresenter.registerButtonClicked()
         }
         login_password.afterTextChanged {
-            button_login.isEnabled = login_password.text.toString().isNotEmpty() && login_username.text.toString().isNotEmpty()
+            button_login.isEnabled = it.isNotEmpty() && login_username.text.toString().isNotEmpty()
         }
         login_username.afterTextChanged {
-            button_login.isEnabled = login_password.text.toString().isNotEmpty() && login_username.text.toString().isNotEmpty()
+            button_login.isEnabled = login_password.text.toString().isNotEmpty() && it.isNotEmpty()
+        }
+        login_server_host.afterTextChanged {
+            loginPresenter.setHost(it)
+        }
+        login_server_port.afterTextChanged {
+            loginPresenter.setPort(it)
         }
     }
 
