@@ -1,5 +1,6 @@
 package com.d.tickettoride.views
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -386,5 +387,9 @@ class GameActivity : AppCompatActivity(), IGameView {
         ).apply {
             elevation = 20f
         }
+    }
+
+    override fun startEndGameActivity() {
+        startActivity(Intent(this, EndGameActivity::class.java))
     }
 }

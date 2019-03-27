@@ -46,6 +46,10 @@ class GamePresenter(private val gameActivity: IGameView,
                 currentState.beginTurn(this, rootModel.user!!.lastTurn)
             }
         }
+
+        rootModel.onGameSummaryGiven = { _, new ->
+            gameActivity.startEndGameActivity()
+        }
     }
 
     override fun getBoard(): Board {

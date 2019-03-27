@@ -10,5 +10,6 @@ interface IGameView {
     fun drawRoute(id: Int, color: String)
     fun displayDestPickPopup(cards: ArrayList<String>)
     fun displayColorPickPopup()
+    fun startEndGameActivity()
     fun setRouteToClaimed(id: Int, playerColor: String)
 }

@@ -53,7 +53,14 @@ class RootModel {
     var onDestinationCardsGiven: ((Boolean, Boolean) -> Unit)? = null
 
     var errorMessage: String? by observable<String?>(null) {
-        _,old,new -> onErrorMessageGiven?.invoke(old, new)
+        _, old, new -> onErrorMessageGiven?.invoke(old, new)
     }
+
     var onErrorMessageGiven: ((String?, String?) -> Unit)? = null
+
+    var gameSummary: GameSummary? by observable<GameSummary?>(null) {
+        _, old, new -> onGameSummaryGiven?.invoke(old, new!!)
+    }
+
+    var onGameSummaryGiven: ((GameSummary?, GameSummary) -> Unit)? = null
 }
