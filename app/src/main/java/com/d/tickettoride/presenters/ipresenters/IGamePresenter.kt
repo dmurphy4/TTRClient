@@ -11,7 +11,7 @@ interface IGamePresenter {
     fun getCityFromGame(id:Int) : City
     fun drawDestinationCards()
     fun claimRoute(id: Int)
-    fun claimGrayRoute(id: Int, color: TrainCarCardType)
+    fun claimGrayRoute(id: Int, color: String)
     fun setState(state:Statelike)
     fun chooseDestinationCards(indexes: ArrayList<Int>, notChosen: ArrayList<Int>)
     fun getDestCards(): String

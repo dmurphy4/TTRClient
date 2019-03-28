@@ -317,6 +317,7 @@ class GameActivity : AppCompatActivity(), IGameView {
 
     private fun claimRouteWithColor() {
         val color = colors[colorPicker.value].toUpperCase()
+        gamePresenter.claimGrayRoute(chosenRouteId, color)
         colorPopup.dismiss()
     }
 
