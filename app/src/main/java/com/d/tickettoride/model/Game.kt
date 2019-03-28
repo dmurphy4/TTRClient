@@ -13,9 +13,7 @@ class Game(
     var destinationDeckSize: Int,
     val eventHistory:ArrayList<Event> = ArrayList()
 ) {
-    var turn: Int by observable(0) { _, old, new ->
-        onTurnChanged?.invoke(old, new)
-    }
+    var turn: Int = -1
 
     var statsChanged:Boolean by observable(false) { _, old, new ->
         onStatsChanged?.invoke(old, new)
@@ -23,7 +21,6 @@ class Game(
 
     var onEventAdded: ((Int, Int) -> Unit)? = null
     var onStatsChanged: ((Boolean, Boolean) -> Unit)? = null
-    var onTurnChanged: ((Int, Int) -> Unit)? = null
 
     lateinit var board: Board
 
