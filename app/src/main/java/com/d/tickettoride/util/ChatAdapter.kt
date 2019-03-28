@@ -26,27 +26,17 @@ class ChatAdapter(private val messageList: ArrayList<Event>,
         val event = messageList[position]
         holder.bind(event)
 
-        //holder.view.setOnClickListener {
-        //    selectedRowIndex = position
-        //    notifyDataSetChanged()
-        //}
-
         if (event.type == EventType.MESSAGE) {
             holder.view.row_chat_layout.setBackgroundColor(Color.parseColor("#79BD8F"))
             holder.view.message.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.username.setTextColor(Color.parseColor("#FFFFFF"))
         }
         else {
             holder.view.row_chat_layout.setBackgroundColor(Color.parseColor("#000000"))
             holder.view.message.setTextColor(Color.parseColor("#FFFFFF"))
+            holder.view.username.setTextColor(Color.parseColor("#FFFFFF"))
         }
 
-        //if (selectedRowIndex == position) {
-        //    holder.view.row_chat_layout.setBackgroundColor(Color.parseColor("#BEEB9F"))
-        //    holder.view.message.setTextColor(Color.parseColor("#000000"))
-        //} else {
-        //    holder.view.row_chat_layout.setBackgroundColor(Color.parseColor("#79BD8F"))
-        //    holder.view.message.setTextColor(Color.parseColor("#FFFFFF"))
-        //}
     }
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
