@@ -42,7 +42,6 @@ class GameActivity : AppCompatActivity(), IGameView {
         trainCardsPresenter.setGamePresenter(gamePresenter)
     }
 
-
     // kotlinx imports can't be used for popup windows, so store them here
     private lateinit var buttonChooseDest: Button
     private lateinit var destination1: TextView

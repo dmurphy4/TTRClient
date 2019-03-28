@@ -50,7 +50,7 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     fun highlightRoute(id: Int) {
         routePaths[previousClickId]?.paintType = RouteView.RoutePaintType.DOTTED
-        routePaths[id]?.paintType = RouteView.RoutePaintType.SOLID
+        routePaths[id]?.paintType = RouteView.RoutePaintType.SELECTED
         previousClickId = id
         invalidate()
     }
@@ -79,10 +79,6 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         routes.let {
             for ((_, route) in it) {
                 val linePath = Path()
-//                val city1 = cities[route.city1]
-//                val city2 = cities[route.city2]
-//                linePath.moveTo(city1!!.longitude, city1.latitude)
-//                linePath.lineTo(city2!!.longitude, city2.latitude)
                 linePath.moveTo(route.lon1, route.lat1)
                 linePath.lineTo(route.lon2, route.lat2)
                 val dashLength = calculateDashLength(route.numTracks, route.lon1, route.lat1,
@@ -95,14 +91,14 @@ class GameBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
                         pathEffect = DashPathEffect(floatArrayOf(dashLength, 10f), 0f)
                     }
                 }
-                val solidPaint = Paint(ANTI_ALIAS_FLAG).apply {
+                val selectedPaint = Paint(ANTI_ALIAS_FLAG).apply {
                     color = Color.parseColor(userColor)
                     style = Paint.Style.STROKE
                     strokeWidth = 30f
                     pathEffect = DashPathEffect(floatArrayOf(dashLength, 10f), 0f)
                 }
                 routePaths[route.id] = RouteView(route.id, Pair(route.lon1, route.lat1),
-                    Pair(route.lon2, route.lat2), linePath, dottedPaint, solidPaint)
+                    Pair(route.lon2, route.lat2), linePath, dottedPaint, selectedPaint)
             }
         }
     }
