@@ -39,8 +39,6 @@ class GamePresenter(private val gameActivity: IGameView,
             currentState.beginPlay(this)
         }
 
-        rootModel.game!!.playerStats[0].yourTurn = true
-
         rootModel.user!!.onYourTurn = { _, new ->
             if (new) {
                 currentState.beginTurn(this, rootModel.user!!.lastTurn)
