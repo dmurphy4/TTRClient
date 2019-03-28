@@ -47,7 +47,7 @@ class GamePresenter(private val gameActivity: IGameView,
             }
         }
 
-        rootModel.onGameSummaryGiven = { _, new ->
+        rootModel.onGameSummaryGiven = { _, _ ->
             gameActivity.startEndGameActivity()
         }
     }

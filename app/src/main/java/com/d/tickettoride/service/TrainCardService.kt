@@ -46,6 +46,10 @@ class TrainCardService(val proxy: ServerProxy = ServerProxy()) {
         RootModel.instance.user!!.trainCardHand.changeCardCount(card.type, 1)
     }
 
+    fun replaceAllFaceUp(cards: ArrayList<TrainCarCard>) {
+        RootModel.instance.game!!.trainCarDeck.replaceAllFaceUp(cards)
+    }
+
     fun removeCardFromUserHand(card: TrainCarCard) {
         RootModel.instance.user!!.trainCardHand.changeCardCount(card.type, -1)
     }

@@ -27,13 +27,9 @@ class User(var username:String, var playerInfo:PlayerInfo?,
     var lastTurn: Boolean = false
 
     fun canClaimRoute(routeLength: Int, cardColor: TrainCarCardType) : Boolean {
-        var minTracks = 0
-        if (cardColor == TrainCarCardType.LOCOMOTIVE) {
-            minTracks = trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
-        }
-        else {
-            minTracks =
-                trainCardHand.getAmountOfType(cardColor) + trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+        val minTracks = when(cardColor) {
+            TrainCarCardType.LOCOMOTIVE -> trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+            else -> trainCardHand.getAmountOfType(cardColor) + trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
         }
         return routeLength <= minTracks
     }
@@ -42,6 +38,10 @@ class User(var username:String, var playerInfo:PlayerInfo?,
         val numLocomotive = trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
         val numNeeded = route.numTracks - numLocomotive
         val typesToUse = ArrayList<TrainCarCardType>()
+
+        if (numNeeded <= 0) {
+            typesToUse.add(TrainCarCardType.LOCOMOTIVE)
+        }
 
         for (type in TrainCarCardType.values()) {
             if (trainCardHand.getAmountOfType(type) >= numNeeded) {
@@ -52,14 +52,15 @@ class User(var username:String, var playerInfo:PlayerInfo?,
     }
 
     fun decreaseCardsPostClaim(color:TrainCarCardType, amount:Int) {
-        var am = amount
-        if (trainCardHand.getAmountOfType(color) < amount) {
-            am -= trainCardHand.getAmountOfType(color)
-            trainCardHand.changeCardCount(color, -1 * trainCardHand.getAmountOfType(color))
-            trainCardHand.changeCardCount(TrainCarCardType.LOCOMOTIVE, -1 * am)
+        var locomotives = amount
+        val amountOfColor = trainCardHand.getAmountOfType(color)
+        if (amount > amountOfColor) {
+            locomotives -= amountOfColor
+            trainCardHand.changeCardCount(color, -1 * amountOfColor)
+            trainCardHand.changeCardCount(TrainCarCardType.LOCOMOTIVE, -1 * locomotives)
         }
         else {
-            trainCardHand.changeCardCount(color, -1 * am)
+            trainCardHand.changeCardCount(color, -1 * amount)
         }
         trainCardHand.onHandChanged?.invoke(trainCardHand)
     }

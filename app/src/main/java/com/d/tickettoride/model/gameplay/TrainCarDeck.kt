@@ -18,6 +18,13 @@ class TrainCarDeck(var faceUpCards: ArrayList<TrainCarCard>, var deckSize: Int) 
         deckSize = size
         onDeckSizeChanged?.invoke(deckSize)
     }
+
+    fun replaceAllFaceUp(cards: ArrayList<TrainCarCard>) {
+        faceUpCards = cards
+        for (ind in 0..4) {
+            onFaceUpChanged?.invoke(ind, faceUpCards[ind].type)
+        }
+    }
 }
 
 
