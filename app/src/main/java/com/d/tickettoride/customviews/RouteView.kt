@@ -12,7 +12,7 @@ class RouteView(val id: Int,
                 private val city2: Pair<Float, Float>,
                 private val path: Path,
                 private val dottedPaint: Paint,
-                private val solidPaint: Paint) {
+                private val selectedPaint: Paint) {
 
     private var isHorizontal: Boolean = false
     private var isVertical: Boolean = false
@@ -20,7 +20,7 @@ class RouteView(val id: Int,
     lateinit var claimedPaint: Paint
 
     enum class RoutePaintType {
-        DOTTED, SOLID, CLAIMED
+        DOTTED, SELECTED, CLAIMED
     }
 
     var paintType: RoutePaintType = RoutePaintType.DOTTED
@@ -33,7 +33,7 @@ class RouteView(val id: Int,
     fun getPaint(): Paint {
         return when(paintType) {
             RoutePaintType.DOTTED -> dottedPaint
-            RoutePaintType.SOLID -> solidPaint
+            RoutePaintType.SELECTED -> selectedPaint
             RoutePaintType.CLAIMED -> claimedPaint
         }
     }
