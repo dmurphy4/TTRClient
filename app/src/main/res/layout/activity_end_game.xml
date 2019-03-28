@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <TextView
+            android:id="@+id/end_game_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
+            android:gravity="center_horizontal"
+            android:textColor="#fff"
+            android:scrollHorizontally="false"
+            android:textSize="75sp"
+            android:textStyle="bold" />
+
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/end_game_title"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="125dp"
+            android:layout_centerInParent="true"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:stretchColumns="2,3,4,5"
+            android:padding="20dp">
+
+        <TableRow>
+            <TextView
+                    android:text="@string/end_place"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:text="@string/end_username"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:text="@string/end_claimed_points"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:text="@string/end_destination_points"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:text="@string/end_lost_destination_points"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:text="@string/end_most_routes_points"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:text="@string/end_total_points"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_marginTop="10dp">
+            <TextView
+                    android:id="@+id/place_1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/username_1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/claimed_1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/destination_1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/lost_destination_1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/most_routes_1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/total_1"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_marginTop="10dp">
+            <TextView
+                    android:id="@+id/place_2"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/username_2"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/claimed_2"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/destination_2"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/lost_destination_2"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/most_routes_2"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/total_2"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_marginTop="10dp">
+            <TextView
+                    android:id="@+id/place_3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/username_3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/claimed_3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/destination_3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/lost_destination_3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/most_routes_3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/total_3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_marginTop="10dp">
+            <TextView
+                    android:id="@+id/place_4"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/username_4"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/claimed_4"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/destination_4"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/lost_destination_4"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/most_routes_4"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/total_4"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_marginTop="10dp">
+            <TextView
+                    android:id="@+id/place_5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/username_5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/claimed_5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/destination_5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/lost_destination_5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/most_routes_5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+
+            <TextView
+                    android:id="@+id/total_5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:scrollHorizontally="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"/>
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

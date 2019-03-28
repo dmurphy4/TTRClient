@@ -24,4 +24,11 @@
     <string name="text_button_choose_destinations">Draw Destinations</string>
     <string name="text_button_show_dest">Show Destination Cards</string>
     <string name="error_destinations_not_checked">You must select at least 2 destinations</string>
+    <string name="end_place">Place</string>
+    <string name="end_username">Username</string>
+    <string name="end_claimed_points">Points for Claimed Routes</string>
+    <string name="end_destination_points">Points for Claimed Destinations</string>
+    <string name="end_lost_destination_points">Points Lost for Unclaimed Destinations</string>
+    <string name="end_most_routes_points">Points for Most Routes</string>
+    <string name="end_total_points">Total</string>
 </resources>
