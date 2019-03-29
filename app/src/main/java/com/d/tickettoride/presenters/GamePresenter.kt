@@ -127,9 +127,9 @@ class GamePresenter(private val gameActivity: IGameView,
 
                 if (typesToUse.isNotEmpty()) {
                     gameActivity.displayColorPickPopup(typesToUse)
-                    currentState.claimGrayRoute(this)
                 } else {
-                    postErrorMessage("Sorry, you don't have the cards to claim a gray route.")
+                    postErrorMessage("Sorry, you don't have the cards to claim this gray route.")
+                    currentState.beginTurn(this, RootModel.instance.user!!.lastTurn)
                 }
             }
         }
