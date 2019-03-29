@@ -23,8 +23,8 @@
 
         <NumberPicker
                 android:id="@+id/color_picker"
-                android:layout_width="40dp"
-                android:layout_height="58dp"/>
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
         <Button
                 android:id="@+id/button_claim_with_color"

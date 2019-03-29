@@ -148,7 +148,7 @@ class GameActivity : AppCompatActivity(), IGameView {
         destinationPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
 
-    override fun displayColorPickPopup() {
+    override fun displayColorPickPopup(typesToUse: ArrayList<String>) {
         colorPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
 

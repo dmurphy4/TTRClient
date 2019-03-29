@@ -9,7 +9,7 @@ interface IGameView {
     fun displayErrorMessage(message: String)
     fun drawRoute(id: Int, color: String)
     fun displayDestPickPopup(cards: ArrayList<String>)
-    fun displayColorPickPopup()
+    fun displayColorPickPopup(typesToUse: ArrayList<String>)
     fun startEndGameActivity()
     fun setRouteToClaimed(id: Int, playerColor: String)
 }
