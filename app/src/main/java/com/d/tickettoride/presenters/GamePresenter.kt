@@ -118,9 +118,9 @@ class GamePresenter(private val gameActivity: IGameView,
 
         if (route.color == RouteColor.GRAY) {
 
-            val typesToUse = RootModel.instance.user!!.canClaimGray(route)
+            val typesToUse = RootModel.instance.user!!.canClaimGray(route).toTypedArray()
 
-            if (typesToUse.size > 0) {
+            if (typesToUse.isNotEmpty()) {
                 gameActivity.displayColorPickPopup(typesToUse)
                 currentState.claimGrayRoute(this)
             }
@@ -136,7 +136,7 @@ class GamePresenter(private val gameActivity: IGameView,
     }
 
     override fun claimGrayRoute(id: Int, color: String) {
-        currentState.chooseColorForGrayRoute(this, id, TrainCarCardType.valueOf(color))
+        currentState.chooseColorForGrayRoute(this, id, TrainCarCardType.valueOf(color.toUpperCase()))
     }
 
     override fun getState(): Statelike {
@@ -158,91 +158,4 @@ class GamePresenter(private val gameActivity: IGameView,
             )
         }
     }
-
-//    override fun testPhase2() {
-//        when(phase2Iteration) {
-//            0 -> {
-//                gameActivity.displayErrorMessage("Adding 10 to each player's stats...")
-//                for (playerStats in RootModel.instance.game!!.playerStats) {
-//                    playerStats.numTrainCards += 10
-//                    playerStats.numDestCards += 10
-//                    playerStats.numTrains += 10
-//                    playerStats.score += 10
-//                }
-//                RootModel.instance.game!!.statsChanged = true
-//                phase2Iteration += 1
-//            }
-//            1 -> {
-//                gameActivity.displayErrorMessage("Subtracting 10 from each player's stats...")
-//                for (playerStats in RootModel.instance.game!!.playerStats) {
-//                    playerStats.numTrainCards -= 10
-//                    playerStats.numDestCards -= 10
-//                    playerStats.numTrains -= 10
-//                    playerStats.score -= 10
-//                }
-//                RootModel.instance.game!!.statsChanged = true
-//                phase2Iteration += 1
-//            }
-//            2 -> {
-//                gameActivity.displayErrorMessage("Changing player turn...")
-//                RootModel.instance.game!!.updateTurn()
-//                RootModel.instance.game!!.statsChanged = true
-//
-//                phase2Iteration += 1
-//            }
-//            3 -> {
-//                gameActivity.displayErrorMessage("Adding train car cards (5 of black, 2 of red, 3 of blue, 1 locomotive...")
-//
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE]!! + 1
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLACK] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLACK]!! + 5
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.RED] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.RED]!! + 2
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLUE] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLUE]!! + 3
-//
-//                RootModel.instance.user!!.cardAmountsChanged = true
-//
-//                phase2Iteration += 1
-//            }
-//            4 -> {
-//                gameActivity.displayErrorMessage("Subtracting train car cards (5 of black, 2 of red, 3 of blue, 1 locomotive...")
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.LOCOMOTIVE]!! - 1
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLACK] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLACK]!! - 5
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.RED] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.RED]!! - 2
-//                RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLUE] =
-//                    RootModel.instance.user!!.trainCardHand!!.cardMap[TrainCarCardType.BLUE]!! - 3
-//
-//                RootModel.instance.user!!.cardAmountsChanged = true
-//
-//                phase2Iteration += 1
-//            }
-//            5 -> {
-//                gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[0].username} " +
-//                        "from Las Vegas to Salt Lake City")
-//                RootModel.instance.game!!.board.routes[10]!!.owner = RootModel.instance.game!!.playerStats[0].username
-//                gameActivity.drawRoute(10, RootModel.instance.game!!.playerStats[0].color!!.toString())
-//
-//                phase2Iteration += 1
-//            }
-//            6 -> {
-//                gameActivity.displayErrorMessage("Claiming route for ${RootModel.instance.game!!.playerStats[1].username} " +
-//                        "from Toronto to Montreal")
-//                RootModel.instance.game!!.board.routes[76]!!.owner = RootModel.instance.game!!.playerStats[0].username
-//                gameActivity.drawRoute(76, RootModel.instance.game!!.playerStats[1].color!!.toString())
-//
-//                phase2Iteration += 1
-//            }
-//            7 -> {
-//                //decrease number of destination cards
-//                gameActivity.displayErrorMessage("Removing 2 from the destination card deck")
-//                val deck: ArrayList<DestinationCard> = RootModel.instance.game!!.board.destinationDeck!!.cards
-//                RootModel.instance.game!!.board.destinationDeck!!.cards = ArrayList(deck.drop(2))
-//            }
-//        }
-//    }
 }

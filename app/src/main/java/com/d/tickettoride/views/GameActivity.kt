@@ -56,7 +56,7 @@ class GameActivity : AppCompatActivity(), IGameView {
     private lateinit var colorPicker: NumberPicker
     private lateinit var colorPopup: PopupWindow
 
-    private val colors = arrayOf("Black", "Blue", "Green", "Orange", "Purple", "Red", "White", "Yellow", "Locomotive")
+    private lateinit var colors: Array<String>
     var chosenRouteId = -1
 
     /*
@@ -148,7 +148,11 @@ class GameActivity : AppCompatActivity(), IGameView {
         destinationPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
 
-    override fun displayColorPickPopup(typesToUse: ArrayList<String>) {
+    override fun displayColorPickPopup(typesToUse: Array<String>) {
+        colors = typesToUse
+        colorPicker.minValue = 0
+        colorPicker.maxValue = typesToUse.size
+        colorPicker.displayedValues = typesToUse
         colorPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
 
@@ -315,7 +319,7 @@ class GameActivity : AppCompatActivity(), IGameView {
     }
 
     private fun claimRouteWithColor() {
-        val color = colors[colorPicker.value].toUpperCase()
+        val color = colors[colorPicker.value]
         gamePresenter.claimGrayRoute(chosenRouteId, color)
         colorPopup.dismiss()
     }
@@ -346,9 +350,6 @@ class GameActivity : AppCompatActivity(), IGameView {
     private fun setColorWindowVariables() {
         val popupView = LayoutInflater.from(baseContext).inflate(R.layout.popup_color_pick, null)
         colorPicker = popupView.findViewById(R.id.color_picker)
-        colorPicker.minValue = 0
-        colorPicker.maxValue = 8
-        colorPicker.displayedValues = colors
 
         buttonClaimRouteWithColor = popupView.findViewById(R.id.button_claim_with_color)
 
