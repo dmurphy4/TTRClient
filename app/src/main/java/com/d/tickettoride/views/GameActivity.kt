@@ -154,12 +154,9 @@ class GameActivity : AppCompatActivity(), IGameView {
             displayErrorMessage("You don't have the cards to claim that route.")
             return
         }
-        println(Arrays.toString(typesToUse))
-        val max = typesToUse.size - 1
-        println("typesToUse.size - 1: $max")
-        colors = typesToUse
+        colorPicker.displayedValues = null
         colorPicker.minValue = 0
-        colorPicker.maxValue = max
+        colorPicker.maxValue = typesToUse.size - 1
         colorPicker.displayedValues = typesToUse
         colorPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
