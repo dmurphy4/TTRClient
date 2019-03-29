@@ -154,6 +154,8 @@ class GameActivity : AppCompatActivity(), IGameView {
             displayErrorMessage("You don't have the cards to claim that route.")
             return
         }
+        colors = typesToUse
+
         colorPicker.displayedValues = null
         colorPicker.minValue = 0
         colorPicker.maxValue = typesToUse.size - 1
