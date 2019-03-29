@@ -22,6 +22,10 @@ class LastTurnState : Statelike() {
         }
     }
 
+    override fun claimGrayRoute(gamePresenter: IGamePresenter) {
+        gamePresenter.setState(ClaimingGrayRouteState())
+    }
+
     override fun drawDestinations(gamePresenter: IGamePresenter) {
         BoardService.instance.drawDestinationCards()
         gamePresenter.setState(DrewDestinationsState())

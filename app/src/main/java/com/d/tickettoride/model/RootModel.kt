@@ -66,4 +66,8 @@ class RootModel {
     }
 
     var onGameSummaryGiven: ((GameSummary?, GameSummary) -> Unit)? = null
+
+    var gameWinner: String? = null
+
+    var gameWinnerPoints: Int = 0
 }
