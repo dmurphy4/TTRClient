@@ -151,7 +151,7 @@ class GameActivity : AppCompatActivity(), IGameView {
     override fun displayColorPickPopup(typesToUse: Array<String>) {
         colors = typesToUse
         colorPicker.minValue = 0
-        colorPicker.maxValue = typesToUse.size
+        colorPicker.maxValue = typesToUse.size - 1
         colorPicker.displayedValues = typesToUse
         colorPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
