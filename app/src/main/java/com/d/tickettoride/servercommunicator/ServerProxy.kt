@@ -13,7 +13,8 @@ import org.jetbrains.anko.uiThread
 
 class ServerProxy {
     companion object {
-        val client = OkHttpClient()
+        val otherClient = OkHttpClient()
+        val pollerClient = OkHttpClient()
     }
 
     private val JSON = MediaType.parse("application/json; charset=utf-8")
@@ -26,6 +27,7 @@ class ServerProxy {
             val body = RequestBody.create(JSON, data)
             val request = Request.Builder().url(url).header("Accept-Encoding", "identity")
                 .addHeader("type", command.type().toString()).post(body).build()
+            val client = if (command is ServerCommand.Poll) pollerClient else otherClient
             val response = client.newCall(request).execute()
             val respBody = response.body()!!.string()
             uiThread {
