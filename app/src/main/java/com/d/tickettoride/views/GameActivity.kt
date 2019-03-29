@@ -14,6 +14,7 @@ import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.views.iviews.IGameView
 import kotlinx.android.synthetic.main.activity_game.*
 import org.jetbrains.anko.contentView
+import java.util.*
 
 /*
  * The GameActivity class is responsible for displaying all data associated with game play. It contains
@@ -149,6 +150,11 @@ class GameActivity : AppCompatActivity(), IGameView {
     }
 
     override fun displayColorPickPopup(typesToUse: Array<String>) {
+        if (typesToUse.isEmpty()) {
+            displayErrorMessage("You don't have the cards to claim that route.")
+            return
+        }
+        println(Arrays.toString(typesToUse))
         colors = typesToUse
         colorPicker.minValue = 0
         colorPicker.maxValue = typesToUse.size - 1
