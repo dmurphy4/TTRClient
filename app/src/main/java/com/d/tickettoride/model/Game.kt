@@ -39,8 +39,13 @@ class Game(
     }
 
     fun updateTurn() {
-        playerStats[turn].yourTurn = false
-        turn = (turn + 1) % turnOrder.size
+        if (turn != -1) {
+            playerStats[turn].yourTurn = false
+            turn = (turn + 1) % turnOrder.size
+        }
+        else {
+            turn = 0
+        }
         playerStats[turn].yourTurn = true
         if (playerStats[turn].username == RootModel.instance.user!!.username) {
             RootModel.instance.user!!.yourTurn = true

@@ -17,9 +17,6 @@ class DestCardService {
 
     fun getFirstDestCardHand(hand:DestinationCardHand) {
         RootModel.instance.user!!.destinationHand = hand
-        RootModel.instance.game!!.turn = 0
-        RootModel.instance.game!!.playerStats[0].yourTurn = true
-        RootModel.instance.game!!.statsChanged = true
     }
 
     fun addMoreDestinationCards(cards:ArrayList<DestinationCard>) {
