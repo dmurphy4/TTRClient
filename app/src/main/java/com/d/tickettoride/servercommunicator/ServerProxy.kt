@@ -22,7 +22,7 @@ class ServerProxy {
     fun command(command: ServerCommand) {
         val url = "http://${RootModel.instance.host}:${RootModel.instance.port}/command"
         val data = command.toJson()
-        println("OUT TO SERVER: $data")
+        println("OUT TO SERVER: $command")
         doAsync {
             val body = RequestBody.create(JSON, data)
             val request = Request.Builder().url(url).header("Accept-Encoding", "identity")
