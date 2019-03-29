@@ -26,22 +26,33 @@ class User(var username:String, var playerInfo:PlayerInfo?,
 
     var lastTurn: Boolean = false
 
+    private fun hasEnoughTrains(routeLength: Int): Boolean {
+        return routeLength <= RootModel.instance.game!!.getPlayerByUsername(username)!!.numTrains
+    }
+
     fun canClaimRoute(routeLength: Int, cardColor: TrainCarCardType) : Boolean {
-        val minTracks = when(cardColor) {
-            TrainCarCardType.LOCOMOTIVE -> trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
-            else -> trainCardHand.getAmountOfType(cardColor) + trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+        return when (hasEnoughTrains(routeLength)) {
+            true -> {
+                    val minTracks = when (cardColor) {
+                    TrainCarCardType.LOCOMOTIVE -> trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+                    else -> trainCardHand.getAmountOfType(cardColor) + trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+                }
+                return routeLength <= minTracks
+            }
+            false -> false
         }
-        return routeLength <= minTracks
     }
 
     fun canClaimGray(route: Route): ArrayList<String> {
-        val numLocomotive = trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
-        val numNeeded = route.numTracks - numLocomotive
         val typesToUse = ArrayList<String>()
+        if (hasEnoughTrains(route.numTracks)) {
+            val numLocomotive = trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
+            val numNeeded = route.numTracks - numLocomotive
 
-        for (type in TrainCarCardType.values()) {
-            if (trainCardHand.getAmountOfType(type) >= numNeeded) {
-                typesToUse.add(type.toString())
+            for (type in TrainCarCardType.values()) {
+                if (trainCardHand.getAmountOfType(type) >= numNeeded) {
+                    typesToUse.add(type.toString())
+                }
             }
         }
         return typesToUse
