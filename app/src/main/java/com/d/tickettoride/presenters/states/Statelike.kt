@@ -38,7 +38,7 @@ open class Statelike {
     }
 
     open fun beginTurn(gamePresenter: IGamePresenter, lastTurn: Boolean) {
-        gamePresenter.postErrorMessage("Sorry, you can't begin a turn right now.")
+
     }
 
     open fun beginPlay(gamePresenter: IGamePresenter) {

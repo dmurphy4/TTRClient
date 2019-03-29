@@ -39,10 +39,6 @@ class User(var username:String, var playerInfo:PlayerInfo?,
         val numNeeded = route.numTracks - numLocomotive
         val typesToUse = ArrayList<String>()
 
-        if (numNeeded <= 0) {
-            typesToUse.add(TrainCarCardType.LOCOMOTIVE.toString())
-        }
-
         for (type in TrainCarCardType.values()) {
             if (trainCardHand.getAmountOfType(type) >= numNeeded) {
                 typesToUse.add(type.toString())

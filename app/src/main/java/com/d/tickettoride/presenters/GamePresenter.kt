@@ -3,6 +3,7 @@ package com.d.tickettoride.presenters
 import com.d.tickettoride.model.RootModel
 import com.d.tickettoride.model.gameplay.*
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
+import com.d.tickettoride.presenters.states.ClaimingGrayRouteState
 import com.d.tickettoride.presenters.states.PreGameState
 import com.d.tickettoride.presenters.states.Statelike
 import com.d.tickettoride.service.BoardService
@@ -41,6 +42,7 @@ class GamePresenter(private val gameActivity: IGameView,
 
         rootModel.user!!.onYourTurn = { _, new ->
             if (new) {
+                postErrorMessage("Hurry! IT'S YOUR TURN")
                 currentState.beginTurn(this, rootModel.user!!.lastTurn)
             }
         }
@@ -118,14 +120,17 @@ class GamePresenter(private val gameActivity: IGameView,
 
         if (route.color == RouteColor.GRAY) {
 
-            val typesToUse = RootModel.instance.user!!.canClaimGray(route).toTypedArray()
+            currentState.claimGrayRoute(this)
 
-            if (typesToUse.isNotEmpty()) {
-                gameActivity.displayColorPickPopup(typesToUse)
-                currentState.claimGrayRoute(this)
-            }
-            else {
-                postErrorMessage("Sorry, you don't have the cards to claim a gray route.")
+            if (currentState is ClaimingGrayRouteState) {
+                val typesToUse = RootModel.instance.user!!.canClaimGray(route).toTypedArray()
+
+                if (typesToUse.isNotEmpty()) {
+                    gameActivity.displayColorPickPopup(typesToUse)
+                    currentState.claimGrayRoute(this)
+                } else {
+                    postErrorMessage("Sorry, you don't have the cards to claim a gray route.")
+                }
             }
         }
 
