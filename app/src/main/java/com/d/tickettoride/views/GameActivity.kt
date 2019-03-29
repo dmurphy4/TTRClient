@@ -155,9 +155,11 @@ class GameActivity : AppCompatActivity(), IGameView {
             return
         }
         println(Arrays.toString(typesToUse))
+        val max = typesToUse.size - 1
+        println("typesToUse.size - 1: $max")
         colors = typesToUse
         colorPicker.minValue = 0
-        colorPicker.maxValue = typesToUse.size - 1
+        colorPicker.maxValue = max
         colorPicker.displayedValues = typesToUse
         colorPopup.showAtLocation(contentView, Gravity.CENTER, 0, 0)
     }
