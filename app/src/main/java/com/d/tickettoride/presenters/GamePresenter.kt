@@ -132,7 +132,6 @@ class GamePresenter(private val gameActivity: IGameView,
         else {
             currentState.claimRoute(this, id)
         }
-
     }
 
     override fun claimGrayRoute(id: Int, color: String) {
