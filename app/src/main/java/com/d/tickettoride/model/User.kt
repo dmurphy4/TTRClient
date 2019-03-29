@@ -34,18 +34,18 @@ class User(var username:String, var playerInfo:PlayerInfo?,
         return routeLength <= minTracks
     }
 
-    fun canClaimGray(route: Route): ArrayList<TrainCarCardType> {
+    fun canClaimGray(route: Route): ArrayList<String> {
         val numLocomotive = trainCardHand.getAmountOfType(TrainCarCardType.LOCOMOTIVE)
         val numNeeded = route.numTracks - numLocomotive
-        val typesToUse = ArrayList<TrainCarCardType>()
+        val typesToUse = ArrayList<String>()
 
         if (numNeeded <= 0) {
-            typesToUse.add(TrainCarCardType.LOCOMOTIVE)
+            typesToUse.add(TrainCarCardType.LOCOMOTIVE.toString())
         }
 
         for (type in TrainCarCardType.values()) {
             if (trainCardHand.getAmountOfType(type) >= numNeeded) {
-                typesToUse.add(type)
+                typesToUse.add(type.toString())
             }
         }
         return typesToUse
