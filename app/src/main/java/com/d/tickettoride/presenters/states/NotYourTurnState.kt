@@ -1,7 +1,6 @@
 package com.d.tickettoride.presenters.states
 
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
-import com.d.tickettoride.service.TurnService
 
 class NotYourTurnState : Statelike() {
 

@@ -15,6 +15,7 @@ class PreGameDrawingDestinationsState : Statelike() {
     }
 
     override fun beginPlay(gamePresenter: IGamePresenter) {
+        RootModel.instance.game!!.updateTurn()
         if (RootModel.instance.game!!.playerStats[0].username == RootModel.instance.user!!.username) {
             gamePresenter.setState(NewTurnState())
         }
