@@ -7,6 +7,7 @@ import com.d.tickettoride.model.gameplay.RouteColor
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
 import com.d.tickettoride.service.TrainCardService
+import com.d.tickettoride.service.TurnService
 
 class NewTurnState : Statelike() {
 
@@ -23,6 +24,7 @@ class NewTurnState : Statelike() {
         if (route.companionId == -1) {
             if (RootModel.instance.user!!.canClaimRoute(route.numTracks, RouteColor.getCardColor(route.color))) {
                 BoardService.instance.claimRoute(id)
+                TurnService.instance.endTurn()
                 gamePresenter.setState(NotYourTurnState())
             } else {
                 gamePresenter.postErrorMessage("Sorry, you don't have the cards to claim this route.")
@@ -32,6 +34,7 @@ class NewTurnState : Statelike() {
             if (RootModel.instance.game!!.board.routes[route.companionId]!!.owner != RootModel.instance.user!!.username &&
                 RootModel.instance.game!!.playerStats.size > 3) {
                 BoardService.instance.claimRoute(id)
+                TurnService.instance.endTurn()
                 gamePresenter.setState(NotYourTurnState())
             }
             else {
@@ -53,6 +56,7 @@ class NewTurnState : Statelike() {
         val previousType = trainCardService.getFaceUpCardType(idx)
         trainCardService.takeFaceUpCard(idx)
         if (previousType == TrainCarCardType.LOCOMOTIVE) {
+            TurnService.instance.endTurn()
             gamePresenter.setState(NotYourTurnState())
         } else {
             gamePresenter.setState(DrewTrainCardState())

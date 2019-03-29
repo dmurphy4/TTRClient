@@ -5,6 +5,7 @@ import com.d.tickettoride.model.gameplay.Route
 import com.d.tickettoride.model.gameplay.RouteColor
 import com.d.tickettoride.presenters.ipresenters.IGamePresenter
 import com.d.tickettoride.service.BoardService
+import com.d.tickettoride.service.TurnService
 
 class LastTurnState : Statelike() {
 
@@ -13,6 +14,7 @@ class LastTurnState : Statelike() {
 
         if (RootModel.instance.user!!.canClaimRoute(route.numTracks, RouteColor.getCardColor(route.color))) {
             BoardService.instance.claimRoute(id)
+            TurnService.instance.endTurn()
             gamePresenter.setState(NotYourTurnState())
         }
         else {
