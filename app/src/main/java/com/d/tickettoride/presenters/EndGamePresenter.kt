@@ -12,9 +12,8 @@ class EndGamePresenter(private val endGameActivity: EndGameActivity) : IEndGameP
 
         endGameActivity.displayWinner(RootModel.instance.gameWinner!!, RootModel.instance.gameWinnerPoints)
 
-        var player: PlayerSummary?
-        for (i in 0..players.size) {
-            player = players[i]
+        for (i in 0..(players.size - 1)) {
+            val player: PlayerSummary = players[i]
             endGameActivity.displayPlayerStats(i, player.username, player.ptsFromClaimedRoutes, player.ptsFromDestinations,
                 player.ptsReducedFromDestinations, player.ptsFromMostClaimedRoutes, player.totalPoints)
         }

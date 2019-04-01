@@ -1,8 +1,10 @@
 package com.d.tickettoride.views
 
 import android.content.Intent
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.d.tickettoride.R
 import com.d.tickettoride.presenters.EndGamePresenter
 import com.d.tickettoride.presenters.ipresenters.IEndGamePresenter
 import com.d.tickettoride.views.iviews.IEndGameView
@@ -11,6 +13,16 @@ import kotlinx.android.synthetic.main.activity_end_game.*
 class EndGameActivity : AppCompatActivity(), IEndGameView {
 
     val endGamePresenter: IEndGamePresenter = EndGamePresenter(this)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_end_game)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        endGamePresenter.fetchEndGameData()
+    }
 
     override fun displayErrorMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
