@@ -12,6 +12,15 @@ class ClaimingGrayRouteState : Statelike() {
         gamePresenter.setState(NewTurnState())
     }
 
+    override fun beginTurn(gamePresenter: IGamePresenter, lastTurn:Boolean) {
+        if (lastTurn) {
+            gamePresenter.setState(LastTurnState())
+        }
+        else {
+            gamePresenter.setState(NewTurnState())
+        }
+    }
+
     override fun chooseColorForGrayRoute(gamePresenter: IGamePresenter, id: Int, chosenColor: TrainCarCardType) {
         val route = RootModel.instance.game!!.board.routes.getValue(id)
 
