@@ -43,6 +43,10 @@ class NewTurnState : Statelike() {
         }
     }
 
+    override fun claimGrayRoute(gamePresenter: IGamePresenter) {
+        gamePresenter.setState(ClaimingGrayRouteState())
+    }
+
     override fun drawFromDrawpile(gamePresenter: IGamePresenter) {
         trainCardService.drawFromDeck()
         gamePresenter.setState(DrewTrainCardState())
