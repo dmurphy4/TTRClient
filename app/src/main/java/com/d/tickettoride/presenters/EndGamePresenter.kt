@@ -10,7 +10,7 @@ class EndGamePresenter(private val endGameActivity: EndGameActivity) : IEndGameP
     override fun fetchEndGameData() {
         val players = RootModel.instance.gameSummary!!.players
 
-        endGameActivity.displayWinner(players[0].username, players[0].totalPoints)
+        endGameActivity.displayWinner(RootModel.instance.gameWinner!!, RootModel.instance.gameWinnerPoints)
 
         var player: PlayerSummary?
         for (i in 0..players.size) {
