@@ -147,6 +147,10 @@ class GamePresenter(private val gameActivity: IGameView,
         return currentState
     }
 
+    override fun dismissDestinationPopUp() {
+        gameActivity.dismissDestPickPopup()
+    }
+
     private fun setHandChangedListener() {
         boardService.setTrainCardHandChangedListener { hand ->
             gameActivity.updateTrainCards(

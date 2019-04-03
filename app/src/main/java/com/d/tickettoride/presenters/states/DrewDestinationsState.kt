@@ -11,6 +11,7 @@ class DrewDestinationsState : Statelike() {
             gamePresenter.postErrorMessage("Sorry boss, you need to keep at least 1.")
         }
         else {
+            gamePresenter.dismissDestinationPopUp()
             BoardService.instance.chooseDestinationCards(indexes, notChosen)
             TurnService.instance.endTurn()
             gamePresenter.setState(NotYourTurnState())

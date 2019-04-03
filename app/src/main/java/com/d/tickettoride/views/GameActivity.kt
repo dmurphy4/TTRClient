@@ -321,7 +321,7 @@ class GameActivity : AppCompatActivity(), IGameView {
         checkBox2.isChecked = false
         checkBox3.isChecked = false
 
-        destinationPopup.dismiss()
+        //we will dismiss the pop-up from the presenter
         enableClaimButton(true)
     }
 

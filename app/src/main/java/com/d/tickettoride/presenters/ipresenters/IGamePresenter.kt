@@ -20,4 +20,5 @@ interface IGamePresenter {
     fun postErrorMessage(message:String)
     fun getState(): Statelike
     fun setRouteClaimedListener()
+    fun dismissDestinationPopUp()
 }
