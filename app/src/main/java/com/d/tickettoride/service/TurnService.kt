@@ -11,8 +11,8 @@ class TurnService(private val proxy: ServerProxy = ServerProxy()) {
     }
 
     fun updateTurn(lastTurn: Boolean) {
-        RootModel.instance.game!!.updateTurn()
         RootModel.instance.user!!.lastTurn = lastTurn
+        RootModel.instance.game!!.updateTurn()
         RootModel.instance.game!!.statsChanged = true
     }
 

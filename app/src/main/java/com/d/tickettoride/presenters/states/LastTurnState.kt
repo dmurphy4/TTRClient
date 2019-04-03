@@ -18,7 +18,7 @@ class LastTurnState : Statelike() {
             gamePresenter.setState(NotYourTurnState())
         }
         else {
-            gamePresenter.postErrorMessage("Sorry, you don't have the cards to claim this route.")
+            gamePresenter.postErrorMessage("Sorry, you don't have the stuff to claim this route.")
         }
     }
 
