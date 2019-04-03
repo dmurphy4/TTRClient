@@ -8,9 +8,9 @@ class PreGameDrawingDestinationsState : Statelike() {
     override fun returnDestinations(gamePresenter: IGamePresenter, indexes: ArrayList<Int>, notChosen: ArrayList<Int>) {
         if (indexes.size < 2) {
             gamePresenter.postErrorMessage("Sorry boss, you need to choose 2 or 3")
-            gamePresenter.dismissDestinationPopUp()
         }
         else {
+            gamePresenter.dismissDestinationPopUp()
             BoardService.instance.chooseFirstDestinationCards(indexes, notChosen)
         }
     }
