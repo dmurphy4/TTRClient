@@ -23,6 +23,10 @@ class DestCardService {
         RootModel.instance.user!!.destinationHand!!.extend(cards)
     }
 
+    fun changeNumDestinationCards(deckSize: Int) {
+        RootModel.instance.game!!.destinationDeckSize = deckSize
+    }
+
     fun sendKeptDestCards() {
 
     }

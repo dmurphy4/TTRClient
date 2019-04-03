@@ -20,6 +20,7 @@ class CommandData(var type:CommandType, var data:String) {
             CommandType.C_CLAIM_ROUTE -> Gson().fromJson(data, CClaimRouteCommand::class.java).execute()
             CommandType.C_REPLACE_ALL_FACE_UP -> Gson().fromJson(data, CReplaceAllFaceUpCommand::class.java).execute()
             CommandType.C_END_GAME -> Gson().fromJson(data, CEndGameCommand::class.java).execute()
+            CommandType.C_ACCOUNT_FOR_DESTINATION_DRAW -> Gson().fromJson(data, CAccountForDestinationDrawCommand::class.java).execute()
             else -> println("Leilani Fonbuena")
         }
     }
