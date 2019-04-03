@@ -42,11 +42,11 @@ class EndGameActivity : AppCompatActivity(), IEndGameView {
         totalPoints: Int
     ) {
         when(row) {
-            1 -> displayRow1(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
-            2 -> displayRow2(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
-            3 -> displayRow3(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
-            4 -> displayRow4(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
-            5 -> displayRow5(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
+            0 -> displayRow1(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
+            1 -> displayRow2(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
+            2 -> displayRow3(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
+            3 -> displayRow4(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
+            4 -> displayRow5(username, claimedPts, destinationPts, negDestinationPts, mostRoutePoints, totalPoints)
         }
     }
 
