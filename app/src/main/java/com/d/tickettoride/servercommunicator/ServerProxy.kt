@@ -24,29 +24,34 @@ class ServerProxy {
         val data = command.toJson()
         println("OUT TO SERVER: $command")
         doAsync {
-            val body = RequestBody.create(JSON, data)
-            val request = Request.Builder().url(url).header("Accept-Encoding", "identity")
-                .addHeader("type", command.type().toString()).post(body).build()
-            val client = if (command is ServerCommand.Poll) pollerClient else otherClient
-            val response = client.newCall(request).execute()
-            val respBody = response.body()!!.string()
-            uiThread {
-                val type = when(command) {
-                    is ServerCommand.ChooseFirstDestinationHand -> FirstDestinationHandResponse::class.java
-                    is ServerCommand.JoinGame -> JoinGameResponse::class.java
-                    is ServerCommand.Login, is ServerCommand.Register -> LoginRegisterResponse::class.java
-                    is ServerCommand.Poll -> CommandListResponse::class.java
-                    is ServerCommand.DrawDestinationCards -> DrawDestinationCardResponse::class.java
-                    is ServerCommand.ChooseDestinationCard -> ReceiveMoreDestinationsResponse::class.java
-                    is ServerCommand.DrawFaceUp, is ServerCommand.DrawTrainCarCard -> DrawTrainCarCardResponse::class.java
-                    is ServerCommand.ClaimRoute -> ClaimRouteResponse::class.java
-                    is ServerCommand.ClaimGrayRoute -> ClaimGrayRouteResponse::class.java
-                    else -> GenericResponse::class.java
+            try {
+                val body = RequestBody.create(JSON, data)
+                val request = Request.Builder().url(url).header("Accept-Encoding", "identity")
+                    .addHeader("type", command.type().toString()).post(body).build()
+                val client = if (command is ServerCommand.Poll) pollerClient else otherClient
+                val response = client.newCall(request).execute()
+                val respBody = response.body()!!.string()
+                uiThread {
+                    val type = when(command) {
+                        is ServerCommand.ChooseFirstDestinationHand -> FirstDestinationHandResponse::class.java
+                        is ServerCommand.JoinGame -> JoinGameResponse::class.java
+                        is ServerCommand.Login, is ServerCommand.Register -> LoginRegisterResponse::class.java
+                        is ServerCommand.Poll -> CommandListResponse::class.java
+                        is ServerCommand.DrawDestinationCards -> DrawDestinationCardResponse::class.java
+                        is ServerCommand.ChooseDestinationCard -> ReceiveMoreDestinationsResponse::class.java
+                        is ServerCommand.DrawFaceUp, is ServerCommand.DrawTrainCarCard -> DrawTrainCarCardResponse::class.java
+                        is ServerCommand.ClaimRoute -> ClaimRouteResponse::class.java
+                        is ServerCommand.ClaimGrayRoute -> ClaimGrayRouteResponse::class.java
+                        else -> GenericResponse::class.java
+                    }
+                    val gson = Gson()
+                    println("IN FROM SERVER: $respBody")
+                    val clientResponse = gson.fromJson(respBody, type)
+                    clientResponse.execute()
                 }
-                val gson = Gson()
-                println("IN FROM SERVER: $respBody")
-                val clientResponse = gson.fromJson(respBody, type)
-                clientResponse.execute()
+            }
+            catch (e:Exception) {
+                GenericResponse("Sorry, the server is down :P").execute()
             }
         }
     }
