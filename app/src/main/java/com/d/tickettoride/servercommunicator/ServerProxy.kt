@@ -51,7 +51,9 @@ class ServerProxy {
                 }
             }
             catch (e:Exception) {
-                GenericResponse("Sorry, the server is down :P").execute()
+                uiThread {
+                    GenericResponse("Sorry, the server is down :P").execute()
+                }
             }
         }
     }
